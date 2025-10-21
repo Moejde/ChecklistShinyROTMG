@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8" />
@@ -292,7 +292,7 @@
 <body>
   <header>
     <div class="container row">
-      <h1>ROTMG — Browser (match por Object type)</h1>
+      <h1>ROTMG Whitebag & Shiny Checklist</h1>
       <nav class="tabs">
         <button id="tabItemsBtn" class="tab active">Itens</button>
         <button id="tabConfigBtn" class="tab">Configurações</button>
@@ -326,7 +326,7 @@
             <!-- Slider de colunas -->
             <div class="colsCtrl" title="Número de colunas visíveis">
               <span class="muted">Colunas:</span>
-              <input id="colSlider" type="range" min="1" max="10" step="1" value="5" list="colMarks" />
+              <input id="colSlider" class="colSlider" data-label="colLabel" data-marks="colMarks" type="range" min="1" max="10" step="1" value="5" list="colMarks" />
               <datalist id="colMarks"></datalist>
               <span id="colLabel" class="muted caps">5</span>
             </div>
@@ -372,46 +372,32 @@
     <!-- ===== Aba: Configurações ===== -->
     <section id="tab-config" class="hidden grid grid-2">
       <section class="card">
-        <h3 style="margin:0 0 6px">1) Selecione a pasta dos PNGs</h3>
-        <p class="muted">Aponte para a raiz com as pastas <b>Shiny</b> e <b>White Bag</b> (arquivos como <code>0x6a9.png</code>). <br/>Dica: usando o botão abaixo, a pasta fica <b>lembrada</b> (IndexedDB).</p>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <button id="btnPick" class="btn">Selecionar pasta (lembrar)</button>
-          <span class="muted">ou</span>
-          <label class="btn">Selecionar pasta (compatibilidade)
-            <input id="inputCompat" class="hidden" type="file" webkitdirectory directory multiple />
-          </label>
-        </div>
+        <h3 style="margin:0 0 6px">Fontes de dados</h3>
+        <p class="muted">Os PNGs e o <code>equip.txt</code> sao carregados automaticamente a partir da pasta do projeto.</p>
         <div class="muted" style="margin-top:8px">
-          Arquivos carregados: <b id="countFiles">0</b>
-          <span id="dirStatus" class="muted"></span>
+          PNGs carregados: <b id="countFiles">0</b>
         </div>
-      </section>
-
-      <section class="card">
-        <h3 style="margin:0 0 6px">2) Carregue o <code>equip.txt</code></h3>
-        <p class="muted">Recomendado: usar o botão “Selecionar equip.txt (lembrar)” para o arquivo ser lembrado. O input continua disponível como compatibilidade.</p>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <button id="btnPickEquip" class="btn">Selecionar equip.txt (lembrar)</button>
-          <label class="btn">Carregar equip.txt (compatibilidade)
-            <input id="inputEquip" class="hidden" type="file" accept=".txt,.xml" />
-          </label>
+        <div class="muted" style="margin-top:4px">
+          equip.txt: <b id="equipCount">(carregando)</b>
         </div>
-        <div class="muted" style="margin-top:8px">
-          equip.txt: <b id="equipCount">(não carregado)</b>
-          <span id="equipStatus" class="muted"></span>
+        <div class="colsCtrl" title="Número de colunas visíveis" style="margin-top:12px">
+          <span class="muted">Colunas:</span>
+          <input id="colSliderConfig" class="colSlider" data-label="colLabelConfig" data-marks="colMarksConfig" type="range" min="1" max="10" step="1" value="5" list="colMarksConfig" />
+          <datalist id="colMarksConfig"></datalist>
+          <span id="colLabelConfig" class="muted caps">5</span>
         </div>
       </section>
 
       <section class="grid grid-4 stats">
-        <div class="stat"><div class="l">Total PNGs</div><div id="stTotal" class="v">0</div></div>
+        <div class="stat"><div class="l">Total de Itens</div><div id="stTotal" class="v">0</div></div>
         <div class="stat"><div class="l">Casaram por Object type</div><div id="stMatched" class="v">0</div></div>
         <div class="stat"><div class="l">Coletados</div><div id="stCollected" class="v">0</div></div>
-        <div class="stat"><div class="l">Shiny (pasta ou label)</div><div id="stShiny" class="v">0</div></div>
-        <div class="stat"><div class="l">White Bag (pasta/BagType)</div><div id="stWhite" class="v">0</div></div>
+        <div class="stat"><div class="l">Shiny</div><div id="stShiny" class="v">0</div></div>
+        <div class="stat"><div class="l">White Bag</div><div id="stWhite" class="v">0</div></div>
       </section>
 
       <section class="card">
-        <h3 style="margin:0 0 8px">3) Progresso (checklist)</h3>
+        <h3 style="margin:0 0 8px">Progresso (checklist)</h3>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
           <button id="btnExport" class="btn">Exportar progresso (.json)</button>
           <label class="btn">Importar progresso (.json)
@@ -514,6 +500,10 @@
       "0x6587","0xc2d","0x5c4f","0xc40","0xc3e","0xc3f"
     ];
 
+    const SPRITES_MANIFEST_URL = "./sprites_manifest.json";
+    const SPRITES_BASE_URL = "../Sprites";
+    const EQUIP_DEFAULT_URL = "../equip.txt";
+
     const state = {
       files: [],
       equipByType: null,
@@ -607,6 +597,66 @@
         }
         return false;
       }catch(e){
+        return false;
+      }
+    }
+
+    function buildSpriteUrl(relPath){
+      const base = SPRITES_BASE_URL.replace(/\/+$/,"");
+      return encodeURI(`${base}/${relPath}`);
+    }
+
+    async function loadSpritesFromManifest(){
+      try{
+        const resp = await fetch(SPRITES_MANIFEST_URL, {cache:"no-cache"});
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const manifest = await resp.json();
+        if(!Array.isArray(manifest)) throw new Error("Manifesto invalido");
+        state.files.forEach((f)=>{
+          if(f?.url && typeof f.url==="string" && f.url.startsWith("blob:")){
+            try{ URL.revokeObjectURL(f.url); }catch(_){}
+          }
+        });
+        const arr = manifest.filter((rel)=>typeof rel==="string" && rel.toLowerCase().endsWith(".png")).map((rel)=>{
+          const base=(rel.split("/").pop()||"").replace(/\.png$/i,"");
+          return {
+            file:null,
+            url:buildSpriteUrl(rel),
+            path:rel,
+            category:getCategoryFromPath(rel),
+            objType:normHex(base)
+          };
+        });
+        const newObjTypes=new Set(arr.map((f)=>f.objType));
+        state.files=arr;
+        state.removed=new Set(Array.from(state.removed).filter((objType)=>newObjTypes.has(objType)));
+        saveProgress({skipFile:true});
+        const countEl=$("#countFiles");
+        if(countEl) countEl.textContent=String(arr.length);
+        return true;
+      }catch(err){
+        console.error("Falha ao carregar sprites padrao:", err);
+        const countEl=$("#countFiles");
+        if(countEl) countEl.textContent="erro";
+        state.files=[];
+        return false;
+      }
+    }
+
+    async function loadEquipFromDefault(){
+      try{
+        const resp = await fetch(EQUIP_DEFAULT_URL, {cache:"no-cache"});
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        state.equipByType = parseEquipTxt(text);
+        const equipEl=$("#equipCount");
+        if(equipEl) equipEl.textContent = state.equipByType ? `${state.equipByType.size} objetos` : "(nao carregado)";
+        return true;
+      }catch(err){
+        console.error("Falha ao carregar equip.txt padrao:", err);
+        state.equipByType=null;
+        const equipEl=$("#equipCount");
+        if(equipEl) equipEl.textContent="erro";
         return false;
       }
     }
@@ -991,166 +1041,99 @@
       return byType;
     }
 
-    /* ===== File System Access helpers ===== */
-    async function* walkFSDirectory(handle,prefix=""){
-      for await(const entry of handle.values()){
-        const p=prefix?`${prefix}/${entry.name}`:entry.name;
-        if(entry.kind==="directory"){
-          yield* walkFSDirectory(entry,p);
-        } else {
-          yield {path:p,handle:entry};
-        }
-      }
-    }
-
-    async function loadDirFromHandle(dir,{resetRemoved=true}={}){
-      const arr=[];
-      for await(const entry of walkFSDirectory(dir)){
-        if(!entry.path.toLowerCase().endsWith(".png")) continue;
-        const file=await entry.handle.getFile();
-        const url=URL.createObjectURL(file);
-        const base=(file.name||"").replace(/\.png$/i,"");
-        arr.push({file,url,path:entry.path,category:getCategoryFromPath(entry.path),objType:normHex(base)});
-      }
-      state.files.forEach(f=>f.url && URL.revokeObjectURL(f.url));
-      state.files=arr;
-      const newObjTypes=new Set(arr.map(f=>f.objType));
-      if(resetRemoved){
-        state.removed.clear();
-        state.deleteMode=false;
-      } else {
-        state.removed=new Set(Array.from(state.removed).filter(objType=>newObjTypes.has(objType)));
-      }
-      saveProgress();
-      $("#dirStatus").textContent=" (restaurado)";
-      $("#countFiles").textContent=String(arr.length);
-      renderAll();
-    }
-
-    async function loadEquipFromHandle(fileHandle){
-      const file = await fileHandle.getFile();
-      const text = await file.text();
-      state.equipByType = parseEquipTxt(text);
-      $("#equipCount").textContent = state.equipByType ? `${state.equipByType.size} objetos` : "(não carregado)";
-      $("#equipStatus").textContent = " (restaurado)";
-      renderAll();
-    }
-
     async function restoreRemembered(){
+
       await ensurePersistentStorage();
+
+
+
+      await loadSpritesFromManifest();
+
+      await loadEquipFromDefault();
+
+
+
       if(nodeFsAdapter){
+
         const result=await loadProgressFromNodeFile();
+
         if(result==="loaded"){
+
           saveProgress({skipFile:true});
+
         }else if(result==="missing"){
-          try{ await writeProgressNode(getProgressData()); }catch(_){}
+
+          try{ await writeProgressNode(getProgressData()); }catch(_){ }
+
         }
+
+        return;
+
       }
 
-      const hasDirPicker=("showDirectoryPicker" in window);
-      if(hasDirPicker){
-        // Pasta PNGs
-        const dirHandle = await idbGet("pngDir");
-        if(dirHandle && await ensurePerm(dirHandle, "read")){
-          try{ await loadDirFromHandle(dirHandle,{resetRemoved:false}); }catch(e){ console.warn("Falha ao ler pasta lembrada:", e); }
-        }
 
-        // equip.txt
-        const equipHandle = await idbGet("equipFile");
-        if(equipHandle && await ensurePerm(equipHandle, "read")){
-          try{ await loadEquipFromHandle(equipHandle); }catch(e){ console.warn("Falha ao ler equip lembrado:", e); }
-        }
-      }
-
-      if(nodeFsAdapter) return;
 
       if(!window.showOpenFilePicker && !window.showSaveFilePicker) return;
 
+
+
       const progressHandle = await idbGet(PROGRESS_HANDLE_KEY);
+
       if(progressHandle){
+
         state.progressHandle=progressHandle;
+
         const handleName=progressHandle.name||PROGRESS_FILE_NAME;
+
         updateProgressFileInfo({name:handleName, status:"aguardando"});
+
         if(await ensurePerm(progressHandle,"read")){
+
           const loadResult=await loadProgressFromHandle(progressHandle,{silent:true});
+
           if(loadResult==="loaded"){
+
             saveProgress({skipFile:true});
+
           }else if(loadResult==="error"){
+
             updateProgressFileInfo({name:handleName, status:"erro"});
+
           }else if(loadResult==="empty"){
+
             updateProgressFileInfo({name:handleName, status:"arquivo vazio"});
+
           }
+
           const canWrite=await ensurePerm(progressHandle,"readwrite");
+
           if(canWrite){
+
             if(loadResult==="empty"){
+
               scheduleProgressWrite(getProgressData());
+
             }
+
             updateProgressFileInfo({name:handleName, status:"auto"});
+
           }else{
+
             updateProgressFileInfo({name:handleName, status:"somente leitura"});
+
           }
+
         }else{
+
           updateProgressFileInfo({name:handleName, status:"precisa permissao"});
+
         }
+
       }
+
     }
 
-    /* ===== Picking (com lembrar) e compatibilidade ===== */
-    async function pickDirectory(){
-      if(!window.showDirectoryPicker){ $("#inputCompat").click(); return; }
-      try{
-        const dir=await window.showDirectoryPicker();
-        if(!(await ensurePerm(dir,"read"))){ alert("Permissão negada para ler a pasta."); return; }
-        await idbSet("pngDir", dir);
-        $("#dirStatus").textContent=" (lembrado)";
-        await loadDirFromHandle(dir);
-      }catch(e){
-        console.error(e);
-        alert("Não foi possível ler a pasta. Tente o modo compatibilidade.");
-      }
-    }
-    function onCompatFiles(ev){
-      const files=Array.from(ev.target.files||[]);
-      const arr=files.filter(f=>f.name.toLowerCase().endsWith(".png")).map((file)=>{
-        const url=URL.createObjectURL(file);
-        const rel=(file.webkitRelativePath||file.name).replaceAll("\\","/");
-        const base=(file.name||"").replace(/\.png$/i,"");
-        return {file,url,path:rel,category:getCategoryFromPath(rel),objType:normHex(base)};
-      });
-      state.files.forEach(f=>f.url && URL.revokeObjectURL(f.url));
-      state.files=arr;
-      state.removed.clear();
-      state.deleteMode=false;
-      saveProgress();
-      $("#dirStatus").textContent=" (compatibilidade)"; $("#countFiles").textContent=String(arr.length);
-      renderAll();
-    }
 
-    async function pickEquipFile(){
-      if(!window.showOpenFilePicker){ $("#inputEquip").click(); return; }
-      try{
-        const [h] = await window.showOpenFilePicker({
-          multiple:false,
-          types:[{description:"equip.txt", accept:{"text/plain":[".txt"], "text/xml":[".xml"]}}],
-          excludeAcceptAllOption:false
-        });
-        if(!(await ensurePerm(h,"read"))){ alert("Permissão negada para ler o equip.txt."); return; }
-        await idbSet("equipFile", h);
-        $("#equipStatus").textContent = " (lembrado)";
-        await loadEquipFromHandle(h);
-      }catch(e){
-        console.error(e);
-        alert("Não foi possível abrir o equip.txt. Tente o modo compatibilidade.");
-      }
-    }
-
-    async function onEquipFile(ev){
-      const file=ev.target.files?.[0]; if(!file) return;
-      const text=await file.text();
-      state.equipByType=parseEquipTxt(text);
-      $("#equipStatus").textContent=" (compatibilidade)";
-      renderAll();
-    }
 
     /* ===== Derivação ===== */
     function deriveRows(){
@@ -1209,13 +1192,25 @@
       }
 
       if(!state.equipByType){
-        info.textContent="Carregue o equip.txt para listar os itens casados por Object type.";
+        info.textContent="equip.txt padrao ainda nao carregado. Verifique se o arquivo esta acessivel.";
         empty.textContent=""; empty.style.display="block"; return;
       }
 
       // Ordenação
-      if(state.sortMode==="objectid"){ matched.sort((a,b)=>(a.objectId||"").localeCompare(b.objectId||"","pt-BR",{sensitivity:"base"})); }
-      else { matched.sort((a,b)=>hexToInt(a.objType)-hexToInt(b.objType)); }
+      if(state.sortMode==="objectid"){
+        const collator=new Intl.Collator("pt-BR",{sensitivity:"base"});
+        const getSortKey=(row)=>{
+          const id=row.objectId||"";
+          if(/^\d/.test(id)){
+            const name=row.displayName||"";
+            return name || id;
+          }
+          return id;
+        };
+        matched.sort((a,b)=>collator.compare(getSortKey(a), getSortKey(b)));
+      } else {
+        matched.sort((a,b)=>hexToInt(a.objType)-hexToInt(b.objType));
+      }
       if(state.sortDir==="desc") matched.reverse();
 
       matched = matched.filter(r=> !state.removed.has(r.objType));
@@ -1422,8 +1417,8 @@
       const allRows = rows || deriveRows();
       const unmatched=allRows.filter(r=>!r.matched);
 
-      if(!state.equipByType) info.textContent=`Aguardando equip.txt — exibindo ${unmatched.length} arquivo(s) como pendentes.`;
-      else info.textContent=`${unmatched.length} arquivo(s) sem correspondência no equip.txt (por Object type).`;
+      if(!state.equipByType) info.textContent=`equip.txt padrao nao carregado - exibindo ${unmatched.length} arquivo(s) como pendentes.`;
+      else info.textContent=`${unmatched.length} arquivo(s) sem correspondencia no equip.txt (por Object type).`;
 
       if(unmatched.length===0){ empty.style.display="block"; return; }
 
@@ -1472,8 +1467,10 @@
       $("#stCollected").textContent = collectedCount;
       $("#stShiny").textContent   = visibleMatched.filter(isShinyRow).length;
       $("#stWhite").textContent   = visibleMatched.filter(isWhiteRow).length;
-      $("#countFiles").textContent = state.files.length;
-      $("#equipCount").textContent = state.equipByType ? `${state.equipByType.size} objetos` : "(não carregado)";
+      const countEl=$("#countFiles");
+      if(countEl) countEl.textContent = String(allRows.length);
+      const equipEl=$("#equipCount");
+      if(equipEl) equipEl.textContent = state.equipByType ? `${state.equipByType.size} objetos` : "(nao carregado)";
     }
 
     function renderAll(){
@@ -1508,6 +1505,17 @@
       const tile = (width - (n-1)*gap)/n;
       return Math.max(16, tile); // nunca menor que 16px
     }
+    function getColControls(){
+      return Array.from(document.querySelectorAll(".colSlider")).map((slider)=>{
+        const labelId = slider.getAttribute("data-label");
+        const marksId = slider.getAttribute("data-marks");
+        return {
+          slider,
+          label: labelId ? document.getElementById(labelId) : null,
+          marks: marksId ? document.getElementById(marksId) : null
+        };
+      });
+    }
     function applyCols(n){
       document.documentElement.style.setProperty('--cols', String(n));
 
@@ -1515,8 +1523,12 @@
       const tilePx = computeTileSize(n);
       document.documentElement.style.setProperty('--tile', tilePx+'px');
 
-      const label=document.getElementById("colLabel");
-      if(label) label.textContent=String(n);
+      const controls=getColControls();
+      for(const {slider,label} of controls){
+        slider.value=String(n);
+        slider.setAttribute("aria-valuenow", slider.value);
+        if(label) label.textContent=String(n);
+      }
 
       // Alterna classes no <body> e no #gallery (mais robusto)
       const gallery = document.getElementById("gallery");
@@ -1530,31 +1542,70 @@
         gallery.classList.toggle('hide-info', hideInfo);
       }
     }
-    function rebuildColMarks(max){
-      const dl=document.getElementById("colMarks"); if(!dl) return; dl.innerHTML="";
-      for(let i=1;i<=max;i++){ const opt=document.createElement("option"); opt.value=String(i); opt.label=String(i); dl.appendChild(opt); }
+    function rebuildColMarks(marksEl, max){
+      if(!marksEl) return;
+      marksEl.innerHTML="";
+      for(let i=1;i<=max;i++){
+        const opt=document.createElement("option");
+        opt.value=String(i);
+        opt.label=String(i);
+        marksEl.appendChild(opt);
+      }
     }
-    function updateColsSliderLimits(){
-      const slider=document.getElementById("colSlider");
-      if(!slider) return;
-      const max=computeMaxCols();
-      slider.max=String(Math.max(1,max));
-      let val=parseInt(localStorage.getItem(COLS_KEY)||slider.value||'5',10);
-      if(isNaN(val)) val=5; if(val>max) val=max; if(val<1) val=1;
-      slider.value=String(val); applyCols(val); rebuildColMarks(parseInt(slider.max,10));
+    function updateColSliderBounds(max){
+      const controls=getColControls();
+      const safeMax=Math.max(1, max);
+      for(const {slider,marks} of controls){
+        slider.max=String(safeMax);
+        slider.min="1";
+        slider.step="1";
+        slider.setAttribute("aria-valuemax", slider.max);
+        slider.setAttribute("aria-valuemin", "1");
+        if(marks) rebuildColMarks(marks, safeMax);
+      }
     }
     function initColsControl(){
-      const slider=document.getElementById("colSlider");
-      if(!slider) return;
-      let init=parseInt(localStorage.getItem(COLS_KEY)||slider.value||'5',10);
-      if(isNaN(init)||init<1) init=5;
-      slider.step="1"; slider.min="1"; slider.value=String(init);
-      updateColsSliderLimits(); applyCols(parseInt(slider.value,10));
-      slider.addEventListener("input",(e)=>{ const v=parseInt(e.target.value,10); applyCols(v); localStorage.setItem(COLS_KEY,String(v)); });
+      const controls=getColControls();
+      if(!controls.length) return;
+
+      const getStoredValue=()=>{
+        let val=parseInt(localStorage.getItem(COLS_KEY)||'5',10);
+        if(isNaN(val) || val<1) val=5;
+        return val;
+      };
+
+      const applyWithBounds=(rawValue,{store=true}={})=>{
+        const max=computeMaxCols();
+        updateColSliderBounds(max);
+        let value=typeof rawValue==="number"?rawValue:parseInt(rawValue,10);
+        if(isNaN(value)) value=5;
+        value=Math.max(1, Math.min(value, Math.max(1,max)));
+        if(store) localStorage.setItem(COLS_KEY, String(value));
+        applyCols(value);
+        return value;
+      };
+
+      controls.forEach(({slider})=>{
+        slider.addEventListener("input",(e)=>{
+          const v=parseInt(e.target.value,10);
+          if(isNaN(v)) return;
+          applyWithBounds(v);
+        });
+      });
+
       let raf=null;
-      const onResize=()=>{ if(raf) cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>{ const prevMax=parseInt(slider.max||"10",10); updateColsSliderLimits(); const newMax=parseInt(slider.max||"10",10); const v=parseInt(slider.value||"5",10); if(prevMax!==newMax) localStorage.setItem(COLS_KEY,String(v)); else applyCols(v); }); };
+      const onResize=()=>{
+        if(raf) cancelAnimationFrame(raf);
+        raf=requestAnimationFrame(()=>{ applyWithBounds(getStoredValue(),{store:false}); });
+      };
+
       window.addEventListener("resize", onResize);
-      document.getElementById("tabItemsBtn").addEventListener("click", onResize);
+      const tabItems=document.getElementById("tabItemsBtn");
+      if(tabItems) tabItems.addEventListener("click", onResize);
+      const tabConfig=document.getElementById("tabConfigBtn");
+      if(tabConfig) tabConfig.addEventListener("click", onResize);
+
+      applyWithBounds(getStoredValue());
     }
 
     /* ===== Tabs ===== */
@@ -1611,12 +1662,6 @@
     /* ===== Eventos ===== */
     document.getElementById("tabItemsBtn").addEventListener("click", ()=>showTab("items"));
     document.getElementById("tabConfigBtn").addEventListener("click", ()=>showTab("config"));
-
-    document.getElementById("btnPick").addEventListener("click", pickDirectory);
-    document.getElementById("inputCompat").addEventListener("change", onCompatFiles);
-
-    document.getElementById("btnPickEquip").addEventListener("click", pickEquipFile);
-    document.getElementById("inputEquip").addEventListener("change", onEquipFile);
 
     document.getElementById("sortMode").addEventListener("change",(e)=>{ state.sortMode=e.target.value; renderAll(); });
     document.getElementById("sortDirBtn").addEventListener("click",()=>{ state.sortDir=(state.sortDir==="asc")?"desc":"asc"; document.getElementById("sortDirBtn").textContent=(state.sortDir==="asc")?"Asc":"Desc"; renderAll(); });
