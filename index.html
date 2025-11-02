@@ -1427,6 +1427,7 @@
     const CACHE_BUSTER = `?v=${Date.now()}`;
     const ATLAS_INDEX_URL = `imgs/spritesheet.json${CACHE_BUSTER}`;
     const ATLAS_IMAGE_URL = `imgs/mapObjects.png${CACHE_BUSTER}`;
+    console.log("[LOAD] URLs configuradas:", ATLAS_INDEX_URL, ATLAS_IMAGE_URL);
     const EQUIP_DEFAULT_URL = `./equip.txt${CACHE_BUSTER}`;
     const ITEMS_META_URL = `./items_meta.xml${CACHE_BUSTER}`;
     const PORTALS_DEFAULT_URL = `./all_portals.txt${CACHE_BUSTER}`;
@@ -1600,6 +1601,7 @@
     }
 
     async function loadEquipFromDefault(){
+      console.log("[LOAD] Iniciando loadEquipFromDefault...");
       try{
         const resp = await fetch(EQUIP_DEFAULT_URL, {cache:"no-cache"});
         if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -1616,9 +1618,11 @@
         return false;
       }
     }
+      console.log("[LOAD] loadEquipFromDefault concluído. Tipos carregados:", state.equipByType?.size || 0);
 
     async function loadPortalsFromDefault(){
       try{
+      console.log("[LOAD] Iniciando loadPortalsFromDefault...");
         const resp = await fetch(PORTALS_DEFAULT_URL, {cache:"no-cache"});
         if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const text = await resp.text();
@@ -1637,6 +1641,7 @@
       return m ? m[1].trim() : "";
     }
 
+      console.log("[LOAD] loadPortalsFromDefault concluído. Portais:", state.portalsBy?.size || 0);
     // Converte DungeonName para o slug DG usado no items_meta.xml
     function dungeonNameToSlug(dungeonName){
       return dungeonName
@@ -1728,12 +1733,14 @@
 
     // Carrega o PNG do atlas
     function loadAtlasImage(){
+      console.log("[LOAD] Iniciando loadAtlasImage...");
       return new Promise((resolve)=>{
         try{
           const img = new Image();
           img.decoding = "async";
           img.loading = "eager";
           img.onload = ()=>{ ATLAS_IMG = img; resolve(true); };
+          console.log("[LOAD] Imagem do atlas carregada! Dimensões:", img.naturalWidth, "x", img.naturalHeight);
           img.onerror = ()=> resolve(false);
           img.src = ATLAS_IMAGE_URL;
         }catch(_){ resolve(false); }
@@ -1742,6 +1749,7 @@
 
     // Constrói um lookup enxuto apenas para os sprites necessários
     async function loadAtlasIndexForNeeded(){
+      console.log("[LOAD] Iniciando loadAtlasIndexForNeeded...");
       try{
         if(!state.equipByType || state.files.length===0) return false;
         const needed = new Map(); // sheetName -> Set(indices)
@@ -1773,8 +1781,10 @@
 
         const resp = await fetch(ATLAS_INDEX_URL, {cache:"no-cache"});
         if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        console.log("[LOAD] Fazendo fetch do índice:", ATLAS_INDEX_URL);
         const json = await resp.json();
         const out = new Map();
+        console.log("[LOAD] Resposta recebida. Status:", resp.status, "OK:", resp.ok);
         const spritesArr = Array.isArray(json?.sprites) ? json.sprites : [];
         for(const sheet of spritesArr){
           const name = sheet?.spriteSheetName || sheet?.name || sheet?.Name;
@@ -1797,6 +1807,7 @@
         return true;
       }catch(err){
         console.warn('Falha ao carregar índice do atlas:', err);
+        console.log("[LOAD] loadAtlasIndexForNeeded concluído. Sheets:", SPRITES_LOOKUP.size);
         SPRITES_LOOKUP = null;
         return false;
       }
@@ -1942,6 +1953,7 @@
           if(metaEl) metaEl.textContent = `${parsed.size} itens`;
           const srcEl=document.getElementById("metaSourceLabel");
           if(srcEl) srcEl.textContent = "items_meta.xml";
+      console.log("[LOAD] Iniciando loadItemsMetaFromDefault...");
           return true;
         }
         state.metaByType = new Map();
@@ -1981,6 +1993,7 @@
     }
 
     async function saveItemsMetaXml(){
+      console.log("[LOAD] loadItemsMetaFromDefault concluído. Itens meta:", state.metaByType?.size || 0);
       try{
         const xml=buildItemsMetaXml();
         let saved=false;
@@ -2459,6 +2472,7 @@
       }
       await loadAtlasIndexForNeeded();
       if(window.updateLoadingProgress) {
+      console.log("[LOAD] rebuildFilesFromMeta concluído. Total files:", state.files.length);
         const dict = getDict();
         window.updateLoadingProgress(80, dict.loading_images || 'Loading images...');
       }
@@ -2544,6 +2558,7 @@
         const objectId=idAttr||"";
 
         // AUTO-CATEGORIZAÇÃO: Se items_meta.xml não tem categoria, usa BagType do equip.txt
+      console.log("[LOAD] restoreRemembered concluído!");
         let autoCategory = "";
         if (!meta?.category && !f.category) {
           const isWhitebag = (bagtype === "6");
