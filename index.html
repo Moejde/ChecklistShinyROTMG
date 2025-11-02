@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ROTMG — Itens & Config (Checklist por Object type)</title>
-  <link rel="icon" type="image/png" href="../imgs/favicon.png">
+  <link rel="icon" type="image/png" href="imgs/favicon.png">
   <style>
     :root{
       --bg:#0b0f14; --card:#0f172a; --border:#1f2937; --text:#e5e7eb; --muted:#93a0ad;
@@ -1079,7 +1079,7 @@
   <div id="loadingScreen">
     <div class="loading-favicon-wrapper">
       <div class="loading-glow"></div>
-      <img src="../imgs/favicon.png" alt="Loading" class="loading-favicon" />
+      <img src="imgs/favicon.png" alt="Loading" class="loading-favicon" />
     </div>
     <div class="loading-text" id="loadingText" data-i18n="loading">Carregando...</div>
     <div class="loading-progress-container">
@@ -1092,7 +1092,7 @@
   <div id="donationModal" onclick="if(event.target === this) closeDonationModal()">
     <div class="donation-content">
       <button class="donation-close" onclick="closeDonationModal()">&times;</button>
-      <img src="../imgs/favicon.png" alt="Support" class="donation-icon" />
+      <img src="imgs/favicon.png" alt="Support" class="donation-icon" />
       <h2 class="donation-title" data-i18n="donation_title">Support This Project <span class="donation-heart">♥</span></h2>
       <p class="donation-text" data-i18n="donation_text">
         This tool is completely free and open-source. If you find it useful,
@@ -1111,10 +1111,10 @@
       </div>
       <div id="pixSection" class="pix-section">
         <div class="pix-header">
-          <img src="../imgs/pix-logo.svg" alt="PIX" class="pix-logo" />
+          <img src="imgs/pix-logo.svg" alt="PIX" class="pix-logo" />
         </div>
         <div class="pix-qrcode">
-          <img src="../imgs/QRCode.png" alt="PIX QR Code" />
+          <img src="imgs/QRCode.png" alt="PIX QR Code" />
         </div>
         <p class="pix-label" data-i18n="donation_pix_scan">Scan the QR Code with your banking app</p>
       </div>
@@ -1148,7 +1148,7 @@
         <div class="progress-sticky-wrapper">
           <div class="progress-bar-group">
             <div class="progress-icon-circle" id="shinyIcon">
-              <img src="../imgs/Shiny.png" alt="Shiny" class="progress-icon-img" />
+              <img src="imgs/Shiny.png" alt="Shiny" class="progress-icon-img" />
             </div>
             <div id="progressPanelShiny" class="pBar-vertical rainbow" title="Shiny">
               <div id="progressFillShiny" class="pFill-vertical"></div>
@@ -1156,7 +1156,7 @@
           </div>
           <div class="progress-bar-group">
             <div class="progress-icon-circle" id="whiteIcon">
-              <img src="../imgs/WhiteBag.png" alt="White Bag" class="progress-icon-img" />
+              <img src="imgs/WhiteBag.png" alt="White Bag" class="progress-icon-img" />
             </div>
             <div id="progressPanelWhite" class="pBar-vertical white" title="White Bag">
               <div id="progressFillWhite" class="pFill-vertical"></div>
@@ -1174,10 +1174,10 @@
             <div class="sort-controls">
               <div class="seg" role="group" aria-label="Filtro de categoria">
                 <button id="fltWhite" class="chip chip-with-icon active" type="button" title="White Bag">
-                  <img src="../imgs/WhiteBag.png" alt="White Bag" class="chip-icon" />
+                  <img src="imgs/WhiteBag.png" alt="White Bag" class="chip-icon" />
                 </button>
                 <button id="fltShiny" class="chip chip-with-icon active" type="button" title="Shiny">
-                  <img src="../imgs/Shiny.png" alt="Shiny" class="chip-icon" />
+                  <img src="imgs/Shiny.png" alt="Shiny" class="chip-icon" />
                 </button>
               </div>
               <button id="sortModeBtn" class="btn" data-i18n-title="tooltip_sort_mode" title="Alternar modo de ordenação">A→Z</button>
@@ -3272,7 +3272,7 @@
 
         if(dg === "realm-event"){
           // "realm-event" usa imagem customizada direta
-          img.src = "../imgs/Realm-Event.png";
+          img.src = "imgs/Realm-Event.png";
           img.alt = chip.dataset.dgDisplay;
           chip.appendChild(img);
         } else if(iconItem){

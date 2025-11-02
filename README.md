@@ -6,6 +6,7 @@
 
 A modern, feature-rich checklist application for tracking **White Bag** and **Shiny** items in Realm of the Mad God.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?logo=github)](https://moejde.github.io/ChecklistShinyROTMG/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -73,7 +74,7 @@ ROTMG Whitebag & Shiny Checklist is a comprehensive web application designed to 
 
 ## 🚀 Demo
 
-Open `html/index.html` in a modern web browser to start using the application.
+**[🎮 Try Live Demo](https://moejde.github.io/ChecklistShinyROTMG/)** — Hosted on GitHub Pages, automatically updated with every commit!
 
 ## 📦 Installation
 
@@ -86,8 +87,8 @@ Open `html/index.html` in a modern web browser to start using the application.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/rotmg-checklist.git
-   cd rotmg-checklist
+   git clone https://github.com/Moejde/ChecklistShinyROTMG.git
+   cd ChecklistShinyROTMG
    ```
 
 2. **Serve the application**
@@ -104,12 +105,12 @@ Open `html/index.html` in a modern web browser to start using the application.
 
 3. **Open in browser**
    ```
-   http://localhost:8000/html/
+   http://localhost:8000/
    ```
 
 ### Alternative: Direct File Access
 
-Simply open `html/index.html` directly in your browser. Note that some features (like File System Access API) may require a web server.
+Simply open `index.html` directly in your browser. Note that some features (like File System Access API) may require a web server.
 
 ## 🎮 Usage
 
@@ -147,22 +148,20 @@ Simply open `html/index.html` directly in your browser. Note that some features 
 ## 🏗️ Project Structure
 
 ```
-ChecklistShinyROTMG - SpriteSheet/
-├── html/
-│   ├── index.html              # Main application file
-│   ├── i18n/                   # Internationalization files
-│   │   ├── en.json            # English translations
-│   │   └── pt-BR.json         # Portuguese (BR) translations
-│   ├── equip.txt              # Equipment data from game
-│   ├── items_meta.xml         # Item metadata
-│   └── sprites_manifest.json  # Sprite mapping data
+ChecklistShinyROTMG/
+├── index.html              # Main application file
+├── i18n/                   # Internationalization files
+│   ├── en.json            # English translations
+│   └── pt-BR.json         # Portuguese (BR) translations
+├── equip.txt              # Equipment data from game
+├── items_meta.xml         # Item metadata
 ├── imgs/
-│   ├── favicon.png            # Application icon
-│   ├── WhiteBag.png          # White Bag category icon
-│   ├── Shiny.png             # Shiny category icon
-│   ├── spritesheet.json      # Spritesheet atlas data
-│   └── mapObjects.png        # Item sprites atlas
-└── tools/                     # Development utilities
+│   ├── favicon.png        # Application icon
+│   ├── WhiteBag.png       # White Bag category icon
+│   ├── Shiny.png          # Shiny category icon
+│   ├── spritesheet.json   # Spritesheet atlas data
+│   └── mapObjects.png     # Item sprites atlas
+└── tools/                 # Development utilities (not deployed)
     └── [Build and processing scripts]
 ```
 
