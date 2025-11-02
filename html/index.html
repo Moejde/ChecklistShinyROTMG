@@ -39,14 +39,14 @@
     .thumb{
       position:relative;background:#0c1423;border:1px solid var(--border);border-radius:10px;
       display:flex;align-items:center;justify-content:center;
-      padding:2px;aspect-ratio:1/1;overflow:hidden;cursor:pointer;
+      padding:2px; aspect-ratio:1/1;overflow:hidden;cursor:pointer;
       transition:border-color .15s,box-shadow .15s,background-color .15s
     }
     .thumb img{
       position:relative; z-index:1; /* abaixo do ícone */
       width:100%;height:100%;object-fit:contain;
       image-rendering:pixelated;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;
-      filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));
+      filter:none;
     }
     .restore-overlay{
       position:absolute;
@@ -110,6 +110,46 @@
       -webkit-appearance:none;
       appearance:none;
     }
+    .dgModeToggle{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      background:#0b1322;
+      border:1px solid var(--border);
+      padding:6px 10px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    .dgModeToggle input{
+      width:16px;
+      height:16px;
+      accent-color:#60a5fa;
+      cursor:pointer;
+      margin:0;
+    }
+    .dgBulkBar{
+      display:none;
+      align-items:center;
+      gap:8px;
+      background:#0b1322;
+      border:1px solid var(--border);
+      padding:6px 10px;
+      border-radius:10px;
+      flex-wrap:wrap;
+    }
+    .dgInput{
+      background:#0c1423;
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:6px 8px;
+      width:160px;
+    }
+    .tile.dg-selected .thumb{
+      border-color:#60a5fa;
+      box-shadow:0 0 0 2px rgba(96,165,250,.45);
+    }
+    /* dg-badge removido: não renderizamos mais etiqueta DG sobre sprites */
     .thumb .info-btn,
     .thumb .close-btn{ opacity:0; pointer-events:none; }
     .thumb:hover .info-btn,
@@ -373,12 +413,17 @@
     <section id="tab-config" class="hidden grid grid-2">
       <section class="card">
         <h3 style="margin:0 0 6px">Fontes de dados</h3>
-        <p class="muted">Os PNGs e o <code>equip.txt</code> sao carregados automaticamente a partir da pasta do projeto.</p>
+        <p class="muted">O spritesheet (atlas), o <code>items_meta.xml</code> e o <code>equip.txt</code> sao carregados automaticamente a partir da pasta do projeto.</p>
         <div class="muted" style="margin-top:8px">
-          PNGs carregados: <b id="countFiles">0</b>
+          Itens carregados: <b id="countFiles">0</b>
         </div>
         <div class="muted" style="margin-top:4px">
           equip.txt: <b id="equipCount">(carregando)</b>
+        </div>
+        <div class="muted" style="margin-top:4px; display:flex; flex-wrap:wrap; gap:6px; align-items:center">
+          <span>Metadados (XML): <span id="metaSourceLabel">items_meta.xml</span> - <b id="metaCount">(carregando)</b></span>
+          <button id="metaImportBtn" class="btn" type="button">Importar XML...</button>
+          <input id="metaFileInput" class="hidden" type="file" accept=".xml" />
         </div>
         <div class="colsCtrl" title="Número de colunas visíveis" style="margin-top:12px">
           <span class="muted">Colunas:</span>
@@ -430,13 +475,35 @@
         <div id="unmatchedEmpty" class="muted" style="display:none;margin-top:8px">Tudo certo: nenhum item pendente.</div>
       </section>
     </section>
+
+      <section class="card" style="grid-column:1/-1">
+        <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
+          <h3 style="margin:0">Itens com DG=NONE</h3>
+          <div id="dgNoneInfo" class="muted"></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
+          <label class="seg dgModeToggle" title="Selecionar vários e definir DG para os itens">
+            <input id="dgModeToggle" type="checkbox" />
+            <span class="muted">Editor DG</span>
+          </label>
+          <div id="dgBulkBar" class="dgBulkBar" title="Aplicar DG em lote para itens selecionados">
+            <span class="muted">DG:</span>
+            <input id="dgInput" class="dgInput" type="text" placeholder="ex: NONE" />
+            <button id="dgApplyBtn" class="btn">Aplicar aos selecionados</button>
+            <span id="dgSelCount" class="muted">0 selecionado(s)</span>
+            <button id="dgSaveBtn" class="btn" title="Salvar items_meta.xml">Salvar XML</button>
+          </div>
+        </div>
+        <div class="gallery" id="dgNoneGallery" style="margin-top:10px"></div>
+        <div id="dgNoneEmpty" class="muted" style="display:none;margin-top:8px">Nenhum item com DG=NONE.</div>
+      </section>
   </main>
 
   <script>
     const $ = (sel) => document.querySelector(sel);
     const normHex = (s) => { if (!s) return ""; let x = s.trim().toLowerCase(); x = x.replace(/\s*\(\d+\)\s*$/, ""); if (!x.startsWith("0x")) x = "0x" + x.replace(/^0x/i,""); return x; };
     const hexToInt = (hx) => { const m = /^0x([0-9a-f]+)$/.exec((hx||"").toLowerCase()); return m ? parseInt(m[1], 16) : Number.POSITIVE_INFINITY; };
-    const getCategoryFromPath = (relPath) => { const parts = (relPath || "").split("/").filter(Boolean); return parts.length > 1 ? parts[0] : ""; };
+    
     const normStr = (s) => (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     function computeDefaultProgressInfo(){
       try{
@@ -500,17 +567,24 @@
       "0x6587","0xc2d","0x5c4f","0xc40","0xc3e","0xc3f"
     ];
 
-    const SPRITES_MANIFEST_URL = "./sprites_manifest.json";
-    const SPRITES_BASE_URL = "../Sprites";
+    // Atlas único (spritesheet) e índice
+    // Uso exclusivo de atlas; PNGs individuais removidos
+    const ATLAS_INDEX_URL = "../sheetprocess/data/spritesheet.json";
+    const ATLAS_IMAGE_URL = "../sheetprocess/data/mapObjects.png";
     const EQUIP_DEFAULT_URL = "../equip.txt";
+    const ITEMS_META_URL = "./items_meta.xml";
 
     const state = {
       files: [],
       equipByType: null,
+      metaByType: new Map(), // objType -> { DG, category, path }
       sortMode: "objectid",
       sortDir: "asc",
       filter: "all",
       ownedMode: "any",     // "any" | "yes" | "no"
+      dgMissingOnly: false,
+      dgEditMode: false,
+      dgSelected: new Set(),
       collected: new Set(),
       searchQuery: "",
       deleteMode: false,
@@ -518,6 +592,13 @@
       pendingRemovals: 0,
       progressHandle: null
     };
+
+    // Índice e imagem do atlas (spritesheet)
+    // SPRITES_LOOKUP: Map<string sheetName, Map<number index, {x,y,w,h}>>
+    let SPRITES_LOOKUP = null;
+    let ATLAS_IMG = null;
+    const IMG_CACHE = new Map(); // objType -> dataURL
+    const TRANSPARENT_PX = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMBAe9lXGkAAAAASUVORK5CYII=';
 
     const WHITE_BAG_REGEX = /white\s*bag/i;
     // Mantém a lógica de categorização centralizada
@@ -601,45 +682,23 @@
       }
     }
 
-    function buildSpriteUrl(relPath){
-      const base = SPRITES_BASE_URL.replace(/\/+$/,"");
-      return encodeURI(`${base}/${relPath}`);
-    }
-
-    async function loadSpritesFromManifest(){
+    // Constrói a lista de arquivos (itens) a partir do items_meta.xml
+    function rebuildFilesFromMeta(){
       try{
-        const resp = await fetch(SPRITES_MANIFEST_URL, {cache:"no-cache"});
-        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const manifest = await resp.json();
-        if(!Array.isArray(manifest)) throw new Error("Manifesto invalido");
-        state.files.forEach((f)=>{
-          if(f?.url && typeof f.url==="string" && f.url.startsWith("blob:")){
-            try{ URL.revokeObjectURL(f.url); }catch(_){}
-          }
-        });
-        const arr = manifest.filter((rel)=>typeof rel==="string" && rel.toLowerCase().endsWith(".png")).map((rel)=>{
-          const base=(rel.split("/").pop()||"").replace(/\.png$/i,"");
-          return {
-            file:null,
-            url:buildSpriteUrl(rel),
-            path:rel,
-            category:getCategoryFromPath(rel),
-            objType:normHex(base)
-          };
-        });
-        const newObjTypes=new Set(arr.map((f)=>f.objType));
-        state.files=arr;
-        state.removed=new Set(Array.from(state.removed).filter((objType)=>newObjTypes.has(objType)));
-        saveProgress({skipFile:true});
+        const arr = [];
+        for(const [objType, meta] of (state.metaByType||new Map()).entries()){
+          arr.push({
+            path:meta?.path||"",
+            category:meta?.category||"",
+            objType:objType
+          });
+        }
+        state.files = arr;
         const countEl=$("#countFiles");
         if(countEl) countEl.textContent=String(arr.length);
-        return true;
       }catch(err){
-        console.error("Falha ao carregar sprites padrao:", err);
-        const countEl=$("#countFiles");
-        if(countEl) countEl.textContent="erro";
-        state.files=[];
-        return false;
+        console.warn('rebuildFilesFromMeta falhou:', err);
+        state.files = [];
       }
     }
 
@@ -658,6 +717,285 @@
         const equipEl=$("#equipCount");
         if(equipEl) equipEl.textContent="erro";
         return false;
+      }
+    }
+
+    function parseItemsMetaXml(text){
+      try{
+        const xml=new DOMParser().parseFromString(text,"text/xml");
+        if(xml.getElementsByTagName("parsererror").length>0) throw new Error("XML invalido");
+        const map=new Map();
+        const items=Array.from(xml.getElementsByTagName("item"));
+        for(const it of items){
+          const objType=normHex((it.getAttribute?.("objType")||"").trim());
+          if(!objType) continue;
+          const DG=(it.getAttribute?.("DG")||"NONE").trim()||"NONE";
+          const category=(it.getAttribute?.("category")||"").trim();
+          const path=(it.getAttribute?.("path")||"").trim();
+          map.set(objType,{DG,category,path});
+        }
+        return map;
+      }catch(err){
+        console.error("Falha ao interpretar items_meta.xml:", err);
+        return null;
+      }
+    }
+
+    // Carrega o PNG do atlas
+    function loadAtlasImage(){
+      return new Promise((resolve)=>{
+        try{
+          const img = new Image();
+          img.decoding = "async";
+          img.loading = "eager";
+          img.onload = ()=>{ ATLAS_IMG = img; resolve(true); };
+          img.onerror = ()=> resolve(false);
+          img.src = ATLAS_IMAGE_URL;
+        }catch(_){ resolve(false); }
+      });
+    }
+
+    // Constrói um lookup enxuto apenas para os sprites necessários
+    async function loadAtlasIndexForNeeded(){
+      try{
+        if(!state.equipByType || state.files.length===0) return false;
+        const needed = new Map(); // sheetName -> Set(indices)
+        for(const f of state.files){
+          const rec = state.equipByType.get(f.objType);
+          if(!rec || !rec.textureFile || rec.textureIndex==null) continue;
+          const sheet = String(rec.textureFile);
+          const idx = Number(rec.textureIndex);
+          if(!needed.has(sheet)) needed.set(sheet, new Set());
+          needed.get(sheet).add(idx);
+        }
+        const resp = await fetch(ATLAS_INDEX_URL, {cache:"no-cache"});
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const json = await resp.json();
+        const out = new Map();
+        const spritesArr = Array.isArray(json?.sprites) ? json.sprites : [];
+        for(const sheet of spritesArr){
+          const name = sheet?.spriteSheetName || sheet?.name || sheet?.Name;
+          if(!name) continue;
+          const needSet = needed.get(String(name));
+          if(!needSet || needSet.size===0) continue;
+          const map = new Map();
+          const elements = Array.isArray(sheet?.elements) ? sheet.elements : (Array.isArray(sheet?.Sprites) ? sheet.Sprites : []);
+          for(const el of elements){
+            const idx = (typeof el?.index === 'number') ? el.index : (typeof el?.Index === 'number' ? el.Index : null);
+            if(idx==null || !needSet.has(idx)) continue;
+            const pos = el?.position || el?.Position;
+            if(pos && typeof pos.x==='number' && typeof pos.y==='number' && typeof pos.w==='number' && typeof pos.h==='number'){
+              map.set(idx, {x:pos.x, y:pos.y, w:pos.w, h:pos.h});
+            }
+          }
+          if(map.size>0) out.set(String(name), map);
+        }
+        SPRITES_LOOKUP = out;
+        return true;
+      }catch(err){
+        console.warn('Falha ao carregar índice do atlas:', err);
+        SPRITES_LOOKUP = null;
+        return false;
+      }
+    }
+
+    function getAtlasCropForRow(row){
+      try{
+        if(!SPRITES_LOOKUP || !row) return null;
+        const rec = state.equipByType?.get(row.objType);
+        if(!rec || !rec.textureFile || rec.textureIndex==null) return null;
+        const byIdx = SPRITES_LOOKUP.get(String(rec.textureFile));
+        if(!byIdx) return null;
+        return byIdx.get(Number(rec.textureIndex)) || null;
+      }catch(_){ return null; }
+    }
+
+    function getRowImgUrl(row){
+      const cached = IMG_CACHE.get(row.objType);
+      if (cached) return cached;
+      const crop = getAtlasCropForRow(row);
+      if (ATLAS_IMG && crop){
+        try{
+          const { x, y, w, h } = crop;
+          const BASE = 40;
+          // 1) Redimensiona o recorte para até 32px (maior dimensão = 32)
+          const TARGET = 32;
+          let sw, sh; // scaled sprite dims
+          if (w >= h) {
+            sw = TARGET;
+            sh = Math.max(1, Math.round(h * TARGET / w));
+          } else {
+            sh = TARGET;
+            sw = Math.max(1, Math.round(w * TARGET / h));
+          }
+          // canvas do sprite escalado (apenas o recorte)
+          const sC = document.createElement('canvas');
+          sC.width = sw; sC.height = sh;
+          const sCtx = sC.getContext('2d');
+          sCtx.imageSmoothingEnabled = false;
+          sCtx.drawImage(ATLAS_IMG, x, y, w, h, 0, 0, sw, sh);
+
+          // 2) Aplica efeitos no tamanho do sprite (outline 1px preto) sem limitar
+          const compC = document.createElement('canvas');
+          compC.width = sw + 2; // para não cortar a borda
+          compC.height = sh + 2;
+          const compCtx = compC.getContext('2d');
+          compCtx.imageSmoothingEnabled = false;
+          const srcImg = sCtx.getImageData(0,0,sw,sh);
+          const src = srcImg.data;
+          const olImg = compCtx.createImageData(compC.width, compC.height);
+          const ol = olImg.data;
+          const setPix=(px,py)=>{
+            if(px<0||py<0||px>=compC.width||py>=compC.height) return;
+            const k=(py*compC.width+px)*4;
+            ol[k]=0; ol[k+1]=0; ol[k+2]=0; ol[k+3]=255;
+          };
+          for(let sy=0; sy<sh; sy++){
+            for(let sx=0; sx<sw; sx++){
+              const a = src[(sy*sw+sx)*4 + 3];
+              if(a>0){
+                for(let ny=-1; ny<=1; ny++){
+                  for(let nx=-1; nx<=1; nx++){
+                    if(nx===0 && ny===0) continue;
+                    setPix(sx+nx+1, sy+ny+1); // +1 por causa da margem
+                  }
+                }
+              }
+            }
+          }
+          // desenha outline sobre a sombra usando um canvas auxiliar para preservar o fundo
+          const oC = document.createElement('canvas');
+          oC.width = compC.width; oC.height = compC.height;
+          const oCtx = oC.getContext('2d');
+          oCtx.putImageData(olImg, 0, 0);
+          compCtx.drawImage(oC, 0, 0);
+
+          // sprite nítido por cima
+          compCtx.drawImage(sC, 1, 1);
+
+          // 3) Centraliza o composto (sem redimensionar) em 40x40
+          const c = document.createElement('canvas');
+          c.width = BASE; c.height = BASE;
+          const ctx = c.getContext('2d');
+          ctx.imageSmoothingEnabled = false;
+          const x0 = Math.floor((BASE - compC.width)/2);
+          const y0 = Math.floor((BASE - compC.height)/2);
+          ctx.clearRect(0,0,BASE,BASE);
+          // outer glow preto no 40x40 (após centralizar), sem redimensionar
+          {
+            const pad = 4;
+            const gC = document.createElement('canvas');
+            gC.width = compC.width + pad*2;
+            gC.height = compC.height + pad*2;
+            const gCtx = gC.getContext('2d');
+            gCtx.imageSmoothingEnabled = false;
+            // silhueta preta a partir do composto (outline+sprite)
+            gCtx.drawImage(compC, pad, pad);
+            gCtx.globalCompositeOperation = 'source-in';
+            gCtx.fillStyle = 'rgba(0,0,0,1)';
+            gCtx.fillRect(0,0,gC.width,gC.height);
+            gCtx.globalCompositeOperation = 'source-over';
+            // aplica blur e alfa no canvas final 40x40
+            ctx.save();
+            ctx.globalAlpha = 0.9;
+            ctx.filter = 'blur(2px)';
+            ctx.drawImage(gC, x0 - pad, y0 - pad);
+            ctx.filter = 'none';
+            ctx.restore();
+          }
+          // composto por cima
+          ctx.drawImage(compC, x0, y0);
+
+          const url = c.toDataURL('image/png');
+          IMG_CACHE.set(row.objType, url);
+          return url;
+        }catch(_){ }
+      }
+      return TRANSPARENT_PX;
+    }
+    async function loadItemsMetaFromDefault(){
+      try{
+        const resp = await fetch(ITEMS_META_URL, {cache:"no-cache"});
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        const parsed=parseItemsMetaXml(text);
+        if(parsed){
+          state.metaByType = parsed;
+          const metaEl=document.getElementById("metaCount");
+          if(metaEl) metaEl.textContent = `${parsed.size} itens`;
+          const srcEl=document.getElementById("metaSourceLabel");
+          if(srcEl) srcEl.textContent = "items_meta.xml";
+          return true;
+        }
+        state.metaByType = new Map();
+        const metaEl=document.getElementById("metaCount");
+        if(metaEl) metaEl.textContent = "erro";
+        const srcEl=document.getElementById("metaSourceLabel");
+        if(srcEl) srcEl.textContent = "items_meta.xml";
+        return false;
+      }catch(err){
+        console.error("Falha ao carregar items_meta.xml:", err);
+        state.metaByType = new Map();
+        const metaEl=document.getElementById("metaCount");
+        if(metaEl) metaEl.textContent = "erro";
+        const srcEl=document.getElementById("metaSourceLabel");
+        if(srcEl) srcEl.textContent = "items_meta.xml";
+        return false;
+      }
+    }
+
+    function buildItemsMetaXml(){
+      const rows=deriveRows();
+      const sorted=[...rows].sort((a,b)=>hexToInt(a.objType)-hexToInt(b.objType));
+      const ts=new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
+      const parts=[
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        `<items generated='${ts}' total='${sorted.length}'>`
+      ];
+      for(const r of sorted){
+        const meta=state.metaByType.get(r.objType)||{DG:r.dg, category:r.category, path:r.path};
+        const DG=(meta.DG||"NONE").toString();
+        const cat=(meta.category||r.category||"").replace(/"/g,'&quot;');
+        const path=(meta.path||r.path||"").replace(/"/g,'&quot;');
+        parts.push(`  <item objType="${r.objType}" category="${cat}" path="${path}" DG="${DG}" />`);
+      }
+      parts.push('</items>');
+      return parts.join('\n');
+    }
+
+    async function saveItemsMetaXml(){
+      try{
+        const xml=buildItemsMetaXml();
+        let saved=false;
+        try{
+          let req=null;
+          if(typeof window.require==="function") req=window.require;
+          else if(typeof window.nodeRequire==="function") req=window.nodeRequire;
+          else if(typeof globalThis!=="undefined" && typeof globalThis.require==="function") req=globalThis.require;
+          if(req){
+            const fs=req("fs");
+            const pathMod=req("path");
+            const baseDir=(DEFAULT_PROGRESS_INFO?.dirNative) || (DEFAULT_PROGRESS_INFO?.dirUnix) || null;
+            if(baseDir){
+              const filePath=pathMod.resolve(baseDir, 'items_meta.xml');
+              if(fs.promises?.writeFile) await fs.promises.writeFile(filePath, xml, 'utf8');
+              else await new Promise((res,rej)=>fs.writeFile(filePath, xml, 'utf8', err=>err?rej(err):res()));
+              alert(`items_meta.xml salvo em:\n${filePath}`);
+              saved=true;
+            }
+          }
+        }catch(err){
+          console.warn('Falha ao salvar items_meta.xml via Node:', err);
+        }
+        if(!saved){
+          const blob=new Blob([xml],{type:'application/xml'});
+          const url=URL.createObjectURL(blob);
+          const a=document.createElement('a'); a.href=url; a.download='items_meta.xml';
+          document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove();
+        }
+      }catch(err){
+        console.error('Falha ao salvar items_meta.xml', err);
+        alert('Falha ao salvar items_meta.xml. Veja o console para detalhes.');
       }
     }
 
@@ -1009,7 +1347,26 @@
         const slot=obj.querySelector?.("SlotType")?.textContent?.trim()||"";
         const bagtype=obj.querySelector?.("BagType")?.textContent?.trim()||"";
 
-        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype});
+        // Texture/File + Texture/Index (quando disponíveis)
+        let textureFile=""; let textureIndex=null;
+        try{
+          const tex = obj.getElementsByTagName?.("Texture");
+          const texNode = tex && tex.length ? tex[0] : null;
+          if(texNode){
+            const fileNode = texNode.getElementsByTagName?.("File");
+            const idxNode = texNode.getElementsByTagName?.("Index");
+            const file = fileNode && fileNode.length ? (fileNode[0].textContent||"").trim() : "";
+            let idxRaw = idxNode && idxNode.length ? (idxNode[0].textContent||"").trim() : "";
+            if(idxRaw){
+              let m=/^0x([0-9a-f]+)$/i.exec(idxRaw);
+              textureIndex = m ? parseInt(m[1],16) : parseInt(idxRaw,10);
+              if(Number.isNaN(textureIndex)) textureIndex=null;
+            }
+            textureFile = file || "";
+          }
+        }catch(_){ }
+
+        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype,textureFile,textureIndex});
       };
 
       if(!hasErr){
@@ -1036,7 +1393,20 @@
         labels=Array.from(new Set(labels));
 
         const tier=getTag(block,"Tier"); const slot=getTag(block,"SlotType"); const bagtype=getTag(block,"BagType");
-        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype});
+        // Texture dentro do bloco <Texture>...</Texture>
+        let textureFile=""; let textureIndex=null;
+        const texBlock = getTag(block,"Texture");
+        if(texBlock){
+          const fileTxt = getTag(texBlock, "File");
+          let idxTxt = getTag(texBlock, "Index");
+          if(idxTxt){
+            let m=/^0x([0-9a-f]+)$/i.exec(idxTxt);
+            textureIndex = m ? parseInt(m[1],16) : parseInt(idxTxt,10);
+            if(Number.isNaN(textureIndex)) textureIndex=null;
+          }
+          if(fileTxt) textureFile = fileTxt;
+        }
+        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype,textureFile,textureIndex});
       }
       return byType;
     }
@@ -1047,9 +1417,16 @@
 
 
 
-      await loadSpritesFromManifest();
-
       await loadEquipFromDefault();
+
+      await loadItemsMetaFromDefault();
+
+      // A partir de items_meta.xml populamos os itens
+      rebuildFilesFromMeta();
+
+      // Com equip + meta carregados, montamos o índice e a imagem do atlas
+      await loadAtlasIndexForNeeded();
+      await loadAtlasImage();
 
 
 
@@ -1139,6 +1516,7 @@
     function deriveRows(){
       return state.files.map((f)=>{
         const rec=state.equipByType?.get(f.objType)||null;
+        const meta=state.metaByType?.get(f.objType)||null;
         const labels=rec?.labels||[]; const bagtype=rec?.bagtype||"";
         const isShinyByEquip=labels.some(lb=>(lb||"").toUpperCase()==="SHINY");
         const isShinyByFolder=(f.category||"")==="Shiny";
@@ -1152,16 +1530,16 @@
 
         return {
           key:f.path,
-          imgUrl:f.url,
           displayName,
           objectId,
           objType:f.objType,
           isShiny,
-          category:f.category||"",
+          category:meta?.category || f.category || "",
           bagtype,
           labels,
+          dg: meta?.DG || "NONE",
           matched:!!rec,
-          path:f.path,
+          path:meta?.path || f.path,
           collected: state.collected.has(f.objType),
           searchKey: normStr(displayName)
         };
@@ -1181,6 +1559,7 @@
         if(state.filter==="shiny") return isShinyRow(r);
         return true;
       });
+      // filtro DG=NONE removido da aba Itens
       // Filtro por coleta (tri-state)
       if(state.ownedMode==="yes") matched = matched.filter(r=> r.collected);
       else if(state.ownedMode==="no") matched = matched.filter(r=> !r.collected);
@@ -1218,7 +1597,8 @@
       const fltLabel = state.filter==="white" ? "White Bag" : state.filter==="shiny" ? "Shiny" : "Todos";
       const ownLabel = state.ownedMode==="yes" ? " | Somente coletados" : state.ownedMode==="no" ? " | Somente não coletados" : "";
       const searchLabel = q ? ` | Pesquisa: "${state.searchQuery}"` : "";
-      info.textContent = `Exibindo ${matched.length} item(ns) — Filtro: ${fltLabel}${ownLabel}${searchLabel} | ${state.sortMode==="objectid"?"A→Z (ObjectId)":"Hex (Object type)"} / ${state.sortDir.toUpperCase()}. Clique para marcar coletado.`;
+
+      info.textContent = `Exibindo ${matched.length} item(ns) — Filtro: ${fltLabel}${ownLabel}${searchLabel}${dgMissingLabel} | ${state.sortMode==="objectid"?"A→Z (ObjectId)":"Hex (Object type)"} / ${state.sortDir.toUpperCase()}. Clique para marcar coletado.`;
 
       if(matched.length===0){ empty.textContent="Nenhum item encontrado para o filtro atual."; empty.style.display="block"; return; }
 
@@ -1229,6 +1609,7 @@
         if(r.isShiny) wrap.classList.add("shiny");
         if(isWhiteRow(r)) wrap.classList.add("white");
         wrap.dataset.objtype=r.objType;
+        wrap.dataset.dg=(r.dg||"NONE").toString();
 
         const div=document.createElement("div"); div.className="thumb";
 
@@ -1259,11 +1640,10 @@
         }
 
         const img=document.createElement("img");
-        img.src=r.imgUrl; img.loading="lazy";
+        img.src=getRowImgUrl(r); img.loading="lazy";
         img.alt = r.displayName;
         img.title = r.displayName;
         div.appendChild(img);
-
         const cap=document.createElement("div"); cap.className="cap";
         cap.textContent = r.displayName;
         wrap.appendChild(div); wrap.appendChild(cap); frag.appendChild(wrap);
@@ -1337,14 +1717,23 @@
       g.onclick=(ev)=>{
         const tile=ev.target.closest(".tile");
         if(!tile) return;
+        const objType=tile.dataset.objtype; if(!objType) return;
         if(state.deleteMode){
           handleRemove(tile);
           return;
         }
-        const objType=tile.dataset.objtype; if(!objType) return;
         if(state.collected.has(objType)) state.collected.delete(objType); else state.collected.add(objType);
         saveProgress(); renderAll();
       };
+    }
+
+    function updateDgBulkUI(){
+      const bar=document.getElementById("dgBulkBar");
+      if(bar) bar.style.display = (state.dgEditMode && currentTab==="config") ? "flex" : "none";
+      const count=document.getElementById("dgSelCount");
+      if(count) count.textContent = `${state.dgSelected.size} selecionado(s)`;
+      const dgToggle=document.getElementById("dgModeToggle");
+      if(dgToggle) dgToggle.checked = state.dgEditMode;
     }
 
     /* ===== Render CONFIG ===== */
@@ -1384,7 +1773,7 @@
         }
 
         const img=document.createElement("img");
-        img.src=r.imgUrl; img.loading="lazy";
+        img.src=getRowImgUrl(r); img.loading="lazy";
         img.alt = r.displayName;
         img.title = r.displayName;
         box.appendChild(img);
@@ -1427,7 +1816,7 @@
         const wrap=document.createElement("div"); wrap.className="tile";
         const box=document.createElement("div"); box.className="thumb";
         const img=document.createElement("img");
-        img.src=r.imgUrl; img.loading="lazy";
+        img.src=getRowImgUrl(r); img.loading="lazy";
         img.alt=""; img.title="";
         box.appendChild(img);
         const cap=document.createElement("div"); cap.className="cap"; cap.textContent=r.objType||"(sem objType)";
@@ -1436,7 +1825,38 @@
       cont.replaceChildren(frag);
     }
 
-    function renderProgressBars(matchedRows){
+        function renderDgNone(rows){
+      const cont = document.getElementById('dgNoneGallery'), info = document.getElementById('dgNoneInfo'), empty = document.getElementById('dgNoneEmpty');
+      if(!cont) return;
+      cont.replaceChildren(); if(empty) empty.style.display='none';
+      const allRows = rows || deriveRows();
+      let list = allRows.filter(r => ((r.dg||'NONE').toString().trim().toUpperCase()==='NONE'));
+      // manter só válidos e não removidos
+      list = list.filter(r => !state.removed.has(r.objType));
+      if(info) info.textContent = `${list.length} item(ns) com DG=NONE. Use o Editor DG para definir`;
+      if(list.length===0){ if(empty) empty.style.display='block'; return; }
+      const frag = document.createDocumentFragment();
+      for(const r of list){
+        const wrap=document.createElement('div');
+        wrap.className='tile';
+        wrap.dataset.objtype=r.objType;
+        const box=document.createElement('div'); box.className='thumb';
+        const img=document.createElement('img'); img.src=getRowImgUrl(r); img.loading='lazy'; img.alt=r.displayName||''; img.title=r.displayName||''; box.appendChild(img);
+        const cap=document.createElement('div'); cap.className='cap'; cap.textContent=r.displayName||r.objType;
+        wrap.appendChild(box); wrap.appendChild(cap); frag.appendChild(wrap);
+      }
+      cont.replaceChildren(frag);
+      // seleção DG na aba Config
+      cont.onclick = (ev)=>{
+        const tile=ev.target.closest('.tile'); if(!tile) return;
+        const objType=tile.dataset.objtype; if(!objType) return;
+        if(state.dgEditMode){
+          if(state.dgSelected.has(objType)){ state.dgSelected.delete(objType); tile.classList.remove('dg-selected'); }
+          else { state.dgSelected.add(objType); tile.classList.add('dg-selected'); }
+          updateDgBulkUI();
+        }
+      };
+    }function renderProgressBars(matchedRows){
       const shinyFill=$("#progShinyFill"), shinyText=$("#progShinyText");
       const whiteFill=$("#progWhiteFill"), whiteText=$("#progWhiteText");
       if(!shinyFill||!whiteFill) return;
@@ -1473,11 +1893,17 @@
       if(equipEl) equipEl.textContent = state.equipByType ? `${state.equipByType.size} objetos` : "(nao carregado)";
     }
 
-    function renderAll(){
+function renderAll(){
       document.body.classList.toggle("delete-mode", state.deleteMode);
+      document.body.classList.toggle("dg-mode", state.dgEditMode);
       const deleteToggle=document.getElementById("deleteModeToggle");
       if(deleteToggle) deleteToggle.checked = state.deleteMode;
+      const dgModeToggle=document.getElementById("dgModeToggle");
+      if(dgModeToggle) dgModeToggle.checked = state.dgEditMode;
+
       const rows = deriveRows();
+      const validObjTypes=new Set(rows.map(r=>r.objType));
+      state.dgSelected=new Set(Array.from(state.dgSelected).filter((objType)=>validObjTypes.has(objType)));
       const matchedRows = rows.filter(r=>r.matched);
       if(currentTab === "items"){
         renderItemsGallery(rows, matchedRows);
@@ -1486,7 +1912,9 @@
         renderStats(rows, matchedRows);
         renderRemoved(rows);
         renderUnmatched(rows);
+        renderDgNone(rows);
       }
+      updateDgBulkUI();
     }
 
     /* ===== Colunas (slider) ===== */
@@ -1701,7 +2129,86 @@
         renderAll();
       });
     }
-
+;
+    
+    const dgModeToggle=document.getElementById("dgModeToggle");
+    if(dgModeToggle){
+      dgModeToggle.addEventListener("change",(e)=>{
+        state.dgEditMode=!!e.target.checked;
+        if(!state.dgEditMode) state.dgSelected.clear();
+        renderAll();
+      });
+    }
+    const dgApplyBtn=document.getElementById("dgApplyBtn");
+    if(dgApplyBtn){
+      dgApplyBtn.addEventListener("click",()=>{
+        const input=document.getElementById("dgInput");
+        const val=(input?.value||"").trim();
+        if(!val){
+          alert("Informe um valor para DG (ex: NONE)");
+          return;
+        }
+        if(state.dgSelected.size===0){
+          alert("Selecione ao menos um item.");
+          return;
+        }
+        const rows=deriveRows();
+        const rowsByType=new Map(rows.map((r)=>[r.objType,r]));
+        const byType=new Map(state.metaByType);
+        for(const objType of state.dgSelected){
+          const row=rowsByType.get(objType);
+          const current=byType.get(objType)||{};
+          byType.set(objType, {
+            DG: val,
+            category: current.category || row?.category || "",
+            path: current.path || row?.path || ""
+          });
+        }
+        state.metaByType=byType;
+        state.dgSelected.clear();
+        const metaEl=document.getElementById("metaCount");
+        if(metaEl) metaEl.textContent = `${state.metaByType.size} itens`;
+        renderAll();
+      });
+    }
+    const dgSaveBtn=document.getElementById("dgSaveBtn");
+    if(dgSaveBtn){
+      dgSaveBtn.addEventListener("click", saveItemsMetaXml);
+    }
+    const metaImportBtn=document.getElementById("metaImportBtn");
+    const metaFileInput=document.getElementById("metaFileInput");
+    if(metaImportBtn && metaFileInput){
+      metaImportBtn.addEventListener("click",()=>{
+        metaFileInput.value="";
+        metaFileInput.click();
+      });
+      metaFileInput.addEventListener("change", async (e)=>{
+        const file=e.target?.files?.[0];
+        if(!file) return;
+        try{
+          const text=await file.text();
+          const parsed=parseItemsMetaXml(text);
+          if(!parsed){
+            alert("Arquivo XML invalido. Veja o console para detalhes.");
+            const metaEl=document.getElementById("metaCount");
+            if(metaEl) metaEl.textContent="erro";
+            return;
+          }
+          state.metaByType=parsed;
+          state.dgSelected.clear();
+          const metaEl=document.getElementById("metaCount");
+          if(metaEl) metaEl.textContent=`${parsed.size} itens`;
+          const srcEl=document.getElementById("metaSourceLabel");
+          if(srcEl) srcEl.textContent=file.name || "items_meta.xml";
+          renderAll();
+        }catch(err){
+          console.error("Falha ao importar items_meta.xml:", err);
+          alert("Falha ao importar items_meta.xml. Veja o console para detalhes.");
+        }finally{
+          metaFileInput.value="";
+        }
+      });
+    }
     /* ===== Inicialização ===== */
     updateProgressFileInfo({});
     loadProgress();
@@ -1712,3 +2219,17 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
