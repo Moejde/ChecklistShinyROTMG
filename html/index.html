@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ROTMG — Itens & Config (Checklist por Object type)</title>
+  <link rel="icon" type="image/png" href="../imgs/favicon.png">
   <style>
     :root{
       --bg:#0b0f14; --card:#0f172a; --border:#1f2937; --text:#e5e7eb; --muted:#93a0ad;
@@ -13,14 +14,25 @@
     *{box-sizing:border-box} html,body{height:100%}
     body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,Segoe UI,Roboto,Arial}
 
-    header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(15,23,42,.9),rgba(15,23,42,.7));backdrop-filter:blur(6px);border-bottom:1px solid var(--border)}
+    header{position:sticky;top:0;z-index:1000;background:var(--bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,0.4)}
     .container{max-width:1200px;margin:0 auto;padding:14px 16px}
     h1{margin:0;font-size:16px;font-weight:700;letter-spacing:.2px}
     .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
     .tabs{display:flex;gap:6px;align-items:center}
-    .tab{border:1px solid var(--border);background:#0c1423;color:var(--muted);padding:8px 12px;border-radius:12px;cursor:pointer}
+    .tabs-left{margin-right:auto}
+    .tab{border:1px solid var(--border);background:#0c1423;color:var(--muted);padding:8px 12px;border-radius:12px;cursor:pointer;transition:all 0.2s ease}
     .tab.active{color:var(--text);border-color:#2e3a55;background:#14203b}
     .tab:hover{border-color:#34425f}
+    .tab-support{
+      background:linear-gradient(135deg, rgba(244, 114, 182, 0.15), rgba(236, 72, 153, 0.15));
+      border-color:rgba(236, 72, 153, 0.3);
+      color:#f9a8d4;
+    }
+    .tab-support:hover{
+      background:linear-gradient(135deg, rgba(244, 114, 182, 0.25), rgba(236, 72, 153, 0.25));
+      border-color:rgba(236, 72, 153, 0.5);
+      transform:translateY(-1px);
+    }
     .btn{border:1px solid var(--border);background:#0c1423;color:var(--text);padding:8px 12px;border-radius:12px;cursor:pointer}
     .btn:hover{border-color:#3a4a6a}
     select.btn{padding-right:28px}
@@ -129,13 +141,32 @@
     }
     .dgBulkBar{
       display:none;
-      align-items:center;
-      gap:8px;
-      background:#0b1322;
-      border:1px solid var(--border);
-      padding:6px 10px;
-      border-radius:10px;
-      flex-wrap:wrap;
+      position:fixed;
+      top:50%;
+      left:20px;
+      transform:translateY(-50%);
+      z-index:9999;
+      flex-direction:column;
+      align-items:stretch;
+      gap:12px;
+      background:rgba(11, 19, 34, 0.98);
+      border:2px solid var(--accent);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.8), 0 0 0 1px rgba(96,165,250,0.5);
+      backdrop-filter:blur(12px);
+      min-width:300px;
+      max-width:350px;
+    }
+    .dgBulkBar.active{
+      display:flex !important;
+    }
+    .dgBulkBar .btn,
+    .dgBulkBar .dgInput,
+    .dgBulkBar input[type="checkbox"],
+    .dgBulkBar button{
+      pointer-events:auto;
+      cursor:pointer;
     }
     .dgInput{
       background:#0c1423;
@@ -149,7 +180,41 @@
       border-color:#60a5fa;
       box-shadow:0 0 0 2px rgba(96,165,250,.45);
     }
-    /* dg-badge removido: não renderizamos mais etiqueta DG sobre sprites */
+    .dg-badge{
+      position:absolute;
+      right:6px;
+      bottom:6px;
+      z-index:3;
+      font-size:10px;
+      padding:2px 6px;
+      border-radius:999px;
+      background:#14203b;
+      border:1px solid #24324a;
+      color:#cfe2ff;
+      pointer-events:none;
+    }
+    .dg-badge{
+      display:none; /* Escondido por padrão */
+    }
+    body.show-dg-badges .dg-badge{
+      display:block !important;
+    }
+    body.show-dg-badges .dg-badge-multi{
+      display:flex !important;
+      flex-direction:column;
+      gap:2px;
+      padding:0;
+      background:transparent;
+      border:none;
+    }
+    .dg-badge-item{
+      background:#14203b;
+      border:1px solid #24324a;
+      padding:2px 6px;
+      border-radius:999px;
+      font-size:10px;
+      color:#cfe2ff;
+    }
     .thumb .info-btn,
     .thumb .close-btn{ opacity:0; pointer-events:none; }
     .thumb:hover .info-btn,
@@ -249,6 +314,17 @@
     .seg .chip{padding:6px 10px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer}
     .seg .chip.active{background:#14203b;color:var(--text);border-color:#324567}
     .seg .chip:hover{border-color:#3a4a6a}
+    .chip-with-icon{
+      padding:6px 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .chip-icon{
+      width:20px;
+      height:20px;
+      object-fit:contain;
+    }
     .stats .stat{background:#0c1423;border:1px solid var(--border);border-radius:14px;padding:12px}
     .stat .l{font-size:12px;color:var(--muted)} .stat .v{font-size:18px;font-weight:700}
 
@@ -262,9 +338,287 @@
     .pBar.white .pFill{background:linear-gradient(90deg,#ffffff,#dcdcdc)}
     .pText{font-size:12px;color:var(--muted);min-width:64px;text-align:left}
 
-    .colsCtrl{display:flex;align-items:center;gap:8px;margin-left:6px}
-    .colsCtrl input[type="range"]{width:200px}
-    .caps{font-variant-numeric:tabular-nums}
+    /* Barras de progresso verticais */
+    .pBar-vertical{
+      width:24px;
+      height:300px;
+      border:2px solid var(--border);
+      border-radius:12px;
+      overflow:hidden;
+      background:#101826;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);
+      display:flex;
+      flex-direction:column-reverse;
+    }
+    .pFill-vertical{
+      width:100%;
+      height:0%;
+      transition:height 0.3s ease;
+    }
+    .pBar-vertical.rainbow .pFill-vertical{
+      background:linear-gradient(0deg,#ff5f6d,#ffc371,#f9f871,#a0f0a0,#7fd7ff,#9a7fff,#ff7fd1);
+    }
+    .pBar-vertical.white .pFill-vertical{
+      background:linear-gradient(0deg,#ffffff,#dcdcdc);
+    }
+    /* Container relativo para barras de progresso */
+    #tab-items{
+      position:relative;
+    }
+    /* Container invisível para alinhamento dos controles */
+    .controls-alignment-container{
+      /* Container transparente sem bordas, apenas para alinhamento */
+      position:relative;
+      margin-bottom:10px;
+    }
+    /* Barras de progresso à direita do card com margem externa - acompanha scroll */
+    .progress-sidebar-fixed{
+      position:absolute;
+      right:-39px;  /* -(24px barra + 15px margem) */
+      top:0;
+      width:24px;
+      height:100%;  /* Altura total para sticky funcionar */
+      z-index:10;  /* Abaixo do header (z-index:1000) */
+      pointer-events:none;
+    }
+    .progress-sticky-wrapper{
+      position:sticky;
+      top:70px;  /* Altura header (~48px) + margem (20px) + metade do círculo que sobrepõe (2px buffer) */
+      display:flex;
+      flex-direction:column;
+      gap:40px;  /* Aumentado para acomodar os círculos */
+      pointer-events:none;
+      padding-top:20px;  /* Espaço para o círculo que sobrepõe a barra */
+    }
+    .progress-bar-group{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .progress-icon-circle{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:var(--card);
+      border:3px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      top:-20px;  /* Sobrepõe a barra */
+      z-index:2;
+      box-shadow:0 2px 8px rgba(0,0,0,0.3);
+      transition:all 0.3s ease;
+      pointer-events:auto;
+    }
+    .progress-icon-circle.complete{
+      border-width:4px;
+      box-shadow:0 2px 12px rgba(76,175,80,0.5);
+    }
+    /* Gradiente rainbow para o ícone Shiny quando completo */
+    #shinyIcon.complete{
+      background:linear-gradient(180deg,#ff5f6d,#ffc371,#f9f871,#a0f0a0,#7fd7ff,#9a7fff,#ff7fd1);
+      border-color:#ff7fd1;
+    }
+    /* Gradiente white para o ícone White Bag quando completo */
+    #whiteIcon.complete{
+      background:linear-gradient(180deg,#ffffff,#dcdcdc);
+      border-color:#ffffff;
+    }
+    .progress-icon-img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
+    .progress-sidebar-fixed .pBar-vertical{
+      pointer-events:auto;
+    }
+
+    /* Controle de colunas via ícone com scroll */
+    .col-icon-ctrl{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      background:#0c1423;
+      border:1px solid var(--border);
+      border-radius:12px;
+      cursor:pointer;
+      user-select:none;
+      transition:border-color 0.2s ease;
+    }
+    .col-icon-ctrl:hover{
+      border-color:#3a4a6a;
+    }
+    .col-icon{
+      font-size:18px;
+      line-height:1;
+    }
+    .col-value{
+      font-size:14px;
+      color:var(--text);
+      font-variant-numeric:tabular-nums;
+      min-width:20px;
+      text-align:center;
+    }
+
+    /* DG Filter Pagination - Layout centralizado */
+    .dg-filter-container{
+      position:relative;
+      margin:10px 0 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    /* Controles à esquerda (Filtros toggle + A→Z + Asc + Exclusão unificados) */
+    .dg-filter-container .sort-controls{
+      position:absolute;
+      left:0;
+      display:flex;
+      gap:6px;
+      align-items:center;
+      z-index:20;
+    }
+    /* Controles à direita (Col./N Col., Pesquisa) */
+    .dg-filter-container .triCtrl-compact{
+      position:absolute;
+      right:210px;
+      margin:0;
+    }
+    .dg-filter-container .searchWrap{
+      position:absolute;
+      right:0;
+      margin:0;
+    }
+    .dg-filter-container .searchInput{
+      width:180px;
+    }
+    /* Slider DG centralizado */
+    .dg-filter-scroll-wrapper{
+      position:relative;
+      width:380px;
+      overflow:hidden;
+      mask-image:linear-gradient(to right, transparent 0px, black 60px, black calc(100% - 60px), transparent 100%);
+      -webkit-mask-image:linear-gradient(to right, transparent 0px, black 60px, black calc(100% - 60px), transparent 100%);
+    }
+    .dg-filter-scroll{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      padding:4px 0;
+    }
+    .dg-filter-scroll.sliding{
+      transition:transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .dg-pagination-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:32px;
+      height:32px;
+      border:none;
+      background:transparent;
+      color:var(--accent);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      font-weight:700;
+      transition:all .15s;
+      user-select:none;
+      z-index:10;
+      text-shadow:0 2px 4px rgba(0,0,0,.8);
+    }
+    .dg-pagination-btn:hover:not(:disabled){
+      transform:translateY(-50%) scale(1.25);
+      text-shadow:0 3px 8px rgba(0,0,0,.9);
+      filter:brightness(1.2);
+    }
+    .dg-pagination-btn:disabled{
+      opacity:0.2;
+      cursor:not-allowed;
+    }
+    #dgPrevBtn{
+      left:15px;
+    }
+    #dgNextBtn{
+      right:15px;
+    }
+    .dg-filter-chip{
+      position:relative;
+      flex-shrink:0;
+      width:48px;
+      height:48px;
+      border:2px solid var(--border);
+      background:#0c1423;
+      border-radius:10px;
+      cursor:pointer;
+      transition:all .15s;
+      user-select:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:4px;
+    }
+    .dg-filter-chip img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      image-rendering:pixelated;
+      image-rendering:-moz-crisp-edges;
+      image-rendering:crisp-edges;
+    }
+    .dg-filter-chip:hover{
+      border-color:#40527a;
+      background:#14203b;
+      transform:translateY(-2px);
+      box-shadow:0 4px 8px rgba(0,0,0,.3);
+    }
+    .dg-filter-chip.active{
+      background:#1e3a5f;
+      border-color:#3a5a8a;
+      color:var(--text);
+      box-shadow:0 0 0 2px rgba(96,165,250,.45);
+    }
+    .dg-filter-chip.active:hover{
+      transform:translateY(-2px);
+      box-shadow:0 4px 8px rgba(0,0,0,.3), 0 0 0 2px rgba(96,165,250,.45);
+    }
+    .dg-filter-chip.preview{
+      opacity:0.8;
+      pointer-events:none;
+      cursor:default;
+    }
+    .dg-filter-chip.preview:hover{
+      transform:none;
+      box-shadow:none;
+      border-color:var(--border);
+      background:#0c1423;
+    }
+    /* Tooltip para DG chips */
+    .dg-tooltip{
+      position:fixed;
+      background:rgba(15,23,42,.98);
+      color:var(--text);
+      padding:8px 14px;
+      border-radius:8px;
+      font-size:13px;
+      font-weight:500;
+      white-space:nowrap;
+      pointer-events:none;
+      border:1px solid var(--border);
+      box-shadow:0 4px 16px rgba(0,0,0,.5);
+      z-index:9999;
+      opacity:0;
+      transition:opacity .15s;
+    }
+    .dg-tooltip.visible{
+      opacity:1;
+    }
 
     /* Busca (itens) */
     .searchInput{
@@ -274,12 +628,46 @@
       padding:8px 10px;
       border-radius:10px;
       width:220px;
+      font-size:14px;
+      line-height:1.45;
+      height:auto;
     }
     .searchInput::placeholder{ color:var(--muted) }
 
     /* Switch 3 posições (Coletados — Neutro — Não coletados) */
-    .triCtrl{display:flex;align-items:center;gap:8px;background:#0b1322;border:1px solid var(--border);padding:6px 10px;border-radius:10px}
+    .triCtrl{display:flex;align-items:center;gap:4px;background:#0a1322;border:1px solid var(--border);padding:6px 5px;border-radius:10px}
     .triCtrl .label{color:var(--muted);font-size:12px}
+    .triCtrl-compact{
+      background:#0a1322;
+      border:1px solid var(--border);
+      padding:8px 10px;
+      border-radius:10px;
+      gap:8px;
+      line-height:1.45;
+    }
+    .triCtrl-compact .label{
+      font-size:14px;
+      color:var(--text);
+      cursor:help;
+      line-height:1.45;
+    }
+    .triCtrl-compact input[type="range"]{
+      width:70px !important;
+      height:8px !important;
+      background-size:100% 8px,1px 12px,1px 12px !important;
+    }
+    .triCtrl-compact input[type="range"]::-webkit-slider-thumb{
+      width:12px !important;
+      height:12px !important;
+      margin-top:-2px !important;
+    }
+    .triCtrl-compact input[type="range"]::-moz-range-thumb{
+      width:12px !important;
+      height:12px !important;
+    }
+    .triCtrl-compact input[type="range"]::-moz-range-track{
+      height:8px !important;
+    }
     .triCtrl input[type="range"]{
       appearance:none; -webkit-appearance:none; width:170px; height:12px; border-radius:999px; cursor:pointer;
       background:#25324a;
@@ -324,18 +712,430 @@
       margin:0;
     }
     .deleteModeToggle .muted{
-      font-size:12px;
+      font-size:14px;
+      color:var(--text);
       user-select:none;
+    }
+
+    /* Classes para substituir inline styles */
+    .flex-wrap-gap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .items-info {
+      font-size: 13px;
+    }
+    .tip-text {
+      margin-top: 8px;
+    }
+    .settings-card {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-title {
+      margin: 0 0 16px;
+    }
+    .section-container {
+      margin-bottom: 24px;
+    }
+    .subsection-title {
+      margin: 0 0 12px;
+      color: #60a5fa;
+      font-size: 16px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .button-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+    }
+    .hint-text {
+      margin-top: 8px;
+    }
+    .hint-text-small {
+      margin-top: 4px;
+    }
+
+    /* Loading Screen */
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+    #loadingScreen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loading-favicon-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+    .loading-favicon {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      z-index: 2;
+      animation: floatRotate 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.8));
+    }
+    .loading-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.4), rgba(59, 130, 246, 0.2) 50%, transparent 70%);
+      animation: glowPulse 2s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes floatRotate {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.8)) brightness(1);
+      }
+      25% {
+        transform: translateY(-15px) rotate(5deg) scale(1.05);
+        filter: drop-shadow(0 10px 40px rgba(96, 165, 250, 1)) brightness(1.1);
+      }
+      50% {
+        transform: translateY(0) rotate(0deg) scale(1.1);
+        filter: drop-shadow(0 0 50px rgba(59, 130, 246, 1)) brightness(1.2);
+      }
+      75% {
+        transform: translateY(-15px) rotate(-5deg) scale(1.05);
+        filter: drop-shadow(0 10px 40px rgba(96, 165, 250, 1)) brightness(1.1);
+      }
+    }
+    @keyframes glowPulse {
+      0%, 100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.3);
+      }
+    }
+    .loading-text {
+      margin-top: 30px;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .loading-progress-container {
+      margin-top: 20px;
+      width: 300px;
+      height: 6px;
+      background: var(--card-bg);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #60a5fa, #3b82f6);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.3s ease-out;
+      box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+    }
+    .loading-percent {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* Donation Modal */
+    #donationModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+    #donationModal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .donation-content {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      animation: modalSlideIn 0.4s ease-out;
+      position: relative;
+    }
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+    .donation-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      animation: floatRotate 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.6));
+    }
+    .donation-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 15px;
+    }
+    .donation-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .donation-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    .donation-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .donation-btn-primary {
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      color: white;
+      box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+    }
+    .donation-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(96, 165, 250, 0.6);
+    }
+    .donation-btn-paypal {
+      background: linear-gradient(135deg, #0070ba, #003087);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 112, 186, 0.4);
+    }
+    .donation-btn-paypal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 112, 186, 0.6);
+    }
+    .donation-btn-pix {
+      background: linear-gradient(135deg, #32bcad, #00a896);
+      color: white;
+      box-shadow: 0 4px 15px rgba(50, 188, 173, 0.4);
+    }
+    .donation-btn-pix:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(50, 188, 173, 0.6);
+    }
+    .donation-btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .donation-btn-secondary:hover {
+      background: var(--card-bg);
+      border-color: var(--text-muted);
+    }
+    .pix-section {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+    .pix-section.show {
+      max-height: 450px;
+      opacity: 1;
+    }
+    .pix-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    .pix-logo {
+      height: 32px;
+      width: auto;
+    }
+    .pix-qrcode {
+      margin: 20px auto;
+      padding: 15px;
+      max-width: 230px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .pix-qrcode img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+    .pix-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+      text-align: center;
+    }
+    .donation-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+    .donation-close:hover {
+      background: var(--bg);
+      color: var(--text);
+    }
+    .donation-heart {
+      display: inline-block;
+      color: #ef4444;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      10%, 30% {
+        transform: scale(1.1);
+      }
+      20%, 40% {
+        transform: scale(1);
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <div class="loading-favicon-wrapper">
+      <div class="loading-glow"></div>
+      <img src="../imgs/favicon.png" alt="Loading" class="loading-favicon" />
+    </div>
+    <div class="loading-text" id="loadingText" data-i18n="loading">Carregando...</div>
+    <div class="loading-progress-container">
+      <div class="loading-progress-bar" id="loadingProgressBar"></div>
+    </div>
+    <div class="loading-percent" id="loadingPercent">0%</div>
+  </div>
+
+  <!-- Donation Modal -->
+  <div id="donationModal" onclick="if(event.target === this) closeDonationModal()">
+    <div class="donation-content">
+      <button class="donation-close" onclick="closeDonationModal()">&times;</button>
+      <img src="../imgs/favicon.png" alt="Support" class="donation-icon" />
+      <h2 class="donation-title" data-i18n="donation_title">Support This Project <span class="donation-heart">♥</span></h2>
+      <p class="donation-text" data-i18n="donation_text">
+        This tool is completely free and open-source. If you find it useful,
+        consider supporting its development and maintenance!
+      </p>
+      <div class="donation-buttons">
+        <a href="https://github.com/Moejde/ChecklistShinyROTMG" target="_blank" class="donation-btn donation-btn-primary" data-i18n="donation_github">
+          ⭐ Star on GitHub
+        </a>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=TQ6AN9VJKGSC2" target="_blank" class="donation-btn donation-btn-paypal" data-i18n="donation_paypal">
+          💳 Donate via PayPal
+        </a>
+        <button onclick="togglePixSection()" class="donation-btn donation-btn-pix" data-i18n="donation_pix">
+          🇧🇷 Donate via PIX
+        </button>
+      </div>
+      <div id="pixSection" class="pix-section">
+        <div class="pix-header">
+          <img src="../imgs/pix-logo.svg" alt="PIX" class="pix-logo" />
+        </div>
+        <div class="pix-qrcode">
+          <img src="../imgs/QRCode.png" alt="PIX QR Code" />
+        </div>
+        <p class="pix-label" data-i18n="donation_pix_scan">Scan the QR Code with your banking app</p>
+      </div>
+      <button onclick="closeDonationModal()" class="donation-btn donation-btn-secondary" style="margin-top: 15px;" data-i18n="donation_later">
+        Maybe Later
+      </button>
+    </div>
+  </div>
+
   <header>
     <div class="container row">
-      <h1>ROTMG Whitebag & Shiny Checklist</h1>
+      <div class="flex-wrap-gap">
+        <h1 data-i18n="app_title">ROTMG Whitebag & Shiny Checklist</h1>
+        <div id="itemsInfo" class="muted items-info"></div>
+      </div>
       <nav class="tabs">
-        <button id="tabItemsBtn" class="tab active">Itens</button>
-        <button id="tabConfigBtn" class="tab">Configurações</button>
+        <div class="tabs-left">
+          <button id="tabItemsBtn" class="tab active" data-i18n="tab_items">Itens</button>
+          <button id="tabConfigBtn" class="tab" data-i18n="tab_config">Configurações</button>
+        </div>
+        <button id="tabSupportBtn" class="tab tab-support" data-i18n="btn_show_donation">💝 Apoiar o Projeto</button>
       </nav>
     </div>
   </header>
@@ -343,62 +1143,69 @@
   <main class="container">
     <!-- ===== Aba: Itens ===== -->
     <section id="tab-items">
+      <!-- Barras de progresso verticais -->
+      <div class="progress-sidebar-fixed">
+        <div class="progress-sticky-wrapper">
+          <div class="progress-bar-group">
+            <div class="progress-icon-circle" id="shinyIcon">
+              <img src="../imgs/Shiny.png" alt="Shiny" class="progress-icon-img" />
+            </div>
+            <div id="progressPanelShiny" class="pBar-vertical rainbow" title="Shiny">
+              <div id="progressFillShiny" class="pFill-vertical"></div>
+            </div>
+          </div>
+          <div class="progress-bar-group">
+            <div class="progress-icon-circle" id="whiteIcon">
+              <img src="../imgs/WhiteBag.png" alt="White Bag" class="progress-icon-img" />
+            </div>
+            <div id="progressPanelWhite" class="pBar-vertical white" title="White Bag">
+              <div id="progressFillWhite" class="pFill-vertical"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-          <div id="itemsInfo" class="muted"></div>
-
-          <div class="toolsRow">
-            <!-- Filtros -->
-            <div class="seg" role="group" aria-label="Filtro de categoria">
-              <button id="fltAll"   class="chip active" type="button">Todos</button>
-              <button id="fltWhite" class="chip" type="button">White Bag</button>
-              <button id="fltShiny" class="chip" type="button">Shiny</button>
+        <!-- Container invisível para alinhamento dos controles -->
+        <div id="controlsAlignmentContainer" class="controls-alignment-container">
+          <!-- DG Filter Pagination -->
+          <div id="dgFilterContainer" class="dg-filter-container" style="display:none">
+            <!-- Controles de filtro e ordenação unificados -->
+            <div class="sort-controls">
+              <div class="seg" role="group" aria-label="Filtro de categoria">
+                <button id="fltWhite" class="chip chip-with-icon active" type="button" title="White Bag">
+                  <img src="../imgs/WhiteBag.png" alt="White Bag" class="chip-icon" />
+                </button>
+                <button id="fltShiny" class="chip chip-with-icon active" type="button" title="Shiny">
+                  <img src="../imgs/Shiny.png" alt="Shiny" class="chip-icon" />
+                </button>
+              </div>
+              <button id="sortModeBtn" class="btn" data-i18n-title="tooltip_sort_mode" title="Alternar modo de ordenação">A→Z</button>
+              <button id="sortDirBtn" class="btn" data-i18n-title="tooltip_sort_dir" title="Alternar Asc/Desc">Asc</button>
+              <label class="seg deleteModeToggle" data-i18n-title="tooltip_delete_mode" title="Exibir botão vermelho para remover item enquanto estiver ativo">
+                <input id="deleteModeToggle" type="checkbox" />
+                <span class="muted" data-i18n="delete_mode">Exclusão</span>
+              </label>
+              <!-- Controle de colunas via scroll -->
+              <div id="colIconCtrl" class="col-icon-ctrl" data-i18n-title="tooltip_columns" title="Scroll do mouse para ajustar colunas">
+                <span class="col-icon">⊞</span>
+                <span id="colLabel" class="col-value">5</span>
+              </div>
             </div>
-
-            <!-- Ordenação -->
-            <label class="muted" for="sortMode" style="margin-left:2px">Ordenar:</label>
-            <select id="sortMode" class="btn">
-              <option value="objectid">A→Z (ObjectId)</option>
-              <option value="hex">Hex (Object type)</option>
-            </select>
-            <button id="sortDirBtn" class="btn" title="Alternar Asc/Desc">Asc</button>
-
-            <!-- Slider de colunas -->
-            <div class="colsCtrl" title="Número de colunas visíveis">
-              <span class="muted">Colunas:</span>
-              <input id="colSlider" class="colSlider" data-label="colLabel" data-marks="colMarks" type="range" min="1" max="10" step="1" value="5" list="colMarks" />
-              <datalist id="colMarks"></datalist>
-              <span id="colLabel" class="muted caps">5</span>
+            <div class="dg-filter-scroll-wrapper">
+              <button id="dgPrevBtn" class="dg-pagination-btn" data-i18n-title="tooltip_prev" title="Anterior">‹</button>
+              <div class="dg-filter-scroll" id="dgFilterScroll"></div>
+              <button id="dgNextBtn" class="dg-pagination-btn" data-i18n-title="tooltip_next" title="Próximo">›</button>
             </div>
-
-            <!-- Busca por nome -->
-            <div class="searchWrap" title="Pesquisar por nome do item">
-              <input id="searchBox" class="searchInput" type="search" placeholder="Pesquisar item..." />
-            </div>
-
-            <!-- Switch 3 fases -->
-            <div class="triCtrl" title="Filtrar por coleta">
-              <span class="label">Coletados</span>
+            <!-- Switch 3 fases (Coletados) -->
+            <div class="triCtrl triCtrl-compact">
+              <span class="label" data-i18n="collected" data-i18n-title="tooltip_collected" title="Coletados">Col.</span>
               <input id="ownedTri" type="range" min="0" max="2" step="1" value="1" />
-              <span class="label">Não coletados</span>
+              <span class="label" data-i18n="not_collected" data-i18n-title="tooltip_not_collected" title="Não coletados">N Col.</span>
             </div>
-            <label class="seg deleteModeToggle" title="Exibir botão vermelho para remover item enquanto estiver ativo">
-              <input id="deleteModeToggle" type="checkbox" />
-              <span class="muted">Modo exclusão</span>
-            </label>
-
-            <!-- Progresso -->
-            <div class="progressPanel">
-              <div class="pGroup" title="Progresso de Shiny coletados">
-                <span class="pLabel">Shiny</span>
-                <div class="pBar rainbow"><div id="progShinyFill" class="pFill"></div></div>
-                <span id="progShinyText" class="pText">0/0 (0%)</span>
-              </div>
-              <div class="pGroup" title="Progresso de White Bag coletados">
-                <span class="pLabel">White</span>
-                <div class="pBar white"><div id="progWhiteFill" class="pFill"></div></div>
-                <span id="progWhiteText" class="pText">0/0 (0%)</span>
-              </div>
+            <!-- Busca por nome -->
+            <div class="searchWrap" data-i18n-title="tooltip_search" title="Pesquisar por nome do item">
+              <input id="searchBox" class="searchInput" type="search" data-i18n-placeholder="search_placeholder" placeholder="Pesquisar item..." />
             </div>
           </div>
         </div>
@@ -406,185 +1213,240 @@
         <div id="gallery" class="gallery"></div>
         <div id="galleryEmpty" class="muted" style="margin-top:10px;display:none"></div>
       </div>
-      <div class="muted" style="margin-top:8px">Dica: clique em um item para marcar/desmarcar como coletado. O progresso e salvo automaticamente (arquivo configurado ou navegador).</div>
+      <div class="muted tip-text" data-i18n="tip_click">Dica: clique em um item para marcar/desmarcar como coletado. O progresso e salvo automaticamente (arquivo configurado ou navegador).</div>
     </section>
 
     <!-- ===== Aba: Configurações ===== -->
-    <section id="tab-config" class="hidden grid grid-2">
-      <section class="card">
-        <h3 style="margin:0 0 6px">Fontes de dados</h3>
-        <p class="muted">O spritesheet (atlas), o <code>items_meta.xml</code> e o <code>equip.txt</code> sao carregados automaticamente a partir da pasta do projeto.</p>
-        <div class="muted" style="margin-top:8px">
-          Itens carregados: <b id="countFiles">0</b>
-        </div>
-        <div class="muted" style="margin-top:4px">
-          equip.txt: <b id="equipCount">(carregando)</b>
-        </div>
-        <div class="muted" style="margin-top:4px; display:flex; flex-wrap:wrap; gap:6px; align-items:center">
-          <span>Metadados (XML): <span id="metaSourceLabel">items_meta.xml</span> - <b id="metaCount">(carregando)</b></span>
-          <button id="metaImportBtn" class="btn" type="button">Importar XML...</button>
-          <input id="metaFileInput" class="hidden" type="file" accept=".xml" />
-        </div>
-        <div class="colsCtrl" title="Número de colunas visíveis" style="margin-top:12px">
-          <span class="muted">Colunas:</span>
-          <input id="colSliderConfig" class="colSlider" data-label="colLabelConfig" data-marks="colMarksConfig" type="range" min="1" max="10" step="1" value="5" list="colMarksConfig" />
-          <datalist id="colMarksConfig"></datalist>
-          <span id="colLabelConfig" class="muted caps">5</span>
-        </div>
-      </section>
+    <section id="tab-config" class="hidden">
+      <section class="card settings-card">
+        <h3 class="section-title" data-i18n="settings_title">Configurações</h3>
 
-      <section class="grid grid-4 stats">
-        <div class="stat"><div class="l">Total de Itens</div><div id="stTotal" class="v">0</div></div>
-        <div class="stat"><div class="l">Casaram por Object type</div><div id="stMatched" class="v">0</div></div>
-        <div class="stat"><div class="l">Coletados</div><div id="stCollected" class="v">0</div></div>
-        <div class="stat"><div class="l">Shiny</div><div id="stShiny" class="v">0</div></div>
-        <div class="stat"><div class="l">White Bag</div><div id="stWhite" class="v">0</div></div>
-      </section>
-
-      <section class="card">
-        <h3 style="margin:0 0 8px">Progresso (checklist)</h3>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <button id="btnExport" class="btn">Exportar progresso (.json)</button>
-          <label class="btn">Importar progresso (.json)
-            <input id="inputProgress" class="hidden" type="file" accept=".json,application/json" />
-          </label>
-          <button id="btnClearProgress" class="btn" title="Limpar progresso salvo">Limpar progresso</button>
-          <button id="btnConfigProgress" class="btn" title="Configurar arquivo local para auto-salvar">Configurar auto-salvar</button>
-        </div>
-        <div class="muted" style="margin-top:8px">
-          Arquivo auto-salvar: <b id="progressFileLabel">Nao configurado</b><span id="progressFileStatus"> (navegador)</span>
-        </div>
-        <div class="muted" style="margin-top:8px">O progresso e salvo automaticamente no arquivo configurado (ou no navegador).</div>
-      </section>
-
-      <section class="card" style="grid-column:1/-1">
-        <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
-          <h3 style="margin:0">Biblioteca de itens removidos</h3>
-          <div id="removedInfo" class="muted"></div>
-        </div>
-        <div class="gallery" id="removedGallery" style="margin-top:10px"></div>
-        <div id="removedEmpty" class="muted" style="display:none;margin-top:8px">Nenhum item removido.</div>
-      </section>
-
-      <section class="card" style="grid-column:1/-1">
-        <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
-          <h3 style="margin:0">Itens não casados (por Object type)</h3>
-          <div id="unmatchedInfo" class="muted"></div>
-        </div>
-        <div id="unmatchedGallery" class="gallery" style="margin-top:10px"></div>
-        <div id="unmatchedEmpty" class="muted" style="display:none;margin-top:8px">Tudo certo: nenhum item pendente.</div>
-      </section>
-    </section>
-
-      <section class="card" style="grid-column:1/-1">
-        <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
-          <h3 style="margin:0">Itens com DG=NONE</h3>
-          <div id="dgNoneInfo" class="muted"></div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
-          <label class="seg dgModeToggle" title="Selecionar vários e definir DG para os itens">
-            <input id="dgModeToggle" type="checkbox" />
-            <span class="muted">Editor DG</span>
-          </label>
-          <div id="dgBulkBar" class="dgBulkBar" title="Aplicar DG em lote para itens selecionados">
-            <span class="muted">DG:</span>
-            <input id="dgInput" class="dgInput" type="text" placeholder="ex: NONE" />
-            <button id="dgApplyBtn" class="btn">Aplicar aos selecionados</button>
-            <span id="dgSelCount" class="muted">0 selecionado(s)</span>
-            <button id="dgSaveBtn" class="btn" title="Salvar items_meta.xml">Salvar XML</button>
+        <!-- Estatísticas -->
+        <div class="section-container">
+          <h4 class="subsection-title" data-i18n="stats_title">Estatísticas</h4>
+          <div class="stats-grid">
+            <div class="stat"><div class="l" data-i18n="stat_total">Total de Itens</div><div id="stTotal" class="v">0</div></div>
+            <div class="stat"><div class="l" data-i18n="stat_collected">Coletados</div><div id="stCollected" class="v">0</div></div>
+            <div class="stat"><div class="l">Shiny</div><div id="stShiny" class="v">0</div></div>
+            <div class="stat"><div class="l">White Bag</div><div id="stWhite" class="v">0</div></div>
           </div>
         </div>
-        <div class="gallery" id="dgNoneGallery" style="margin-top:10px"></div>
-        <div id="dgNoneEmpty" class="muted" style="display:none;margin-top:8px">Nenhum item com DG=NONE.</div>
+
+        <!-- Progresso -->
+        <div class="section-container">
+          <h4 class="subsection-title" data-i18n="progress_title">Progresso (checklist)</h4>
+          <div class="button-row">
+            <button id="btnExport" class="btn" data-i18n="btn_export">Exportar progresso (.json)</button>
+            <label class="btn"><span data-i18n="btn_import">Importar progresso (.json)</span>
+              <input id="inputProgress" class="hidden" type="file" accept=".json,application/json" />
+            </label>
+            <button id="btnClearProgress" class="btn" data-i18n="btn_clear_progress" data-i18n-title="btn_clear_progress_tooltip" title="Limpar progresso salvo">Limpar progresso</button>
+          </div>
+          <div class="muted hint-text">
+            💾 <span data-i18n="autosave_browser">Progresso salvo automaticamente no navegador</span>
+          </div>
+          <div class="muted hint-text-small">
+            💡 <span data-i18n="autosave_tip">Dica: Use "Exportar" para fazer backup do seu progresso</span>
+          </div>
+        </div>
+
+        <!-- Idioma -->
+        <div class="section-container">
+          <h4 class="subsection-title" data-i18n="language_title">Idioma / Language</h4>
+          <div class="flex-wrap-gap">
+            <button id="btnLangPT" class="btn lang-btn" data-i18n-title="tooltip_lang_pt" title="Português (Brasil)">
+              <svg width="24" height="24" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#009b3a" d="M36 27a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v18z"/>
+                <path fill="#fedf00" d="M32.728 18L18 29.124L3.272 18L18 6.875z"/>
+                <circle fill="#002776" cx="17.976" cy="17.924" r="6.458"/>
+                <path fill="#fff" d="M12.277 14.887a6.406 6.406 0 0 0-.672 2.023c3.995-.29 9.417 1.891 11.744 4.595.402-.604.7-1.28.883-2.004-2.872-2.808-7.917-4.63-11.955-4.614z"/>
+              </svg>
+              <span>PT-BR</span>
+            </button>
+            <button id="btnLangEN" class="btn lang-btn" data-i18n-title="tooltip_lang_en" title="English">
+              <svg width="24" height="24" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#00247D" d="M0 9.059V13h5.628zM4.664 31H13v-5.837zM23 25.164V31h8.335zM0 23v3.941L5.63 23zM31.337 5H23v5.837zM36 26.942V23h-5.631zM13 5H4.664L13 10.837zM36 13V9.059L30.371 13z"/>
+                <path fill="#CF1B2B" d="M25.14 23l9.712 6.801a3.977 3.977 0 0 0 .99-1.749L28.627 23H25.14zM13 23h-2.141l-9.711 6.801c.521.53 1.189.909 1.938 1.085L13 23.943V23zm10-10h2.141l9.711-6.801a3.988 3.988 0 0 0-1.937-1.085L23 12.057V13zm-12.141 0L1.148 6.2a3.994 3.994 0 0 0-.991 1.749L7.372 13h3.487z"/>
+                <path fill="#EEE" d="M36 21H21v10h2v-5.836L31.335 31H32a3.99 3.99 0 0 0 2.852-1.199L25.14 23h3.487l7.215 5.052c.093-.337.158-.686.158-1.052v-.058L30.369 23H36v-2zM0 21v2h5.63L0 26.941V27c0 1.091.439 2.078 1.148 2.8l9.711-6.8H13v.943l-9.914 6.941c.294.07.598.116.914.116h.664L13 25.163V31h2V21H0zM36 9a3.983 3.983 0 0 0-1.148-2.8L25.141 13H23v-.943l9.915-6.942A4.001 4.001 0 0 0 32 5h-.663L23 10.837V5h-2v10h15v-2h-5.629L36 9.059V9zM13 5v5.837L4.664 5H4a3.985 3.985 0 0 0-2.852 1.2l9.711 6.8H7.372L.157 7.949A3.968 3.968 0 0 0 0 9v.059L5.628 13H0v2h15V5h-2z"/>
+                <path fill="#CF1B2B" d="M21 15V5h-6v10H0v6h15v10h6V21h15v-6z"/>
+              </svg>
+              <span>English</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Biblioteca de itens removidos -->
+        <div style="margin-top:24px">
+          <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px">
+            <h4 style="margin:0;color:#60a5fa;font-size:16px" data-i18n="removed_items_title">Biblioteca de itens removidos</h4>
+            <div id="removedInfo" class="muted"></div>
+          </div>
+          <div class="gallery" id="removedGallery" style="min-height:100px"></div>
+          <div id="removedEmpty" class="muted" style="display:none;margin-top:8px" data-i18n="no_removed_items">Nenhum item removido.</div>
+        </div>
       </section>
+
+    </section>
   </main>
 
   <script>
-    const $ = (sel) => document.querySelector(sel);
+    const $ = (sel) => {
+      // Otimização: usar cache para IDs comuns
+      if (sel.startsWith('#')) {
+        const id = sel.substring(1);
+        if (window.domCache && window.domCache[id]) {
+          return window.domCache[id];
+        }
+        return document.getElementById(id);
+      }
+      return document.querySelector(sel);
+    };
     const normHex = (s) => { if (!s) return ""; let x = s.trim().toLowerCase(); x = x.replace(/\s*\(\d+\)\s*$/, ""); if (!x.startsWith("0x")) x = "0x" + x.replace(/^0x/i,""); return x; };
     const hexToInt = (hx) => { const m = /^0x([0-9a-f]+)$/.exec((hx||"").toLowerCase()); return m ? parseInt(m[1], 16) : Number.POSITIVE_INFINITY; };
-    
-    const normStr = (s) => (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-    function computeDefaultProgressInfo(){
-      try{
-        if(typeof window==="undefined") return null;
-        if(window.location.protocol!=="file:") return null;
-        let pathname=window.location.pathname||"";
-        try{ pathname=decodeURIComponent(pathname); }catch(_){}
-        if(!pathname) return null;
-        // remove leading slash for Windows paths like /C:/...
-        if(pathname.startsWith("/") && /^[A-Za-z]:/.test(pathname.slice(1))){
-          pathname=pathname.slice(1);
+
+    // Cache para memoização de normStr (otimização de performance)
+    const normStrCache = new Map();
+    const normStr = (s) => {
+      if (!s) return "";
+      if (normStrCache.has(s)) return normStrCache.get(s);
+      const result = s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+      normStrCache.set(s, result);
+      return result;
+    };
+
+    // ===== Sistema de Tradução I18N (carregamento assíncrono) =====
+    const translationsCache = {};
+    let currentLang = localStorage.getItem("rotmg_lang") || "en"; // Inglês como padrão
+
+    // Carregar traduções de arquivo JSON
+    async function loadTranslations(lang) {
+      if (translationsCache[lang]) {
+        return translationsCache[lang];
+      }
+
+      try {
+        const response = await fetch(`./i18n/${lang}.json`);
+        if (!response.ok) throw new Error(`Failed to load ${lang}`);
+        const translations = await response.json();
+        translationsCache[lang] = translations;
+        return translations;
+      } catch (err) {
+        console.warn(`Erro ao carregar idioma ${lang}, usando fallback EN`, err);
+        // Fallback para inglês
+        if (lang !== 'en') {
+          return loadTranslations('en');
         }
-        pathname=pathname.replace(/\\/g,"/");
-        const idx=pathname.lastIndexOf("/");
-        if(idx<0) return null;
-        const dirUnix=pathname.slice(0, idx);
-        const fileUnix=dirUnix ? `${dirUnix}/${PROGRESS_FILE_NAME}` : PROGRESS_FILE_NAME;
-        const isWindows=/^[A-Za-z]:/.test(dirUnix);
-        const dirNative=isWindows?dirUnix.replace(/\//g,"\\"):dirUnix;
-        const fileNative=isWindows?fileUnix.replace(/\//g,"\\"):fileUnix;
-        return {
-          isWindows,
-          dirUnix,
-          dirNative,
-          fileUnix,
-          fileNative,
-          displayName:isWindows?fileNative:fileUnix,
-          startInCandidate:isWindows?dirNative:(dirUnix||undefined)
-        };
-      }catch(err){
-        console.warn("computeDefaultProgressInfo falhou:", err);
-        return null;
+        return {}; // Fallback vazio se nem EN carregar
       }
-    }
-    function getSuggestedSaveName(){
-      if(DEFAULT_PROGRESS_INFO?.fileNative){
-        return DEFAULT_PROGRESS_INFO.fileNative;
-      }
-      if(DEFAULT_PROGRESS_INFO?.fileUnix){
-        return DEFAULT_PROGRESS_INFO.fileUnix;
-      }
-      return PROGRESS_FILE_NAME;
     }
 
+    // Aplicar traduções aos elementos DOM
+    async function applyTranslations() {
+      const dict = await loadTranslations(currentLang);
+
+      // Traduzir textos (textContent)
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      // Traduzir tooltips (title)
+      document.querySelectorAll("[data-i18n-title]").forEach(el => {
+        const key = el.getAttribute("data-i18n-title");
+        if (dict[key]) el.title = dict[key];
+      });
+
+      // Traduzir placeholders
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (dict[key]) el.placeholder = dict[key];
+      });
+    }
+
+    // Trocar idioma
+    async function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem("rotmg_lang", lang);
+      await applyTranslations();
+      // Re-renderizar para atualizar tooltips dinâmicos
+      if (typeof renderAll === 'function') {
+        renderAll();
+      }
+    }
+
+    // Obter dicionário atual (síncrono, assume que já foi carregado)
+    function getDict() {
+      return translationsCache[currentLang] || translationsCache['en'] || {};
+    }
+
+    // Pré-carregar ambos os idiomas no início
+    window.translationsReady = Promise.all([
+      loadTranslations('pt-BR'),
+      loadTranslations('en')
+    ]);
+
+    // Storage keys
     const LS_KEY="rotmg_progress_v1", COLS_KEY="rotmg_cols_v1";
-    const PROGRESS_HANDLE_KEY="rotmg_progress_handle_v1";
-    const PROGRESS_FILE_NAME="rotmg_progress.json";
     const OWNED_KEY_LEGACY="rotmg_only_owned_v1";
     const OWNED_MODE_KEY="rotmg_owned_mode_v1";
+    const META_BY_TYPE_KEY="rotmg_meta_by_type_v1";
     const DB_NAME="rotmg_handles_db", DB_STORE="kv";
+
+    // Constantes do sistema de auto-save (descontinuado mas referenciado)
+    const PROGRESS_HANDLE_KEY = "rotmg_progress_handle";
+    const PROGRESS_FILE_NAME = "rotmg_progress.json";
+
+    // Timing constants (em milissegundos)
+    const RENDER_DEBOUNCE_MS = 300;  // Debounce para renderização após remoção
+    const TOAST_DURATION_MS = 2000;   // Duração de notificações toast
+    const FALLBACK_TIMEOUT_MS = 1400; // Timeout para operações de fallback
     let currentTab = "items";
     let progressWriteQueue=Promise.resolve();
-    const DEFAULT_PROGRESS_INFO = computeDefaultProgressInfo();
-    let nodeFsAdapter=initNodeFsAdapter();
 
     const DEFAULT_REMOVED = [
-      "0xc184","0x913","0x1a2f","0x47a9","0x4b79","0x262","0x264","0x4b7a","0x47b6","0x47b3",
-      "0x47b8","0xf4d","0x1424","0x1425","0x1426","0x142b","0x1427","0x1428","0x1429","0x142a",
-      "0x149f","0x14a0","0x14a1","0x14a2","0x14a3","0x14a4","0x14a5","0x14a6","0x967c","0xf93",
-      "0xf92","0x7fa","0x9d2","0x1e4e","0x7555","0x7556","0x7557","0x7559","0x755a","0xca22",
-      "0x6587","0xc2d","0x5c4f","0xc40","0xc3e","0xc3f"
+      "0x451b","0x14d9","0x565","0x384e","0x452f","0x452b","0x452d","0x44e2","0x44e0","0x44e1",
+      "0x452e","0x452a","0x566","0x2220","0xd878","0x513c","0x452c","0x8710","0x6f40","0x14d8",
+      "0x44f3","0x51af","0x51b1","0x51b0","0xf0b","0x8621","0x6f3f","0x39df","0x312","0x314",
+      "0x6f3e","0x6404","0x51ad","0x51ae","0x14d6","0x564","0x13ac","0x3842","0x049a","0x13aa",
+      "0xc77a","0x8620","0x981f","0x9339","0x9820","0x2f2e","0xfd5","0x567","0x861f","0x6406",
+      "0x8624","0x6f4","0x6692","0x37d6","0xd23c","0xc778","0xc141","0x4b7b","0xf90","0x2f2c",
+      "0xc77e","0x7eb6","0x44f2","0x0498","0xc77c","0x4b34","0x38a5","0x44f4","0x37f6","0x1c20",
+      "0xb40","0x6696","0x13ad","0x315","0x6698","0x3fd","0x313","0x3850","0x8622","0x8623",
+      "0x61bc","0x13ab","0x14da","0x5cbf","0x6f5","0x6405","0x44c2","0x44e3","0x44c1","0x44e4",
+      "0x6407","0x7ba","0x44f1","0x44f0","0x44ee","0x44ef","0x14d7","0x64bf","0x2f2d","0xc184",
+      "0x913","0x1a2f","0x47a9","0x4b79","0x262","0x264","0x4b7a","0x47b6","0x47b3","0x47b8",
+      "0xf4d","0x1424","0x1425","0x1426","0x142b","0x1427","0x1428","0x1429","0x142a","0x149f",
+      "0x14a0","0x14a1","0x14a2","0x14a3","0x14a4","0x14a5","0x14a6","0x967c","0xf93","0xf92",
+      "0x7fa","0x9d2","0x1e4e","0x7555","0x7556","0x7557","0x7559","0x755a","0xca22","0x6587",
+      "0xc2d","0x5c4f","0xc40","0xc3e","0xc3f"
     ];
 
     // Atlas único (spritesheet) e índice
     // Uso exclusivo de atlas; PNGs individuais removidos
-    const ATLAS_INDEX_URL = "../sheetprocess/data/spritesheet.json";
-    const ATLAS_IMAGE_URL = "../sheetprocess/data/mapObjects.png";
-    const EQUIP_DEFAULT_URL = "../equip.txt";
-    const ITEMS_META_URL = "./items_meta.xml";
+    // Cache buster: adiciona timestamp para forçar reload
+    const CACHE_BUSTER = `?v=${Date.now()}`;
+    const ATLAS_INDEX_URL = `../imgs/spritesheet.json${CACHE_BUSTER}`;
+    const ATLAS_IMAGE_URL = `../imgs/mapObjects.png${CACHE_BUSTER}`;
+    const EQUIP_DEFAULT_URL = `./equip.txt${CACHE_BUSTER}`;
+    const ITEMS_META_URL = `./items_meta.xml${CACHE_BUSTER}`;
+    const PORTALS_DEFAULT_URL = `./all_portals.txt${CACHE_BUSTER}`;
 
     const state = {
       files: [],
       equipByType: null,
+      portalsBy: null, // objType -> { dungeonName, textureFile, textureIndex }
       metaByType: new Map(), // objType -> { DG, category, path }
       sortMode: "objectid",
       sortDir: "asc",
-      filter: "all",
+      showWhite: true,      // Toggle para White Bag
+      showShiny: true,      // Toggle para Shiny
       ownedMode: "any",     // "any" | "yes" | "no"
       dgMissingOnly: false,
       dgEditMode: false,
+      dgSingleEditMode: false, // Modo de edição individual
+      dgEditingItem: null,     // objType do item sendo editado
       dgSelected: new Set(),
+      dgFilterActive: null, // null = todos, "dungeon-name" = filtrar por DG específica
       collected: new Set(),
       searchQuery: "",
       deleteMode: false,
@@ -592,6 +1454,9 @@
       pendingRemovals: 0,
       progressHandle: null
     };
+
+    // Tornar state global para acesso do Editor DG
+    window.state = state;
 
     // Índice e imagem do atlas (spritesheet)
     // SPRITES_LOOKUP: Map<string sheetName, Map<number index, {x,y,w,h}>>
@@ -682,17 +1547,49 @@
       }
     }
 
-    // Constrói a lista de arquivos (itens) a partir do items_meta.xml
+    // Constrói a lista de arquivos (itens) a partir do items_meta.xml + equip.txt
+    // FILTRA APENAS: Class=Equipment E (Shiny OU Whitebag)
     function rebuildFilesFromMeta(){
       try{
         const arr = [];
+        const processedTypes = new Set();
+
+        // 1. Adiciona itens do items_meta.xml (com categoria/DG manual)
         for(const [objType, meta] of (state.metaByType||new Map()).entries()){
           arr.push({
             path:meta?.path||"",
             category:meta?.category||"",
             objType:objType
           });
+          processedTypes.add(objType);
         }
+
+        // 2. Adiciona apenas itens Shiny ou Whitebag do equip.txt que não estão no items_meta.xml
+        if(state.equipByType){
+          for(const [objType, equipData] of state.equipByType.entries()){
+            if(!processedTypes.has(objType)){
+              // Verifica se é Equipment (Class = Equipment)
+              const isEquipment = equipData.classType && equipData.classType.toUpperCase() === 'EQUIPMENT';
+
+              // Verifica se é Shiny (label SHINY no array de labels)
+              const isShiny = Array.isArray(equipData.labels) &&
+                              equipData.labels.some(label => label.toUpperCase() === 'SHINY');
+
+              // Verifica se é Whitebag (BagType 6)
+              const isWhitebag = equipData.bagtype === "6";
+
+              // Adiciona apenas se for Equipment E (Shiny OU Whitebag)
+              if(isEquipment && (isShiny || isWhitebag)){
+                arr.push({
+                  path:"",  // sem path, será gerado do atlas
+                  category:"",  // sem categoria, será auto-categorizado
+                  objType:objType
+                });
+              }
+            }
+          }
+        }
+
         state.files = arr;
         const countEl=$("#countFiles");
         if(countEl) countEl.textContent=String(arr.length);
@@ -720,6 +1617,93 @@
       }
     }
 
+    async function loadPortalsFromDefault(){
+      try{
+        const resp = await fetch(PORTALS_DEFAULT_URL, {cache:"no-cache"});
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        state.portalsBy = parsePortalsTxt(text);
+        return true;
+      }catch(err){
+        console.error("Falha ao carregar all_portals.txt:", err);
+        state.portalsBy=null;
+        return false;
+      }
+    }
+
+    // Função auxiliar para extrair texto de tags XML
+    function getTag(block, tag){
+      const m = new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i").exec(block || "");
+      return m ? m[1].trim() : "";
+    }
+
+    // Converte DungeonName para o slug DG usado no items_meta.xml
+    function dungeonNameToSlug(dungeonName){
+      return dungeonName
+        .toLowerCase()
+        .replace(/['']s\b/g, '-s') // Substitui 's por -s (ex: "Master's" -> "Master-s")
+        .replace(/['']/g, '') // Remove apóstrofos restantes
+        .replace(/\s+/g, '-') // Espaços viram hífens
+        .replace(/[^a-z0-9-]/g, ''); // Remove caracteres especiais
+    }
+
+    function parsePortalsTxt(text){
+      const byType = new Map();
+      const xml = new DOMParser().parseFromString(text, "text/xml");
+      if(xml.getElementsByTagName("parsererror").length > 0){
+        console.warn("XML de portais inválido");
+        return byType;
+      }
+      const objects = Array.from(xml.getElementsByTagName("Object"));
+
+      for(const obj of objects){
+        const typeAttr = obj.getAttribute("type");
+        if(!typeAttr) continue;
+        const key = normHex(typeAttr);
+
+        // Usar getElementsByTagName ao invés de getTag para melhor compatibilidade
+        const dungeonNameEl = obj.getElementsByTagName("DungeonName")[0];
+        const dungeonName = dungeonNameEl ? dungeonNameEl.textContent.trim() : "";
+
+        if(!dungeonName) continue; // Só portais com DungeonName
+
+        // Prioriza DisplayId se disponível, pois alguns portais têm DungeonName diferente do nome real
+        // Ex: Mad God Mayhem tem DungeonName="Oryx Pandemonium Decaract" mas DisplayId="Mad God Mayhem"
+        const displayIdEl = obj.getElementsByTagName("DisplayId")[0];
+        const displayId = displayIdEl ? displayIdEl.textContent.trim() : "";
+        const nameForSlug = displayId || dungeonName;
+
+        const texBlock = obj.getElementsByTagName("Texture")[0];
+        let textureFile = null;
+        let textureIndex = null;
+
+        if(texBlock){
+          const fileEl = texBlock.getElementsByTagName("File")[0];
+          const indexEl = texBlock.getElementsByTagName("Index")[0];
+
+          if(fileEl) textureFile = fileEl.textContent.trim();
+          if(indexEl){
+            const idxTxt = indexEl.textContent.trim();
+            let m=/^0x([0-9a-f]+)$/i.exec(idxTxt);
+            textureIndex = m ? parseInt(m[1],16) : parseInt(idxTxt,10);
+            if(Number.isNaN(textureIndex)) textureIndex=null;
+          }
+        }
+
+        const dgSlug = dungeonNameToSlug(nameForSlug);
+
+        byType.set(key, {
+          objType: key,
+          dungeonName,
+          dgSlug, // DG slug para matching
+          textureFile,
+          textureIndex
+        });
+      }
+
+      return byType;
+    }
+
     function parseItemsMetaXml(text){
       try{
         const xml=new DOMParser().parseFromString(text,"text/xml");
@@ -730,9 +1714,10 @@
           const objType=normHex((it.getAttribute?.("objType")||"").trim());
           if(!objType) continue;
           const DG=(it.getAttribute?.("DG")||"NONE").trim()||"NONE";
+          const DGDisplay=(it.getAttribute?.("DGDisplay")||DG).trim()||DG;
           const category=(it.getAttribute?.("category")||"").trim();
           const path=(it.getAttribute?.("path")||"").trim();
-          map.set(objType,{DG,category,path});
+          map.set(objType,{DG,DGDisplay,category,path});
         }
         return map;
       }catch(err){
@@ -760,6 +1745,8 @@
       try{
         if(!state.equipByType || state.files.length===0) return false;
         const needed = new Map(); // sheetName -> Set(indices)
+
+        // Adiciona sprites dos itens
         for(const f of state.files){
           const rec = state.equipByType.get(f.objType);
           if(!rec || !rec.textureFile || rec.textureIndex==null) continue;
@@ -768,6 +1755,22 @@
           if(!needed.has(sheet)) needed.set(sheet, new Set());
           needed.get(sheet).add(idx);
         }
+
+        // Adiciona sprites dos portais
+        if(state.portalsBy){
+          for(const [objType, portal] of state.portalsBy.entries()){
+            if(!portal.textureFile || portal.textureIndex==null) continue;
+            const sheet = String(portal.textureFile);
+            const idx = Number(portal.textureIndex);
+            if(!needed.has(sheet)) needed.set(sheet, new Set());
+            needed.get(sheet).add(idx);
+          }
+        }
+
+        // Adiciona explicitamente o Portal to Nexus (usado em "Todos")
+        if(!needed.has("lofiEnvironment2")) needed.set("lofiEnvironment2", new Set());
+        needed.get("lofiEnvironment2").add(0x36);
+
         const resp = await fetch(ATLAS_INDEX_URL, {cache:"no-cache"});
         if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const json = await resp.json();
@@ -802,6 +1805,20 @@
     function getAtlasCropForRow(row){
       try{
         if(!SPRITES_LOOKUP || !row) return null;
+
+        // Se o objeto já tem textureFile e textureIndex (caso dos portais)
+        if(row.textureFile && row.textureIndex != null){
+          if(row.objType === "0x071d"){
+            if(SPRITES_LOOKUP.has(String(row.textureFile))){
+              const byIdx = SPRITES_LOOKUP.get(String(row.textureFile));
+            }
+          }
+          const byIdx = SPRITES_LOOKUP.get(String(row.textureFile));
+          if(!byIdx) return null;
+          return byIdx.get(Number(row.textureIndex)) || null;
+        }
+
+        // Caso padrão: busca no equipByType
         const rec = state.equipByType?.get(row.objType);
         if(!rec || !rec.textureFile || rec.textureIndex==null) return null;
         const byIdx = SPRITES_LOOKUP.get(String(rec.textureFile));
@@ -975,7 +1992,7 @@
           if(req){
             const fs=req("fs");
             const pathMod=req("path");
-            const baseDir=(DEFAULT_PROGRESS_INFO?.dirNative) || (DEFAULT_PROGRESS_INFO?.dirUnix) || null;
+            const baseDir = null; // Sistema de save local removido
             if(baseDir){
               const filePath=pathMod.resolve(baseDir, 'items_meta.xml');
               if(fs.promises?.writeFile) await fs.promises.writeFile(filePath, xml, 'utf8');
@@ -998,12 +2015,22 @@
         alert('Falha ao salvar items_meta.xml. Veja o console para detalhes.');
       }
     }
+    // Expor saveItemsMetaXml globalmente
+    window.saveItemsMetaXml = saveItemsMetaXml;
 
     function getProgressData(){
+      // Converter metaByType (Map) para objeto serializável
+      const metaByTypeObj = {};
+      for(const [objType, meta] of state.metaByType.entries()){
+        metaByTypeObj[objType] = meta;
+      }
+
       return {
         version:1,
+        initialized:true, // Flag indicando que o usuário já foi inicializado
         collected:Array.from(state.collected),
-        removed:Array.from(state.removed)
+        removed:Array.from(state.removed), // Salvar TODOS os itens removidos
+        metaByType:metaByTypeObj
       };
     }
     function updateProgressFileInfo({name,status}={}){
@@ -1011,13 +2038,7 @@
       const statusEl=document.getElementById("progressFileStatus");
       let finalName=name;
       let finalStatus=status;
-      if(finalName===undefined && nodeFsAdapter){
-        finalName=nodeFsAdapter.displayName || nodeFsAdapter.fileName || PROGRESS_FILE_NAME;
-        if(finalStatus===undefined) finalStatus="auto";
-      }else if(finalName===undefined && DEFAULT_PROGRESS_INFO?.displayName){
-        finalName=DEFAULT_PROGRESS_INFO.displayName;
-        if(finalStatus===undefined) finalStatus="sugestao";
-      }else if(finalStatus===undefined && finalName===undefined){
+      if(finalStatus===undefined && finalName===undefined){
         finalStatus="navegador";
       }
       if(label && finalName!==undefined){
@@ -1030,110 +2051,32 @@
     async function clearProgressHandle({status}={}){
       state.progressHandle=null;
       try{ await idbDel(PROGRESS_HANDLE_KEY); }catch(_){}
-      if(nodeFsAdapter){
-        updateProgressFileInfo({name:nodeFsAdapter.displayName, status: status ?? "auto"});
-      }else{
-        updateProgressFileInfo({status: status ?? "navegador"});
-      }
+      updateProgressFileInfo({status: status ?? "navegador"});
     }
     function scheduleProgressWrite(data){
-      if(nodeFsAdapter){
-        progressWriteQueue = progressWriteQueue.then(()=>writeProgressNode(data)).catch((err)=>{
-          console.warn("Falha ao salvar progresso no caminho padrao:", err);
-        });
-        return;
-      }
       if(!state.progressHandle) return;
       progressWriteQueue = progressWriteQueue.then(()=>writeProgressFile(state.progressHandle,data)).catch((err)=>{
         console.warn("Falha ao salvar progresso no arquivo:", err);
       });
     }
-    function initNodeFsAdapter(){
-      try{
-        if(typeof window==="undefined") return null;
-        if(window.location.protocol!=="file:") return null;
-        if(!DEFAULT_PROGRESS_INFO?.dirUnix) return null;
-        let req=null;
-        if(typeof window.require==="function") req=window.require;
-        else if(typeof window.nodeRequire==="function") req=window.nodeRequire;
-        else if(typeof globalThis!=="undefined" && typeof globalThis.require==="function") req=globalThis.require;
-        else if(typeof require==="function") req=require;
-        if(!req) return null;
-        let fs=null;
-        let pathMod=null;
-        try{
-          fs=req("fs");
-          pathMod=req("path");
-        }catch(_){
-          return null;
-        }
-        if(!fs || !pathMod) return null;
-        const dirPath = pathMod.resolve(DEFAULT_PROGRESS_INFO.dirNative || DEFAULT_PROGRESS_INFO.dirUnix || ".");
-        const filePath = pathMod.resolve(dirPath, PROGRESS_FILE_NAME);
-        const fsPromises=fs.promises;
-        const write=async(content)=>{
-          if(fsPromises?.writeFile){
-            await fsPromises.writeFile(filePath, content, "utf8");
-          }else{
-            await new Promise((resolve,reject)=>fs.writeFile(filePath, content, "utf8",(err)=>err?reject(err):resolve()));
-          }
-        };
-        const read=async()=>{
-          try{
-            if(fsPromises?.readFile){
-              return await fsPromises.readFile(filePath,"utf8");
-            }
-            return await new Promise((resolve,reject)=>fs.readFile(filePath,"utf8",(err,data)=>err?reject(err):resolve(data)));
-          }catch(err){
-            if(err && (err.code==="ENOENT"||err.code==="NotFoundError")) return null;
-            throw err;
-          }
-        };
-        return {
-          type:"node",
-          write,
-          read,
-          filePath,
-          fileName:PROGRESS_FILE_NAME,
-          displayName:filePath
-        };
-      }catch(err){
-        console.warn("initNodeFsAdapter falhou:", err);
-        return null;
-      }
+
+    /* ===== Detecção de Ambiente Local ===== */
+    function isLocalEnvironment() {
+      // Verifica se tem acesso ao Node.js (necessário para salvar XML)
+      const hasNodeRequire = (
+        typeof window.require === "function" ||
+        typeof window.nodeRequire === "function" ||
+        (typeof globalThis !== "undefined" && typeof globalThis.require === "function")
+      );
+
+      // Verifica se está rodando via file:// protocol
+      const isFileProtocol = window.location.protocol === "file:";
+
+      return hasNodeRequire || isFileProtocol;
     }
-    async function writeProgressNode(data){
-      if(!nodeFsAdapter) return;
-      try{
-        await nodeFsAdapter.write(JSON.stringify(data,null,2));
-        updateProgressFileInfo({name:nodeFsAdapter.displayName, status:"auto"});
-      }catch(err){
-        console.warn("Erro ao escrever arquivo de progresso padrao:", err);
-        updateProgressFileInfo({name:nodeFsAdapter.displayName, status:"erro"});
-        throw err;
-      }
-    }
-    async function loadProgressFromNodeFile(){
-      if(!nodeFsAdapter) return "skip";
-      try{
-        const text=await nodeFsAdapter.read();
-        if(text && text.trim()){
-          const json=JSON.parse(text);
-          const collected=Array.isArray(json?.collected)?json.collected:[];
-          const removedArr=Array.isArray(json?.removed)?json.removed:DEFAULT_REMOVED;
-          state.collected=new Set(collected.map(normHex));
-          state.removed=new Set(removedArr.map(normHex));
-          updateProgressFileInfo({name:nodeFsAdapter.displayName, status:"auto"});
-          return "loaded";
-        }
-        updateProgressFileInfo({name:nodeFsAdapter.displayName, status:"auto"});
-        return text===null?"missing":"empty";
-      }catch(err){
-        console.warn("Falha ao ler arquivo de progresso padrao:", err);
-        updateProgressFileInfo({name:nodeFsAdapter.displayName, status:"erro"});
-        return "error";
-      }
-    }
+    // Torna a função acessível globalmente
+    window.isLocalEnvironment = isLocalEnvironment;
+
     async function writeProgressFile(handle,data){
       if(!handle?.createWritable) return;
       try{
@@ -1163,24 +2106,32 @@
         if(!text.trim()) return "empty";
         const json=JSON.parse(text);
         const collected=Array.isArray(json?.collected)?json.collected:[];
-        const removedArr=Array.isArray(json?.removed)?json.removed:DEFAULT_REMOVED;
+        const removedArr=Array.isArray(json?.removed)?json.removed:[];
         state.collected=new Set(collected.map(normHex));
-        state.removed=new Set(removedArr.map(normHex));
+        state.removed = new Set(removedArr.map(normHex));
+
+        // Restaurar metaByType se existir (fazer merge com o existente)
+        if(json?.metaByType && typeof json.metaByType === 'object'){
+          const savedMeta = new Map(Object.entries(json.metaByType));
+          // Merge: XML DGDisplay sempre tem prioridade sobre cache
+          for(const [objType, meta] of savedMeta.entries()){
+            const existing = state.metaByType.get(objType) || {};
+            state.metaByType.set(objType, {
+              ...meta,
+              ...existing,
+              // Preservar DGDisplay do XML se existir
+              DGDisplay: existing.DGDisplay || meta.DGDisplay
+            });
+          }
+        }
+
         return "loaded";
       }catch(err){
         if(!silent) console.warn("Falha ao ler arquivo de progresso lembrado:", err);
         return "error";
       }
     }
-    function getPickerStartIn(){
-      return DEFAULT_PROGRESS_INFO?.startInCandidate;
-    }
     async function configureProgressFile(){
-      if(nodeFsAdapter){
-        alert(`O progresso ja esta configurado para salvar automaticamente em:\n${nodeFsAdapter.displayName}`);
-        updateProgressFileInfo({name:nodeFsAdapter.displayName, status:"auto"});
-        return;
-      }
       if(!window.showSaveFilePicker && !window.showOpenFilePicker){
         alert("Navegador sem suporte para auto-salvar arquivo. Continue usando a exportacao manual.");
         return;
@@ -1190,13 +2141,12 @@
         let handle=null;
         if(window.showSaveFilePicker){
           const baseOpts={
-            suggestedName:getSuggestedSaveName(),
+            suggestedName:"rotmg_progress.json",
             types:pickerTypes,
             excludeAcceptAllOption:false,
             id:"rotmg-autosave"
           };
-          const startIn=getPickerStartIn();
-          let opts=startIn?{...baseOpts,startIn}:{...baseOpts};
+          let opts={...baseOpts};
           let attemptedFallback=false;
           try{
             handle=await window.showSaveFilePicker(opts);
@@ -1270,12 +2220,13 @@
           const parsed=JSON.parse(raw);
           const arr=Array.isArray(parsed?.collected)?parsed.collected:[];
           state.collected=new Set(arr.map(normHex));
-          const removedArr=Array.isArray(parsed?.removed)?parsed.removed:DEFAULT_REMOVED;
-          state.removed=new Set(removedArr.map(normHex));
+          const removedArr=Array.isArray(parsed?.removed)?parsed.removed:[];
+          state.removed = new Set(removedArr.map(normHex));
           loaded=true;
         }
       }catch(e){}
       if(!loaded){
+        // Primeira vez: inicializar com DEFAULT_REMOVED
         state.collected.clear();
         state.removed=new Set(DEFAULT_REMOVED.map(normHex));
       }
@@ -1287,6 +2238,45 @@
       }catch(e){}
       if(!skipFile) scheduleProgressWrite(data);
     }
+    // Expor saveProgress globalmente
+    window.saveProgress = saveProgress;
+
+    // Funções específicas para metaByType (localStorage separado)
+    function saveMetaByType(){
+      try{
+        const metaObj = {};
+        for(const [objType, meta] of state.metaByType.entries()){
+          metaObj[objType] = meta;
+        }
+        localStorage.setItem(META_BY_TYPE_KEY, JSON.stringify(metaObj));
+      }catch(e){
+        console.warn('Falha ao salvar metaByType:', e);
+      }
+    }
+
+    function loadMetaByType(){
+      try{
+        const stored = localStorage.getItem(META_BY_TYPE_KEY);
+        if(stored){
+          const metaObj = JSON.parse(stored);
+          // Merge com o existente (sobrescreve)
+          for(const [objType, meta] of Object.entries(metaObj)){
+            const existing = state.metaByType.get(objType) || {};
+            state.metaByType.set(objType, {
+              ...existing,
+              ...meta
+            });
+          }
+        }
+      }catch(e){
+        console.warn('Falha ao carregar metaByType:', e);
+      }
+    }
+
+    // Expor globalmente
+    window.saveMetaByType = saveMetaByType;
+    window.loadMetaByType = loadMetaByType;
+
     function exportProgress(){
       const data=getProgressData();
       const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
@@ -1299,12 +2289,29 @@
       const arr=Array.isArray(json?.collected)?json.collected:[];
       state.collected=new Set(arr.map(normHex));
       const removedArr=Array.isArray(json?.removed)?json.removed:DEFAULT_REMOVED;
-      state.removed=new Set(removedArr.map(normHex));
+      state.removed = new Set([...DEFAULT_REMOVED.map(normHex), ...removedArr.map(normHex)]);
+
+      // Restaurar metaByType se existir (fazer merge com o existente)
+      if(json?.metaByType && typeof json.metaByType === 'object'){
+        const savedMeta = new Map(Object.entries(json.metaByType));
+        // Merge: XML DGDisplay sempre tem prioridade sobre cache
+        for(const [objType, meta] of savedMeta.entries()){
+          const existing = state.metaByType.get(objType) || {};
+          state.metaByType.set(objType, {
+            ...meta,
+            ...existing,
+            // Preservar DGDisplay do XML se existir
+            DGDisplay: existing.DGDisplay || meta.DGDisplay
+          });
+        }
+      }
+
       saveProgress(); renderAll();
     }
     function clearProgress(){
       state.collected.clear();
-      state.removed.clear();
+      // Manter DEFAULT_REMOVED sempre aplicados
+      state.removed = new Set(DEFAULT_REMOVED.map(normHex));
       state.deleteMode=false;
       saveProgress();
       renderAll();
@@ -1346,6 +2353,7 @@
         const tier=obj.querySelector?.("Tier")?.textContent?.trim()||"";
         const slot=obj.querySelector?.("SlotType")?.textContent?.trim()||"";
         const bagtype=obj.querySelector?.("BagType")?.textContent?.trim()||"";
+        const classType=obj.querySelector?.("Class")?.textContent?.trim()||"";
 
         // Texture/File + Texture/Index (quando disponíveis)
         let textureFile=""; let textureIndex=null;
@@ -1366,7 +2374,7 @@
           }
         }catch(_){ }
 
-        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype,textureFile,textureIndex});
+        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype,classType,textureFile,textureIndex});
       };
 
       if(!hasErr){
@@ -1393,6 +2401,7 @@
         labels=Array.from(new Set(labels));
 
         const tier=getTag(block,"Tier"); const slot=getTag(block,"SlotType"); const bagtype=getTag(block,"BagType");
+        const classType=getTag(block,"Class");
         // Texture dentro do bloco <Texture>...</Texture>
         let textureFile=""; let textureIndex=null;
         const texBlock = getTag(block,"Texture");
@@ -1406,7 +2415,7 @@
           }
           if(fileTxt) textureFile = fileTxt;
         }
-        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype,textureFile,textureIndex});
+        byType.set(key,{objType:key,displayIdStrict,idAttr,labels,tier,slot,bagtype,classType,textureFile,textureIndex});
       }
       return byType;
     }
@@ -1415,39 +2424,45 @@
 
       await ensurePersistentStorage();
 
-
-
+      if(window.updateLoadingProgress) {
+        const dict = getDict();
+        window.updateLoadingProgress(10, dict.loading_equip || 'Loading equipment...');
+      }
       await loadEquipFromDefault();
 
+      if(window.updateLoadingProgress) {
+        const dict = getDict();
+        window.updateLoadingProgress(30, dict.loading_portals || 'Loading portals...');
+      }
+      await loadPortalsFromDefault();
+
+      if(window.updateLoadingProgress) {
+        const dict = getDict();
+        window.updateLoadingProgress(50, dict.loading_meta || 'Loading metadata...');
+      }
       await loadItemsMetaFromDefault();
 
       // A partir de items_meta.xml populamos os itens
+      if(window.updateLoadingProgress) {
+        const dict = getDict();
+        window.updateLoadingProgress(60, dict.loading_items || 'Processing items...');
+      }
       rebuildFilesFromMeta();
 
+      // Carregar metaByType do localStorage (após rebuildFilesFromMeta)
+      loadMetaByType();
+
       // Com equip + meta carregados, montamos o índice e a imagem do atlas
-      await loadAtlasIndexForNeeded();
-      await loadAtlasImage();
-
-
-
-      if(nodeFsAdapter){
-
-        const result=await loadProgressFromNodeFile();
-
-        if(result==="loaded"){
-
-          saveProgress({skipFile:true});
-
-        }else if(result==="missing"){
-
-          try{ await writeProgressNode(getProgressData()); }catch(_){ }
-
-        }
-
-        return;
-
+      if(window.updateLoadingProgress) {
+        const dict = getDict();
+        window.updateLoadingProgress(70, dict.loading_sprites || 'Loading sprites...');
       }
-
+      await loadAtlasIndexForNeeded();
+      if(window.updateLoadingProgress) {
+        const dict = getDict();
+        window.updateLoadingProgress(80, dict.loading_images || 'Loading images...');
+      }
+      await loadAtlasImage();
 
 
       if(!window.showOpenFilePicker && !window.showSaveFilePicker) return;
@@ -1528,13 +2543,34 @@
 
         const objectId=idAttr||"";
 
+        // AUTO-CATEGORIZAÇÃO: Se items_meta.xml não tem categoria, usa BagType do equip.txt
+        let autoCategory = "";
+        if (!meta?.category && !f.category) {
+          const isWhitebag = (bagtype === "6");
+
+          // Casos especiais: Shiny + Whitebag (ex: Dirk Shiny, Cdirk Shiny)
+          if (isWhitebag && isShiny) {
+            autoCategory = "White Bag"; // Prioriza Whitebag, mas isShiny=true faz aparecer em ambos
+          }
+          // Apenas Whitebag
+          else if (isWhitebag) {
+            autoCategory = "White Bag";
+          }
+          // Apenas Shiny
+          else if (isShiny) {
+            autoCategory = "Shiny";
+          }
+        }
+
+        const finalCategory = meta?.category || f.category || autoCategory;
+
         return {
           key:f.path,
           displayName,
           objectId,
           objType:f.objType,
           isShiny,
-          category:meta?.category || f.category || "",
+          category:finalCategory,
           bagtype,
           labels,
           dg: meta?.DG || "NONE",
@@ -1553,13 +2589,24 @@
       g.replaceChildren(); empty.style.display="none";
       const allRows = rows || deriveRows();
 
-      // Filtro de categoria
+      // Filtro de categoria (toggle independente) - SIMPLIFICADO
       let matched=(matchedRows || allRows.filter(r=>r.matched)).filter(r=>{
-        if(state.filter==="white") return isWhiteRow(r);
-        if(state.filter==="shiny") return isShinyRow(r);
-        return true;
+        if(!state.showWhite && !state.showShiny) return false;
+        if(state.showWhite && state.showShiny) return true;
+        return (state.showWhite && isWhiteRow(r)) || (state.showShiny && isShinyRow(r));
       });
-      // filtro DG=NONE removido da aba Itens
+      if(state.dgMissingOnly){
+        matched = matched.filter(r => ((r.dg || "NONE").trim().toUpperCase() === "NONE"));
+      }
+      // Filtro por DG específica (suporta múltiplas DGs separadas por vírgula)
+      if(state.dgFilterActive !== null){
+        matched = matched.filter(r => {
+          const dgValue = r.dg || "NONE";
+          // Separar DGs por vírgula e verificar se a DG ativa está na lista
+          const dgs = dgValue.split(',').map(d => d.trim());
+          return dgs.includes(state.dgFilterActive);
+        });
+      }
       // Filtro por coleta (tri-state)
       if(state.ownedMode==="yes") matched = matched.filter(r=> r.collected);
       else if(state.ownedMode==="no") matched = matched.filter(r=> !r.collected);
@@ -1594,13 +2641,19 @@
 
       matched = matched.filter(r=> !state.removed.has(r.objType));
 
-      const fltLabel = state.filter==="white" ? "White Bag" : state.filter==="shiny" ? "Shiny" : "Todos";
-      const ownLabel = state.ownedMode==="yes" ? " | Somente coletados" : state.ownedMode==="no" ? " | Somente não coletados" : "";
-      const searchLabel = q ? ` | Pesquisa: "${state.searchQuery}"` : "";
+      // Label do filtro baseado nos toggles
+      const dict = getDict();
+      let fltLabel = "";
+      if(state.showWhite && state.showShiny) fltLabel = dict.filter_all;
+      else if(state.showWhite) fltLabel = "White Bag";
+      else if(state.showShiny) fltLabel = "Shiny";
+      else fltLabel = dict.filter_none;
+      const ownLabel = state.ownedMode==="yes" ? ` | ${dict.filter_only_collected}` : state.ownedMode==="no" ? ` | ${dict.filter_only_not_collected}` : "";
+      const searchLabel = q ? ` | ${dict.filter_search}: "${state.searchQuery}"` : "";
+      const dgMissingLabel = state.dgMissingOnly ? ` | ${dict.filter_only_dg_none}` : "";
+      info.textContent = `${matched.length} ${dict.items_plural} — ${fltLabel}${ownLabel}${searchLabel}${dgMissingLabel} | ${state.sortMode==="objectid"?"A→Z":"Hex"} / ${state.sortDir.toUpperCase()}`;
 
-      info.textContent = `Exibindo ${matched.length} item(ns) — Filtro: ${fltLabel}${ownLabel}${searchLabel}${dgMissingLabel} | ${state.sortMode==="objectid"?"A→Z (ObjectId)":"Hex (Object type)"} / ${state.sortDir.toUpperCase()}. Clique para marcar coletado.`;
-
-      if(matched.length===0){ empty.textContent="Nenhum item encontrado para o filtro atual."; empty.style.display="block"; return; }
+      if(matched.length===0){ empty.textContent=dict.no_items_found; empty.style.display="block"; return; }
 
       const frag=document.createDocumentFragment();
       for(const r of matched){
@@ -1621,7 +2674,8 @@
           const infoLink=document.createElement("a");
           infoLink.href = realmUrl;
           infoLink.target="_blank"; infoLink.rel="noopener";
-          infoLink.className="info-btn"; infoLink.title="Abrir no RealmEye";
+          infoLink.className="info-btn";
+          infoLink.title = getDict().tooltip_open_realmeye;
           infoLink.textContent="i";
           infoLink.addEventListener("click",(e)=>{ e.stopPropagation(); });
           div.appendChild(infoLink);
@@ -1629,7 +2683,7 @@
           const closeBtn=document.createElement("button");
           closeBtn.type="button";
           closeBtn.className="close-btn";
-          closeBtn.title="Enviar item para a biblioteca";
+          closeBtn.title = getDict().tooltip_send_to_library;
           closeBtn.textContent="X";
           closeBtn.addEventListener("click",(e)=>{
             e.stopPropagation();
@@ -1644,6 +2698,33 @@
         img.alt = r.displayName;
         img.title = r.displayName;
         div.appendChild(img);
+
+        // Suportar múltiplos DGs separados por vírgula
+        const dgValue=(r.dg||"NONE").trim();
+        if(dgValue && dgValue.toUpperCase()!=="NONE"){
+          const dgs = dgValue.split(',').map(d => d.trim()).filter(Boolean);
+
+          // Container para múltiplas badges (se houver mais de uma)
+          if(dgs.length > 1){
+            const badgeContainer = document.createElement("div");
+            badgeContainer.className = "dg-badge dg-badge-multi";
+
+            dgs.forEach(dg => {
+              const badge = document.createElement("span");
+              badge.className = "dg-badge-item";
+              badge.textContent = dg;
+              badgeContainer.appendChild(badge);
+            });
+
+            div.appendChild(badgeContainer);
+          } else {
+            // Badge única
+            const badge=document.createElement("div");
+            badge.className="dg-badge";
+            badge.textContent=dgs[0];
+            div.appendChild(badge);
+          }
+        }
         const cap=document.createElement("div"); cap.className="cap";
         cap.textContent = r.displayName;
         wrap.appendChild(div); wrap.appendChild(cap); frag.appendChild(wrap);
@@ -1706,11 +2787,11 @@
             finalizeRender();
           } else {
             clearTimeout(handleRemove._renderTimer);
-            handleRemove._renderTimer=setTimeout(finalizeRender, 300);
+            handleRemove._renderTimer=setTimeout(finalizeRender, RENDER_DEBOUNCE_MS);
           }
         };
         clone.addEventListener("animationend", finish);
-        fallbackId=setTimeout(finish, 1400);
+        fallbackId=setTimeout(finish, FALLBACK_TIMEOUT_MS);
       };
 
       // Toggle coletado ou exclusão (dependendo do modo)
@@ -1718,7 +2799,36 @@
         const tile=ev.target.closest(".tile");
         if(!tile) return;
         const objType=tile.dataset.objtype; if(!objType) return;
+
+        if(state.dgEditMode){
+          if(state.dgSingleEditMode){
+            // Modo de edição individual: seleciona apenas 1 item
+            // Limpar seleção anterior
+            document.querySelectorAll(".tile.dg-selected").forEach(t => t.classList.remove("dg-selected"));
+            state.dgSelected.clear();
+
+            // Selecionar o novo item
+            state.dgSelected.add(objType);
+            state.dgEditingItem = objType;
+            tile.classList.add("dg-selected");
+
+            // Atualizar UI com informações do item
+            updateDgItemCard(objType);
+          } else {
+            // Seleção múltipla simples
+            if(state.dgSelected.has(objType)){
+              state.dgSelected.delete(objType);
+              tile.classList.remove("dg-selected");
+            }else{
+              state.dgSelected.add(objType);
+              tile.classList.add("dg-selected");
+            }
+          }
+          updateDgBulkUI();
+          return;
+        }
         if(state.deleteMode){
+;
           handleRemove(tile);
           return;
         }
@@ -1727,25 +2837,112 @@
       };
     }
 
+    function updateDgItemCard(objType){
+      if(!objType) return;
+
+      // Buscar informações do item em state.files
+      const itemData = state.files.find(i => i.objType === objType);
+      if(!itemData) return;
+
+      // Buscar metadados ATUAIS do item
+      const metaData = state.metaByType.get(objType);
+      const currentDg = metaData?.DG || "NONE";
+
+      // Atualizar nome
+      const nameEl = document.getElementById("dgItemName");
+      if(nameEl) nameEl.textContent = itemData.displayName || itemData.DisplayId || objType;
+
+      // Atualizar hex code
+      const hexEl = document.getElementById("dgItemHex");
+      if(hexEl) hexEl.textContent = objType;
+
+      // Atualizar imagem
+      const imgEl = document.getElementById("dgItemImage");
+      if(imgEl && itemData.sheetCoords){
+        const {x,y,w,h} = itemData.sheetCoords;
+        imgEl.style.objectFit = "none";
+        imgEl.style.objectPosition = `-${x}px -${y}px`;
+        imgEl.style.width = `${w}px`;
+        imgEl.style.height = `${h}px`;
+        // Usar a URL da spritesheet do state
+        if(state.sheetUrl) imgEl.src = state.sheetUrl;
+      }
+
+      // Atualizar DGs atuais como badges
+      const dgContainer = document.getElementById("dgItemCurrentDgs");
+      if(dgContainer){
+        dgContainer.replaceChildren();
+        const dgs = currentDg.split(',').map(d => d.trim()).filter(d => d && d !== "NONE");
+
+        if(dgs.length === 0){
+          const noneSpan = document.createElement("span");
+          noneSpan.textContent = "NONE";
+          noneSpan.style.cssText = "background:#334155;color:#94a3b8;padding:4px 8px;border-radius:4px;font-size:11px;";
+          dgContainer.appendChild(noneSpan);
+        } else {
+          dgs.forEach(dg => {
+            const badge = document.createElement("span");
+            badge.textContent = dg;
+            badge.style.cssText = "background:#60a5fa;color:#0c1423;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:600;";
+            dgContainer.appendChild(badge);
+          });
+        }
+      }
+
+      // Pré-preencher o textarea com DG atual
+      const dgInput = document.getElementById("dgInput");
+      if(dgInput) dgInput.value = currentDg;
+
+      // Forçar exibição do card
+      const cardToShow = document.getElementById("dgItemCard");
+      if(cardToShow) cardToShow.style.display = "block";
+    }
+
     function updateDgBulkUI(){
       const bar=document.getElementById("dgBulkBar");
-      if(bar) bar.style.display = (state.dgEditMode && currentTab==="config") ? "flex" : "none";
-      const count=document.getElementById("dgSelCount");
-      if(count) count.textContent = `${state.dgSelected.size} selecionado(s)`;
+      if(bar){
+        if(state.dgEditMode){
+          bar.style.display = "block";
+        } else {
+          bar.style.display = "none";
+        }
+      }
+
+      // Mostrar/ocultar elementos conforme o modo
+      const itemCard = document.getElementById("dgItemCard");
+      const selCount = document.getElementById("dgSelCount");
+
+      if(state.dgSingleEditMode){
+        if(itemCard) itemCard.style.display = state.dgEditingItem ? "block" : "none";
+        if(selCount) selCount.style.display = "none";
+      } else {
+        if(itemCard) itemCard.style.display = "none";
+        if(selCount) {
+          selCount.style.display = "block";
+          const dict = getDict();
+          selCount.textContent = `${state.dgSelected.size} ${dict.selected_plural}`;
+        }
+      }
+
       const dgToggle=document.getElementById("dgModeToggle");
       if(dgToggle) dgToggle.checked = state.dgEditMode;
+
+      const dgSingleToggle = document.getElementById("dgSingleEditMode");
+      if(dgSingleToggle) dgSingleToggle.checked = state.dgSingleEditMode;
     }
 
     /* ===== Render CONFIG ===== */
     function renderRemoved(rows){
       const cont=$("#removedGallery"), info=$("#removedInfo"), empty=$("#removedEmpty");
       if(!cont) return;
-      cont.replaceChildren(); empty.style.display="none";
+      cont.replaceChildren();
+      if(empty) empty.style.display="none";
       const allRows = rows || deriveRows();
       const removedRows = allRows.filter(r=> state.removed.has(r.objType));
 
       if(removedRows.length){
-        info.textContent = `${removedRows.length} item(ns) armazenado(s). Clique no item para devolver à galeria.`;
+        const dict = getDict();
+        info.textContent = `${removedRows.length} ${dict.items_plural} ${dict.stored_plural}. ${dict.click_to_restore}`;
       } else {
         info.textContent = "";
       }
@@ -1766,7 +2963,8 @@
           const infoLink=document.createElement("a");
           infoLink.href = realmUrl;
           infoLink.target="_blank"; infoLink.rel="noopener";
-          infoLink.className="info-btn"; infoLink.title="Abrir no RealmEye";
+          infoLink.className="info-btn";
+          infoLink.title = getDict().tooltip_open_realmeye;
           infoLink.textContent="i";
           infoLink.addEventListener("click",(e)=>{ e.stopPropagation(); });
           box.appendChild(infoLink);
@@ -1799,66 +2997,10 @@
       cont.replaceChildren(frag);
     }
 
-    function renderUnmatched(rows){
-      const cont=$("#unmatchedGallery"), info=$("#unmatchedInfo"), empty=$("#unmatchedEmpty");
-      if(!cont) return;
-      cont.replaceChildren(); empty.style.display="none";
-      const allRows = rows || deriveRows();
-      const unmatched=allRows.filter(r=>!r.matched);
 
-      if(!state.equipByType) info.textContent=`equip.txt padrao nao carregado - exibindo ${unmatched.length} arquivo(s) como pendentes.`;
-      else info.textContent=`${unmatched.length} arquivo(s) sem correspondencia no equip.txt (por Object type).`;
-
-      if(unmatched.length===0){ empty.style.display="block"; return; }
-
-      const frag=document.createDocumentFragment();
-      for(const r of unmatched){
-        const wrap=document.createElement("div"); wrap.className="tile";
-        const box=document.createElement("div"); box.className="thumb";
-        const img=document.createElement("img");
-        img.src=getRowImgUrl(r); img.loading="lazy";
-        img.alt=""; img.title="";
-        box.appendChild(img);
-        const cap=document.createElement("div"); cap.className="cap"; cap.textContent=r.objType||"(sem objType)";
-        wrap.appendChild(box); wrap.appendChild(cap); frag.appendChild(wrap);
-      }
-      cont.replaceChildren(frag);
-    }
-
-        function renderDgNone(rows){
-      const cont = document.getElementById('dgNoneGallery'), info = document.getElementById('dgNoneInfo'), empty = document.getElementById('dgNoneEmpty');
-      if(!cont) return;
-      cont.replaceChildren(); if(empty) empty.style.display='none';
-      const allRows = rows || deriveRows();
-      let list = allRows.filter(r => ((r.dg||'NONE').toString().trim().toUpperCase()==='NONE'));
-      // manter só válidos e não removidos
-      list = list.filter(r => !state.removed.has(r.objType));
-      if(info) info.textContent = `${list.length} item(ns) com DG=NONE. Use o Editor DG para definir`;
-      if(list.length===0){ if(empty) empty.style.display='block'; return; }
-      const frag = document.createDocumentFragment();
-      for(const r of list){
-        const wrap=document.createElement('div');
-        wrap.className='tile';
-        wrap.dataset.objtype=r.objType;
-        const box=document.createElement('div'); box.className='thumb';
-        const img=document.createElement('img'); img.src=getRowImgUrl(r); img.loading='lazy'; img.alt=r.displayName||''; img.title=r.displayName||''; box.appendChild(img);
-        const cap=document.createElement('div'); cap.className='cap'; cap.textContent=r.displayName||r.objType;
-        wrap.appendChild(box); wrap.appendChild(cap); frag.appendChild(wrap);
-      }
-      cont.replaceChildren(frag);
-      // seleção DG na aba Config
-      cont.onclick = (ev)=>{
-        const tile=ev.target.closest('.tile'); if(!tile) return;
-        const objType=tile.dataset.objtype; if(!objType) return;
-        if(state.dgEditMode){
-          if(state.dgSelected.has(objType)){ state.dgSelected.delete(objType); tile.classList.remove('dg-selected'); }
-          else { state.dgSelected.add(objType); tile.classList.add('dg-selected'); }
-          updateDgBulkUI();
-        }
-      };
-    }function renderProgressBars(matchedRows){
-      const shinyFill=$("#progShinyFill"), shinyText=$("#progShinyText");
-      const whiteFill=$("#progWhiteFill"), whiteText=$("#progWhiteText");
+    function renderProgressBars(matchedRows){
+      const shinyFill=$("#progressFillShiny");
+      const whiteFill=$("#progressFillWhite");
       if(!shinyFill||!whiteFill) return;
 
       const rowsMatched = (matchedRows || deriveRows().filter(r=>r.matched))
@@ -1869,10 +3011,33 @@
       const whiteCollected=rowsMatched.filter(r=>isWhiteRow(r) && state.collected.has(r.objType)).length;
       const pct=(c,t)=> t? Math.max(0,Math.min(100,Math.round((c/t)*100))) : 0;
 
-      shinyFill.style.width=pct(shinyCollected,shinyTotal)+"%";
-      whiteFill.style.width=pct(whiteCollected,whiteTotal)+"%";
-      shinyText.textContent=`${shinyCollected}/${shinyTotal} (${pct(shinyCollected,shinyTotal)}%)`;
-      whiteText.textContent=`${whiteCollected}/${whiteTotal} (${pct(whiteCollected,whiteTotal)}%)`;
+      // Barras verticais usam height em vez de width
+      shinyFill.style.height=pct(shinyCollected,shinyTotal)+"%";
+      whiteFill.style.height=pct(whiteCollected,whiteTotal)+"%";
+
+      // Atualiza os tooltips com as informações de progresso
+      const shinyPanel=$("#progressPanelShiny");
+      const whitePanel=$("#progressPanelWhite");
+      if(shinyPanel) shinyPanel.title=`Shiny: ${shinyCollected}/${shinyTotal} (${pct(shinyCollected,shinyTotal)}%)`;
+      if(whitePanel) whitePanel.title=`White Bag: ${whiteCollected}/${whiteTotal} (${pct(whiteCollected,whiteTotal)}%)`;
+
+      // Atualiza estado dos ícones (colorido quando 100%)
+      const shinyIcon=$("#shinyIcon");
+      const whiteIcon=$("#whiteIcon");
+      if(shinyIcon){
+        if(pct(shinyCollected,shinyTotal) === 100){
+          shinyIcon.classList.add("complete");
+        } else {
+          shinyIcon.classList.remove("complete");
+        }
+      }
+      if(whiteIcon){
+        if(pct(whiteCollected,whiteTotal) === 100){
+          whiteIcon.classList.add("complete");
+        } else {
+          whiteIcon.classList.remove("complete");
+        }
+      }
     }
 
     function renderStats(rows, matchedRows){
@@ -1883,39 +3048,344 @@
       const collectedCount=visibleMatched.filter(r=>state.collected.has(r.objType)).length;
 
       $("#stTotal").textContent   = allRows.length;
-      $("#stMatched").textContent = visibleMatched.length;
       $("#stCollected").textContent = collectedCount;
       $("#stShiny").textContent   = visibleMatched.filter(isShinyRow).length;
       $("#stWhite").textContent   = visibleMatched.filter(isWhiteRow).length;
-      const countEl=$("#countFiles");
-      if(countEl) countEl.textContent = String(allRows.length);
-      const equipEl=$("#equipCount");
-      if(equipEl) equipEl.textContent = state.equipByType ? `${state.equipByType.size} objetos` : "(nao carregado)";
     }
 
-function renderAll(){
+    // Formata o nome da DG para exibição (capitalize, substitui "-" por espaço)
+    function formatDgName(dg){
+      if(!dg || dg === "NONE") return "NONE";
+
+      // Primeiro tenta buscar DGDisplay do items_meta.xml
+      for(const [objType, meta] of state.metaByType.entries()){
+        if(meta.DG === dg && meta.DGDisplay){
+          return meta.DGDisplay;
+        }
+      }
+
+      // Se não encontrar, formata automaticamente
+      // Substitui -s- por 's (possessivo) antes de capitalizar
+      const formatted = dg.replace(/-s-/g, "'s-");
+      const result = formatted.split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+      return result;
+    }
+
+    // Estado de paginação do DG filter
+    let dgFilterPage = 0;
+    const DG_ITEMS_PER_PAGE = 5;
+    const dgIconCache = new Map(); // Cache de ícones aleatórios por DG
+
+    // Anima a troca de página do DG filter com transição fluida
+    function animateDgPageChange(direction, callback){
+      const scroll = document.getElementById("dgFilterScroll");
+      if(!scroll) return;
+
+      // Remove qualquer transição anterior
+      scroll.classList.remove("sliding");
+      scroll.style.transform = "";
+
+      // Define posição inicial fora da tela (mesma direção do movimento)
+      const offset = direction === "next" ? "300px" : "-300px";
+      scroll.style.transform = `translateX(${offset})`;
+
+      // Força reflow
+      scroll.offsetHeight;
+
+      // Renderiza o novo conteúdo
+      if(callback) callback();
+
+      // Adiciona classe de transição
+      scroll.classList.add("sliding");
+
+      // Usa requestAnimationFrame para garantir que a transição seja aplicada
+      requestAnimationFrame(() => {
+        scroll.style.transform = "translateX(0)";
+      });
+
+      // Remove a classe e estilos após a animação
+      setTimeout(() => {
+        scroll.classList.remove("sliding");
+        scroll.style.transform = "";
+      }, 500);
+    }
+
+    // Popula o DG filter com paginação (5 por vez)
+    function populateDgFilter(skipAnimation = false){
+      const dgSet = new Set();
+      const rows = deriveRows();
+
+      // Coleta todas as DGs únicas dos itens (separando por vírgula)
+      for(const row of rows){
+        const dgValue = row.dg || "NONE";
+        if(dgValue && dgValue !== "NONE") {
+          // Separar múltiplas DGs por vírgula
+          const dgs = dgValue.split(',').map(d => d.trim()).filter(Boolean);
+          dgs.forEach(dg => dgSet.add(dg));
+        }
+      }
+
+      // Se não houver DGs, esconde o container
+      const container = document.getElementById("dgFilterContainer");
+      if(dgSet.size === 0){
+        if(container) container.style.display = "none";
+        return;
+      }
+
+      // Mostra o container
+      if(container) container.style.display = "flex";
+
+      // Ordena as DGs alfabeticamente e adiciona "Todos" no início
+      const dgList = ["ALL", ...Array.from(dgSet).sort()];
+
+      // Calcula paginação - renderiza ícones adjacentes para efeito de carrossel
+      const totalPages = Math.ceil(dgList.length / DG_ITEMS_PER_PAGE);
+      const startIdx = dgFilterPage * DG_ITEMS_PER_PAGE;
+      const endIdx = startIdx + DG_ITEMS_PER_PAGE;
+
+      // Pega 2 itens antes e 2 depois para mostrar preview
+      const extendedStart = Math.max(0, startIdx - 2);
+      const extendedEnd = Math.min(dgList.length, endIdx + 2);
+      const extendedItems = dgList.slice(extendedStart, extendedEnd);
+
+      // Calcula quantos espaçadores invisíveis adicionar para centralizar
+      const itemsBeforeMain = startIdx - extendedStart;
+      const spacersBefore = 2 - itemsBeforeMain; // Quantos faltam para completar 2 antes
+
+      const itemsAfterMain = extendedEnd - endIdx;
+      const spacersAfter = 2 - itemsAfterMain; // Quantos faltam para completar 2 depois
+
+      // Marca quais são os itens principais (não preview)
+      const mainStartOffset = startIdx - extendedStart;
+      const mainEndOffset = mainStartOffset + DG_ITEMS_PER_PAGE;
+
+      // Popula o scroll
+      const scroll = document.getElementById("dgFilterScroll");
+      if(!scroll) return;
+
+      scroll.innerHTML = "";
+
+      // Pega o portal correspondente à DG ou um item aleatório como fallback
+      const getIconForDG = (dgName) => {
+
+        // Verifica se já temos um ícone cacheado para esta DG
+        if(dgIconCache.has(dgName)){
+          return dgIconCache.get(dgName);
+        }
+
+        // Caso especial: "NONE" (Todos) usa o Portal to Nexus (0x071d)
+        if(dgName === "NONE"){
+          const nexusPortal = {
+            objType: "0x071d",
+            textureFile: "lofiEnvironment2",
+            textureIndex: 0x36,
+            isPortal: true
+          };
+          dgIconCache.set(dgName, nexusPortal);
+          return nexusPortal;
+        }
+
+        // Primeiro tenta encontrar um portal correspondente
+        if(state.portalsBy){
+          for(const [objType, portal] of state.portalsBy.entries()){
+            if(portal.dgSlug === dgName){
+              // Encontrou o portal! Criar objeto similar a row para compatibilidade
+              const portalAsRow = {
+                objType: portal.objType,
+                textureFile: portal.textureFile,
+                textureIndex: portal.textureIndex,
+                isPortal: true // Flag para identificar que é um portal
+              };
+              dgIconCache.set(dgName, portalAsRow);
+              return portalAsRow;
+            }
+          }
+        }
+
+        // Fallback: usa um item aleatório da DG
+        const itemsInDG = rows.filter(r => (r.dg || "NONE") === dgName);
+        if(itemsInDG.length === 0) return null;
+
+        const randomItem = itemsInDG[Math.floor(Math.random() * itemsInDG.length)];
+        dgIconCache.set(dgName, randomItem);
+        return randomItem;
+      };
+
+      const tooltip = document.getElementById("dgTooltip");
+
+      // Adiciona espaçadores invisíveis antes (para centralizar quando no início)
+      for(let i = 0; i < spacersBefore; i++){
+        const spacer = document.createElement("div");
+        spacer.className = "dg-filter-chip";
+        spacer.style.opacity = "0";
+        spacer.style.pointerEvents = "none";
+        scroll.appendChild(spacer);
+      }
+
+      // Cria chips incluindo preview dos adjacentes
+      extendedItems.forEach((dg, idx) => {
+        const chip = document.createElement("div");
+        const isAll = (dg === "ALL");
+        const isActive = isAll ? (state.dgFilterActive === null) : (state.dgFilterActive === dg);
+        const isPreview = (idx < mainStartOffset || idx >= mainEndOffset);
+
+        chip.className = "dg-filter-chip" + (isActive ? " active" : "") + (isPreview ? " preview" : "");
+        chip.dataset.dg = isAll ? "" : dg;
+        chip.dataset.dgDisplay = isAll ? (getDict()['filter_all'] || "All") : formatDgName(dg);
+
+        // Adiciona imagem
+        let iconItem;
+        if(isAll){
+          // "Todos" usa o Portal to Nexus (0x071d)
+          if(dgIconCache.has("ALL")){
+            iconItem = dgIconCache.get("ALL");
+          } else {
+            iconItem = {
+              objType: "0x071d",
+              textureFile: "lofiEnvironment2",
+              textureIndex: 0x36,
+              isPortal: true
+            };
+            dgIconCache.set("ALL", iconItem);
+          }
+        } else if(dg === "forge"){
+          // "Forge" usa um dos 3 itens de forge aleatoriamente (muda a cada renderização)
+          // Busca direto no equipByType, independente de estar em ignorados ou não
+          const forgeItems = ["0xc141", "0x513c", "0x5cbf"]; // Kogbold Enhancement Core, Concentrated Soul Fire, Vial of Soul Extract
+          const randomForgeType = forgeItems[Math.floor(Math.random() * forgeItems.length)];
+          const equipData = state.equipByType?.get(randomForgeType);
+          if(equipData){
+            iconItem = {
+              objType: randomForgeType,
+              textureFile: equipData.textureFile,
+              textureIndex: equipData.textureIndex
+            };
+          }
+        } else {
+          iconItem = getIconForDG(dg);
+        }
+
+        // Renderiza a imagem
+        const img = document.createElement("img");
+
+        if(dg === "realm-event"){
+          // "realm-event" usa imagem customizada direta
+          img.src = "../imgs/Realm-Event.png";
+          img.alt = chip.dataset.dgDisplay;
+          chip.appendChild(img);
+        } else if(iconItem){
+          const url = getRowImgUrl(iconItem);
+          img.src = url || TRANSPARENT_PX;
+          img.alt = chip.dataset.dgDisplay;
+          chip.appendChild(img);
+        } else {
+        }
+
+        // Click handler
+        chip.addEventListener("click", ()=>{
+          state.dgFilterActive = isAll ? null : dg;
+          renderAll();
+        });
+
+        // Tooltip handlers
+        chip.addEventListener("mouseenter", (e)=>{
+          const displayName = chip.dataset.dgDisplay;
+          if(!displayName || !tooltip) return;
+
+          tooltip.textContent = displayName;
+          tooltip.classList.add("visible");
+
+          const rect = chip.getBoundingClientRect();
+          tooltip.style.left = (rect.left + rect.width / 2) + "px";
+          tooltip.style.top = (rect.top - 10) + "px";
+          tooltip.style.transform = "translate(-50%, -100%)";
+        });
+
+        chip.addEventListener("mouseleave", ()=>{
+          if(tooltip) tooltip.classList.remove("visible");
+        });
+
+        scroll.appendChild(chip);
+      });
+
+      // Adiciona espaçadores invisíveis depois (para centralizar quando no final)
+      for(let i = 0; i < spacersAfter; i++){
+        const spacer = document.createElement("div");
+        spacer.className = "dg-filter-chip";
+        spacer.style.opacity = "0";
+        spacer.style.pointerEvents = "none";
+        scroll.appendChild(spacer);
+      }
+
+      // Atualiza estado dos botões de navegação
+      const prevBtn = document.getElementById("dgPrevBtn");
+      const nextBtn = document.getElementById("dgNextBtn");
+
+      if(prevBtn){
+        prevBtn.disabled = (dgFilterPage === 0);
+        if(!prevBtn.hasAttribute('data-initialized')){
+          prevBtn.addEventListener("click", ()=>{
+            if(dgFilterPage > 0){
+              dgFilterPage--;
+              if(skipAnimation){
+                populateDgFilter(true);
+              } else {
+                animateDgPageChange("prev", () => populateDgFilter(true));
+              }
+            }
+          });
+          prevBtn.setAttribute('data-initialized', 'true');
+        }
+      }
+
+      if(nextBtn){
+        nextBtn.disabled = (dgFilterPage >= totalPages - 1);
+        if(!nextBtn.hasAttribute('data-initialized')){
+          nextBtn.addEventListener("click", ()=>{
+            if(dgFilterPage < totalPages - 1){
+              dgFilterPage++;
+              if(skipAnimation){
+                populateDgFilter(true);
+              } else {
+                animateDgPageChange("next", () => populateDgFilter(true));
+              }
+            }
+          });
+          nextBtn.setAttribute('data-initialized', 'true');
+        }
+      }
+    }
+
+    function renderAll(){
       document.body.classList.toggle("delete-mode", state.deleteMode);
       document.body.classList.toggle("dg-mode", state.dgEditMode);
       const deleteToggle=document.getElementById("deleteModeToggle");
       if(deleteToggle) deleteToggle.checked = state.deleteMode;
       const dgModeToggle=document.getElementById("dgModeToggle");
       if(dgModeToggle) dgModeToggle.checked = state.dgEditMode;
-
+      const dgNoneToggle2=document.getElementById("dgNoneToggle2");
+      if(dgNoneToggle2) dgNoneToggle2.checked = state.dgMissingOnly;
       const rows = deriveRows();
       const validObjTypes=new Set(rows.map(r=>r.objType));
+      const beforeClean = state.dgSelected.size;
       state.dgSelected=new Set(Array.from(state.dgSelected).filter((objType)=>validObjTypes.has(objType)));
+      if(beforeClean !== state.dgSelected.size) {
+      }
       const matchedRows = rows.filter(r=>r.matched);
+      populateDgFilter(); // Popula o scroll de DG filter
       if(currentTab === "items"){
         renderItemsGallery(rows, matchedRows);
         renderProgressBars(matchedRows);
       } else {
         renderStats(rows, matchedRows);
         renderRemoved(rows);
-        renderUnmatched(rows);
-        renderDgNone(rows);
       }
       updateDgBulkUI();
     }
+    // Expor renderAll globalmente
+    window.renderAll = renderAll;
 
     /* ===== Colunas (slider) ===== */
     const MIN_IMAGE_PX=10, THUMB_PAD=2, THUMB_BORDER=1;
@@ -2033,7 +3503,13 @@ function renderAll(){
       const tabConfig=document.getElementById("tabConfigBtn");
       if(tabConfig) tabConfig.addEventListener("click", onResize);
 
-      applyWithBounds(getStoredValue());
+      // Aplicar valor salvo e atualizar label
+      const savedValue = getStoredValue();
+      applyWithBounds(savedValue);
+
+      // Garantir que o label do controle de scroll também seja atualizado
+      const colLabel = document.getElementById("colLabel");
+      if(colLabel) colLabel.textContent = String(savedValue);
     }
 
     /* ===== Tabs ===== */
@@ -2090,36 +3566,78 @@ function renderAll(){
     /* ===== Eventos ===== */
     document.getElementById("tabItemsBtn").addEventListener("click", ()=>showTab("items"));
     document.getElementById("tabConfigBtn").addEventListener("click", ()=>showTab("config"));
+    document.getElementById("tabSupportBtn").addEventListener("click", ()=>forceShowDonationModal());
 
-    document.getElementById("sortMode").addEventListener("change",(e)=>{ state.sortMode=e.target.value; renderAll(); });
+    document.getElementById("sortModeBtn").addEventListener("click",()=>{
+      state.sortMode = (state.sortMode === "objectid") ? "hex" : "objectid";
+      document.getElementById("sortModeBtn").textContent = (state.sortMode === "objectid") ? "A→Z" : "HEX";
+      renderAll();
+    });
     document.getElementById("sortDirBtn").addEventListener("click",()=>{ state.sortDir=(state.sortDir==="asc")?"desc":"asc"; document.getElementById("sortDirBtn").textContent=(state.sortDir==="asc")?"Asc":"Desc"; renderAll(); });
 
-    function setFilter(f){ state.filter=f; document.getElementById("fltAll").classList.toggle("active",f==="all"); document.getElementById("fltWhite").classList.toggle("active",f==="white"); document.getElementById("fltShiny").classList.toggle("active",f==="shiny"); renderAll(); }
-    document.getElementById("fltAll").addEventListener("click",()=>setFilter("all"));
-    document.getElementById("fltWhite").addEventListener("click",()=>setFilter("white"));
-    document.getElementById("fltShiny").addEventListener("click",()=>setFilter("shiny"));
+    // Filtros: ao clicar em um ativo, desativa e ativa o outro; ao clicar em inativo, ativa ele
+    document.getElementById("fltWhite").addEventListener("click",()=>{
+      if(state.showWhite){
+        // Se White Bag está ativo, desativa ele e ativa Shiny
+        state.showWhite = false;
+        state.showShiny = true;
+      } else {
+        // Se White Bag está inativo, ativa ele (mantém Shiny como está)
+        state.showWhite = true;
+      }
+      document.getElementById("fltWhite").classList.toggle("active", state.showWhite);
+      document.getElementById("fltShiny").classList.toggle("active", state.showShiny);
+      renderAll();
+    });
+    document.getElementById("fltShiny").addEventListener("click",()=>{
+      if(state.showShiny){
+        // Se Shiny está ativo, desativa ele e ativa White Bag
+        state.showShiny = false;
+        state.showWhite = true;
+      } else {
+        // Se Shiny está inativo, ativa ele (mantém White Bag como está)
+        state.showShiny = true;
+      }
+      document.getElementById("fltWhite").classList.toggle("active", state.showWhite);
+      document.getElementById("fltShiny").classList.toggle("active", state.showShiny);
+      renderAll();
+    });
+
+    // Controle de colunas via scroll do mouse
+    const colIconCtrl = document.getElementById("colIconCtrl");
+    if(colIconCtrl){
+      colIconCtrl.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const current = parseInt(document.documentElement.style.getPropertyValue('--cols') || '5');
+        const delta = e.deltaY > 0 ? -1 : 1; // scroll down = diminui, scroll up = aumenta
+        const newValue = Math.max(1, Math.min(32, current + delta));
+        applyCols(newValue);
+        // Salvar manualmente já que não passa por applyWithBounds
+        localStorage.setItem(COLS_KEY, String(newValue));
+        document.getElementById("colLabel").textContent = String(newValue);
+      });
+    }
 
     document.getElementById("btnExport").addEventListener("click", exportProgress);
     document.getElementById("inputProgress").addEventListener("change",(e)=>{ const f=e.target.files?.[0]; if(f) importProgress(f); e.target.value=""; });
     document.getElementById("btnClearProgress").addEventListener("click",()=>{ if(confirm("Tem certeza que deseja limpar o progresso salvo?")) clearProgress(); });
-    const btnConfigProgress=document.getElementById("btnConfigProgress");
-    if(btnConfigProgress){
-      if(nodeFsAdapter){
-        btnConfigProgress.textContent="Mostrar local do auto-salvar";
-        btnConfigProgress.title="Arquivo de progresso salvo automaticamente ao lado do index.html";
-        btnConfigProgress.addEventListener("click",()=>{
-          alert(`O progresso esta sendo salvo automaticamente em:\n${nodeFsAdapter.displayName}`);
-        });
-      }else{
-        btnConfigProgress.addEventListener("click", configureProgressFile);
-      }
-    }
 
     // Busca
     document.getElementById("searchBox").addEventListener("input",(e)=>{
       state.searchQuery = e.target.value || "";
       renderAll();
     });
+
+    // Botões de idioma
+    document.getElementById("btnLangPT").addEventListener("click", () => {
+      setLanguage("pt-BR");
+    });
+    document.getElementById("btnLangEN").addEventListener("click", () => {
+      setLanguage("en");
+    });
+
+    // Aplicar traduções no carregamento
+    applyTranslations();
 
     const deleteToggle=document.getElementById("deleteModeToggle");
     if(deleteToggle){
@@ -2129,52 +3647,56 @@ function renderAll(){
         renderAll();
       });
     }
-;
-    
+
+    const dgNoneToggle2=document.getElementById("dgNoneToggle2");
+    if(dgNoneToggle2){
+      dgNoneToggle2.addEventListener("change",(e)=>{
+        const isChecked=!!e.target.checked;
+        state.dgMissingOnly=isChecked;
+        renderAll();
+      });
+    }
+    // Event listeners movidos para dentro do window.addEventListener('load') para evitar duplicação
+
+    // ===== ATALHO SECRETO: Ctrl + Shift + E =====
+    // Ativa/desativa o Editor DG sem precisar do checkbox (funcionalidade escondida)
+    document.addEventListener("keydown", (e) => {
+      // Ctrl + Shift + E
+      if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+        e.preventDefault();
+
+        // Toggle DG Edit Mode
+        state.dgEditMode = !state.dgEditMode;
+
+        if (!state.dgEditMode) {
+          state.dgSelected.clear();
+        }
+
+        updateDgBulkUI();
+        renderAll();
+
+        // Notificação visual discreta
+        // Opcional: mostrar toast temporário
+        const toast = document.createElement('div');
+        toast.textContent = state.dgEditMode ? '🔓 Editor DG Ativado' : '🔒 Editor DG Desativado';
+        toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#0b1322;color:#60a5fa;padding:12px 20px;border-radius:8px;border:1px solid #60a5fa;box-shadow:0 4px 12px rgba(0,0,0,0.5);z-index:99999;font-size:14px;font-weight:600;';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), TOAST_DURATION_MS);
+      }
+    });
+
+    // Código original do dgModeToggle (agora sem elemento no DOM)
     const dgModeToggle=document.getElementById("dgModeToggle");
     if(dgModeToggle){
       dgModeToggle.addEventListener("change",(e)=>{
         state.dgEditMode=!!e.target.checked;
         if(!state.dgEditMode) state.dgSelected.clear();
+        updateDgBulkUI();
         renderAll();
       });
     }
-    const dgApplyBtn=document.getElementById("dgApplyBtn");
-    if(dgApplyBtn){
-      dgApplyBtn.addEventListener("click",()=>{
-        const input=document.getElementById("dgInput");
-        const val=(input?.value||"").trim();
-        if(!val){
-          alert("Informe um valor para DG (ex: NONE)");
-          return;
-        }
-        if(state.dgSelected.size===0){
-          alert("Selecione ao menos um item.");
-          return;
-        }
-        const rows=deriveRows();
-        const rowsByType=new Map(rows.map((r)=>[r.objType,r]));
-        const byType=new Map(state.metaByType);
-        for(const objType of state.dgSelected){
-          const row=rowsByType.get(objType);
-          const current=byType.get(objType)||{};
-          byType.set(objType, {
-            DG: val,
-            category: current.category || row?.category || "",
-            path: current.path || row?.path || ""
-          });
-        }
-        state.metaByType=byType;
-        state.dgSelected.clear();
-        const metaEl=document.getElementById("metaCount");
-        if(metaEl) metaEl.textContent = `${state.metaByType.size} itens`;
-        renderAll();
-      });
-    }
-    const dgSaveBtn=document.getElementById("dgSaveBtn");
-    if(dgSaveBtn){
-      dgSaveBtn.addEventListener("click", saveItemsMetaXml);
-    }
+
+    // REMOVIDO: Event listeners do dgApplyBtn e dgSaveBtn movidos para window.load ao final
     const metaImportBtn=document.getElementById("metaImportBtn");
     const metaFileInput=document.getElementById("metaFileInput");
     if(metaImportBtn && metaFileInput){
@@ -2209,27 +3731,641 @@ function renderAll(){
         }
       });
     }
+    /* ===== DG Filter Drag to Scroll ===== */
+    const dgFilterScroll = document.getElementById("dgFilterScroll");
+
+    if(dgFilterScroll){
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeft = 0;
+      let hasMoved = false;
+
+      dgFilterScroll.addEventListener("mousedown", (e)=>{
+        // Não previne clique nos chips
+        if(e.target.classList.contains("dg-filter-chip")) return;
+
+        isDragging = true;
+        hasMoved = false;
+        dgFilterScroll.classList.add("dragging");
+        startX = e.pageX - dgFilterScroll.offsetLeft;
+        scrollLeft = dgFilterScroll.scrollLeft;
+      });
+
+      dgFilterScroll.addEventListener("mouseleave", ()=>{
+        isDragging = false;
+        dgFilterScroll.classList.remove("dragging");
+      });
+
+      dgFilterScroll.addEventListener("mouseup", ()=>{
+        isDragging = false;
+        dgFilterScroll.classList.remove("dragging");
+      });
+
+      dgFilterScroll.addEventListener("mousemove", (e)=>{
+        if(!isDragging) return;
+        e.preventDefault();
+        hasMoved = true;
+        const x = e.pageX - dgFilterScroll.offsetLeft;
+        const walk = (x - startX) * 2; // multiplicador para velocidade
+        dgFilterScroll.scrollLeft = scrollLeft - walk;
+      });
+
+      // Previne click se houve drag
+      dgFilterScroll.addEventListener("click", (e)=>{
+        if(hasMoved){
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+
+      // Scroll horizontal com roda do mouse
+      dgFilterScroll.addEventListener("wheel", (e)=>{
+        if(e.deltaY !== 0){
+          e.preventDefault();
+          dgFilterScroll.scrollBy({ left: e.deltaY, behavior: "auto" });
+        }
+      });
+    }
+
     /* ===== Inicialização ===== */
     updateProgressFileInfo({});
     loadProgress();
     initColsControl();
     initOwnedTri();
-    // tenta restaurar diretório e equip lembrados
-    restoreRemembered().then(()=> renderAll());
+
+    // Controle do loading screen
+    const loadingScreen = document.getElementById('loadingScreen');
+    const loadingProgressBar = document.getElementById('loadingProgressBar');
+    const loadingPercent = document.getElementById('loadingPercent');
+    const loadingText = document.getElementById('loadingText');
+
+    // Tornar global para ser acessível em restoreRemembered
+    window.updateLoadingProgress = function(percent, text) {
+      // Atualizar barra de progresso
+      if (loadingProgressBar) {
+        loadingProgressBar.style.width = `${percent}%`;
+      }
+      // Atualizar percentual
+      if (loadingPercent) {
+        loadingPercent.textContent = `${percent}%`;
+      }
+      // Atualizar texto se fornecido
+      if (text && loadingText) {
+        loadingText.textContent = text;
+      }
+    };
+
+    // Função auxiliar para obter texto traduzido ou usar fallback
+    function getLoadingText(key, fallback) {
+      const dict = getDict();
+      return dict[key] || fallback;
+    }
+
+    function hideLoadingScreen() {
+      console.log('hideLoadingScreen chamado');
+      if (loadingScreen) {
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          console.log('Loading screen ocultado, chamando showDonationModal');
+          // Mostrar modal de doação após loading screen
+          showDonationModal();
+        }, 500);
+      } else {
+        console.error('loadingScreen não encontrado');
+      }
+    }
+
+    // Funções do modal de doação
+    const DONATION_LAST_SHOWN_KEY = 'rotmg_donation_last_shown';
+    const DONATION_INTERVAL_DAYS = 2; // Mostrar a cada 2 dias
+
+    function shouldShowDonationModal() {
+      const lastShown = localStorage.getItem(DONATION_LAST_SHOWN_KEY);
+      if (!lastShown) return true; // Primeira vez, mostrar
+
+      const lastShownDate = new Date(parseInt(lastShown));
+      const now = new Date();
+      const diffMs = now - lastShownDate;
+      const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+      console.log('[DONATION] Última exibição:', lastShownDate.toLocaleString());
+      console.log('[DONATION] Dias desde última exibição:', diffDays.toFixed(2));
+
+      return diffDays >= DONATION_INTERVAL_DAYS;
+    }
+
+    function showDonationModal(force = false) {
+      console.log('[DONATION] showDonationModal chamado (force:', force, ')');
+      const modal = document.getElementById('donationModal');
+
+      if (!force && !shouldShowDonationModal()) {
+        console.log('[DONATION] Modal não será exibido (intervalo de 2 dias não atingido)');
+        return;
+      }
+
+      console.log('[DONATION] Modal element:', modal);
+
+      if (modal) {
+        const delay = force ? 0 : 1000; // Sem delay se forçado
+        console.log('[DONATION] Preparando para mostrar modal em', delay, 'ms...');
+
+        setTimeout(() => {
+          console.log('[DONATION] Adicionando classe "show" ao modal');
+          modal.classList.add('show');
+          // Salvar timestamp da exibição
+          if (!force) {
+            localStorage.setItem(DONATION_LAST_SHOWN_KEY, Date.now().toString());
+            console.log('[DONATION] Timestamp salvo:', new Date().toLocaleString());
+          }
+        }, delay);
+      } else {
+        console.error('[DONATION] Modal de doação não encontrado no DOM!');
+      }
+    }
+
+    function closeDonationModal() {
+      const modal = document.getElementById('donationModal');
+
+      if (modal) {
+        modal.classList.remove('show');
+        // Fechar seção PIX também
+        const pixSection = document.getElementById('pixSection');
+        if (pixSection) {
+          pixSection.classList.remove('show');
+        }
+        console.log('Modal de doação fechado');
+      }
+    }
+
+    function togglePixSection() {
+      const pixSection = document.getElementById('pixSection');
+      if (pixSection) {
+        pixSection.classList.toggle('show');
+      }
+    }
+
+    // Expor função para forçar exibição do modal (para botão de configurações)
+    window.forceShowDonationModal = function() {
+      showDonationModal(true); // force = true
+    };
+
+    // Expor funções globalmente para o onclick do HTML
+    window.closeDonationModal = closeDonationModal;
+    window.togglePixSection = togglePixSection;
+
+    // Fechar modal com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('donationModal');
+        if (modal && modal.classList.contains('show')) {
+          closeDonationModal();
+        }
+      }
+    });
+
+    // Esperar traduções carregarem primeiro, depois iniciar o carregamento
+    async function initApp() {
+      try {
+        // Aguardar traduções
+        await window.translationsReady;
+        const dict = getDict();
+        updateLoadingProgress(0, dict.loading_init || 'Starting...');
+
+        // tenta restaurar diretório e equip lembrados
+        await restoreRemembered();
+
+        updateLoadingProgress(90, dict.loading_rendering || 'Rendering...');
+        renderAll();
+
+        // Garantir que as colunas sejam restauradas após tudo carregar
+        const savedCols = parseInt(localStorage.getItem(COLS_KEY) || '5', 10);
+        if(savedCols) {
+          applyCols(savedCols);
+          const colLabel = document.getElementById("colLabel");
+          if(colLabel) colLabel.textContent = String(savedCols);
+        }
+
+        updateLoadingProgress(100, dict.loading_complete || 'Complete!');
+        setTimeout(hideLoadingScreen, 300);
+      } catch(error) {
+        console.error('Erro ao carregar:', error);
+        console.error('Stack:', error.stack);
+        const dict = getDict();
+        updateLoadingProgress(0, dict.loading_error || 'Error loading data');
+        setTimeout(hideLoadingScreen, 2000);
+      }
+    }
+
+    initApp();
   </script>
+
+  <script>
+    // Setup dos event listeners do Editor DG
+    window.addEventListener('load', function() {
+
+      // ===== DOM CACHE GLOBAL =====
+      // Cache de elementos DOM para evitar chamadas repetidas de getElementById
+      window.domCache = {
+        // Galeria e informações
+        gallery: document.getElementById("gallery"),
+        itemsInfo: document.getElementById("itemsInfo"),
+        galleryEmpty: document.getElementById("galleryEmpty"),
+        itemsGallery: document.getElementById("itemsGallery"),
+        removedLibrary: document.getElementById("removedLibrary"),
+        galleryTitle: document.getElementById("galleryTitle"),
+        // Controles de busca e filtros
+        searchInput: document.getElementById("searchInput"),
+        dgModeToggle: document.getElementById("dgModeToggle"),
+        dgShowBadges: document.getElementById("dgShowBadges"),
+        dgOnlyNone: document.getElementById("dgOnlyNone"),
+        deleteModeCheckbox: document.getElementById("deleteModeCheckbox"),
+        // Botões de navegação e filtro
+        btnPrev: document.getElementById("btnPrev"),
+        btnNext: document.getElementById("btnNext"),
+        btnShowAll: document.getElementById("btnShowAll"),
+        btnShowNone: document.getElementById("btnShowNone"),
+        btnShowCollected: document.getElementById("btnShowCollected"),
+        btnShowNotCollected: document.getElementById("btnShowNotCollected"),
+        // Estatísticas
+        statTotal: document.getElementById("statTotal"),
+        statMatched: document.getElementById("statMatched"),
+        statCollected: document.getElementById("statCollected"),
+        progressFileInfo: document.getElementById("progressFileInfo"),
+        // DG Editor
+        dgBulkBar: document.getElementById("dgBulkBar"),
+        dgCloseBtn: document.getElementById("dgCloseBtn"),
+        dgApplyBtn: document.getElementById("dgApplyBtn"),
+        dgInput: document.getElementById("dgInput"),
+        dgSuggestions: document.getElementById("dgSuggestions"),
+        dgSaveBtn: document.getElementById("dgSaveBtn"),
+        dgDragHandle: document.getElementById("dgDragHandle")
+      };
+
+      // ===== VERIFICAÇÃO DE AMBIENTE REMOVIDA =====
+      // DG Editor agora está sempre visível e habilitado
+
+      const dgBulkBar = window.domCache.dgBulkBar;
+      const dgCloseBtn = window.domCache.dgCloseBtn;
+      const dgApplyBtn = window.domCache.dgApplyBtn;
+      const dgInput = window.domCache.dgInput;
+      const dgSuggestionsDiv = window.domCache.dgSuggestions;
+      const dgSaveBtn = window.domCache.dgSaveBtn;
+      const dgDragHandle = window.domCache.dgDragHandle;
+
+      // Setup completo dos event listeners
+      if(dgCloseBtn) {
+        dgCloseBtn.onclick = function(e) {
+          e.stopPropagation();
+          if(window.state) {
+            window.state.dgEditMode = false;
+            window.state.dgSelected.clear();
+            const dgToggle = window.domCache.dgModeToggle;
+            if(dgToggle) dgToggle.checked = false;
+          }
+          dgBulkBar.style.display = "none";
+        };
+      }
+
+      if(dgApplyBtn) {
+        dgApplyBtn.onclick = function(e) {
+          e.stopPropagation();
+          const val = (dgInput?.value || "").trim();
+          const dict = getDict();
+
+          if(!val) {
+            alert(dict.dg_editor_alert_no_value);
+            return;
+          }
+
+          if(!window.state || window.state.dgSelected.size === 0) {
+            alert(dict.dg_editor_alert_no_selection);
+            return;
+          }
+
+          // Guardar o tamanho antes de limpar
+          const selectedCount = window.state.dgSelected.size;
+
+          // Aplicar DG aos itens selecionados
+          // Normalizar o valor DG: split, trim cada parte, remover vazios, join
+          const normalizedDG = val.split(',').map(s => s.trim()).filter(s => s).join(',');
+
+          const byType = new Map(window.state.metaByType);
+          for(const objType of window.state.dgSelected) {
+            const current = byType.get(objType) || {};
+            byType.set(objType, {
+              DG: normalizedDG,
+              category: current.category || "",
+              path: current.path || ""
+            });
+          }
+          window.state.metaByType = byType;
+          window.state.dgSelected.clear();
+
+          alert(dict.dg_editor_alert_success.replace('{value}', val).replace('{count}', selectedCount));
+
+          if(window.renderAll) window.renderAll();
+
+          // Salvar metaByType no localStorage
+          if(window.saveMetaByType) window.saveMetaByType();
+        };
+      }
+
+      if(dgSaveBtn) {
+        dgSaveBtn.onclick = function(e) {
+          e.stopPropagation();
+          if(window.saveItemsMetaXml) {
+            window.saveItemsMetaXml();
+          } else {
+            alert("Função saveItemsMetaXml não encontrada!");
+          }
+        };
+      }
+
+      // Setup de arrastar
+      if(dgDragHandle && dgBulkBar) {
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        dgDragHandle.addEventListener("mousedown", function(e) {
+          if(e.target.id === 'dgCloseBtn') return;
+
+          isDragging = true;
+          offsetX = e.clientX - dgBulkBar.offsetLeft;
+          offsetY = e.clientY - dgBulkBar.offsetTop;
+        });
+
+        document.addEventListener("mousemove", function(e) {
+          if(!isDragging) return;
+          e.preventDefault();
+
+          dgBulkBar.style.left = (e.clientX - offsetX) + "px";
+          dgBulkBar.style.top = (e.clientY - offsetY) + "px";
+        });
+
+        document.addEventListener("mouseup", function() {
+          if(isDragging) {
+            isDragging = false;
+          }
+        });
+      }
+
+      // Setup dos checkboxes
+      const showDgBadgesToggle2 = document.getElementById("showDgBadgesToggle2");
+      const dgNoneToggle2 = document.getElementById("dgNoneToggle2");
+
+      if(showDgBadgesToggle2) {
+        showDgBadgesToggle2.onchange = function() {
+          document.body.classList.toggle("show-dg-badges", this.checked);
+        };
+      }
+
+      if(dgNoneToggle2) {
+        dgNoneToggle2.onchange = function() {
+          if(window.state) {
+            window.state.dgMissingOnly = this.checked;
+            if(window.renderAll) window.renderAll();
+          }
+        };
+      }
+
+      const dgSingleEditModeToggle = document.getElementById("dgSingleEditMode");
+      if(dgSingleEditModeToggle) {
+        dgSingleEditModeToggle.onchange = function() {
+          if(window.state) {
+            window.state.dgSingleEditMode = this.checked;
+
+            // Se ativar modo individual, limpar seleção múltipla
+            if(window.state.dgSingleEditMode){
+              document.querySelectorAll(".tile.dg-selected").forEach(t => t.classList.remove("dg-selected"));
+              window.state.dgSelected.clear();
+              window.state.dgEditingItem = null;
+            }
+
+            if(window.updateDgBulkUI) window.updateDgBulkUI();
+            if(window.renderAll) window.renderAll();
+          }
+        };
+      }
+
+      // ===== Autocomplete para DG Input =====
+
+      // Função para obter lista única de DGs existentes
+      function getUniqueDGs() {
+        const dgs = new Set();
+        if(window.state && window.state.metaByType) {
+          for(const [objType, meta] of window.state.metaByType.entries()) {
+            if(meta.DG && meta.DG !== "NONE") {
+              // Separar múltiplas DGs por vírgula
+              const dgList = meta.DG.split(',').map(d => d.trim()).filter(Boolean);
+              dgList.forEach(dg => dgs.add(dg));
+            }
+          }
+        }
+        dgs.add("NONE"); // Sempre incluir NONE
+        return Array.from(dgs).sort();
+      }
+
+      // Função para extrair a query atual baseado na posição do cursor
+      function getCurrentQuery() {
+        if(!dgInput) return { query: "", beforeCursor: "", afterCursor: "" };
+
+        const cursorPos = dgInput.selectionStart;
+        const fullText = dgInput.value;
+        const textBeforeCursor = fullText.substring(0, cursorPos);
+        const textAfterCursor = fullText.substring(cursorPos);
+
+        // Encontrar a última vírgula antes do cursor
+        const lastCommaIndex = textBeforeCursor.lastIndexOf(',');
+
+        // Query é o texto após a última vírgula (ou todo o texto se não houver vírgula)
+        const query = lastCommaIndex >= 0
+          ? textBeforeCursor.substring(lastCommaIndex + 1).trim()
+          : textBeforeCursor.trim();
+
+        const beforeCursor = lastCommaIndex >= 0
+          ? textBeforeCursor.substring(0, lastCommaIndex + 1)
+          : "";
+
+        return { query, beforeCursor, afterCursor: textAfterCursor };
+      }
+
+      // Função para mostrar sugestões
+      function showSuggestions() {
+        if(!dgSuggestionsDiv || !dgInput) return;
+
+        const { query } = getCurrentQuery();
+        const normalizedQuery = normStr(query); // Usa a função normStr já existente
+
+        if(!query || query.length < 1) {
+          dgSuggestionsDiv.style.display = "none";
+          return;
+        }
+
+        const allDGs = getUniqueDGs();
+        const filtered = allDGs.filter(dg => normStr(dg).includes(normalizedQuery));
+
+        if(filtered.length === 0) {
+          dgSuggestionsDiv.style.display = "none";
+          return;
+        }
+
+        // Limitar a 10 sugestões
+        const limited = filtered.slice(0, 10);
+
+        dgSuggestionsDiv.innerHTML = "";
+        limited.forEach(dg => {
+          const item = document.createElement("div");
+          item.textContent = dg;
+          item.style.cssText = "padding:8px 12px;cursor:pointer;color:#e5e7eb;font-size:13px;transition:background 0.15s;";
+
+          item.onmouseover = () => item.style.background = "#2a3447";
+          item.onmouseout = () => item.style.background = "transparent";
+
+          item.onclick = () => {
+            const { beforeCursor, afterCursor } = getCurrentQuery();
+            // Adicionar a DG selecionada após a vírgula (ou no início se não houver vírgula)
+            const newValue = beforeCursor + (beforeCursor ? ' ' : '') + dg + afterCursor;
+            dgInput.value = newValue;
+
+            // Posicionar cursor após a DG inserida
+            const newCursorPos = beforeCursor.length + (beforeCursor ? 1 : 0) + dg.length;
+            dgInput.setSelectionRange(newCursorPos, newCursorPos);
+
+            dgSuggestionsDiv.style.display = "none";
+            dgInput.focus();
+          };
+
+          dgSuggestionsDiv.appendChild(item);
+        });
+
+        dgSuggestionsDiv.style.display = "block";
+      }
+
+      // Event listeners para o input
+      if(dgInput) {
+        dgInput.addEventListener("input", () => {
+          showSuggestions();
+        });
+
+        dgInput.addEventListener("focus", () => {
+          showSuggestions();
+        });
+
+        // Atualizar sugestões ao mover o cursor (para funcionar com vírgulas)
+        dgInput.addEventListener("click", () => {
+          showSuggestions();
+        });
+
+        dgInput.addEventListener("keyup", (e) => {
+          // Atualizar ao usar setas ou ao digitar vírgula
+          if(e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === ",") {
+            showSuggestions();
+          }
+        });
+
+        dgInput.addEventListener("blur", () => {
+          // Delay para permitir clique nas sugestões
+          setTimeout(() => {
+            if(dgSuggestionsDiv) dgSuggestionsDiv.style.display = "none";
+          }, 200);
+        });
+
+        // Navegação com teclado (setas e Enter)
+        dgInput.addEventListener("keydown", (e) => {
+          if(!dgSuggestionsDiv || dgSuggestionsDiv.style.display === "none") return;
+
+          const items = Array.from(dgSuggestionsDiv.children);
+          const activeItem = items.find(item => item.style.background === "rgb(42, 52, 71)");
+          let activeIndex = activeItem ? items.indexOf(activeItem) : -1;
+
+          if(e.key === "ArrowDown") {
+            e.preventDefault();
+            if(activeItem) activeItem.style.background = "transparent";
+            activeIndex = (activeIndex + 1) % items.length;
+            items[activeIndex].style.background = "#2a3447";
+            items[activeIndex].scrollIntoView({ block: "nearest" });
+          } else if(e.key === "ArrowUp") {
+            e.preventDefault();
+            if(activeItem) activeItem.style.background = "transparent";
+            activeIndex = activeIndex <= 0 ? items.length - 1 : activeIndex - 1;
+            items[activeIndex].style.background = "#2a3447";
+            items[activeIndex].scrollIntoView({ block: "nearest" });
+          } else if(e.key === "Enter" && activeIndex >= 0) {
+            e.preventDefault();
+            items[activeIndex].click();
+          } else if(e.key === "Escape") {
+            dgSuggestionsDiv.style.display = "none";
+          }
+        });
+      }
+
+    });
+  </script>
+
+  <!-- Tooltip para DG chips -->
+  <div id="dgTooltip" class="dg-tooltip"></div>
+
+  <!-- Editor DG Flutuante - COM MODO INDIVIDUAL -->
+  <div id="dgBulkBar" style="display:none;position:fixed;top:100px;left:20px;z-index:10000;background:#0b1322;border:2px solid #60a5fa;padding:20px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.9);min-width:320px;max-width:450px;max-height:90vh;overflow-y:auto;">
+    <!-- Header arrastável -->
+    <div id="dgDragHandle" style="cursor:move;padding:8px;margin:-20px -20px 12px -20px;background:rgba(96,165,250,0.2);border-radius:10px 10px 0 0;border-bottom:1px solid #60a5fa;display:flex;justify-content:space-between;align-items:center;">
+      <strong style="color:#fff" data-i18n="dg_editor_floating_title">Editor DG</strong>
+      <button id="dgCloseBtn" style="background:none;border:none;color:#fff;cursor:pointer;font-size:20px;line-height:1;padding:0;width:24px;height:24px;">&times;</button>
+    </div>
+
+    <!-- Controles -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <!-- 3 Checkboxes -->
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <input id="showDgBadgesToggle2" type="checkbox" style="cursor:pointer;">
+        <span style="color:#94a3b8;font-size:13px;" data-i18n="dg_editor_show_badges">Mostrar badges DG</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <input id="dgNoneToggle2" type="checkbox" style="cursor:pointer;">
+        <span style="color:#94a3b8;font-size:13px;" data-i18n="dg_editor_only_none">Somente DG=NONE</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <input id="dgSingleEditMode" type="checkbox" style="cursor:pointer;">
+        <span style="color:#f59e0b;font-weight:600;font-size:13px;">🔧 Modo Edição Individual</span>
+      </label>
+
+      <hr style="border:none;border-top:1px solid #334155;margin:4px 0;">
+
+      <!-- Card de Item Selecionado (Modo Individual) -->
+      <div id="dgItemCard" style="display:none;background:rgba(245,158,11,0.1);border:2px solid #f59e0b;border-radius:8px;padding:12px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <img id="dgItemImage" style="width:48px;height:48px;border:1px solid #334155;border-radius:4px;image-rendering:pixelated;" />
+          <div style="flex:1;">
+            <div id="dgItemName" style="color:#fff;font-weight:600;font-size:14px;margin-bottom:4px;"></div>
+            <div id="dgItemHex" style="color:#94a3b8;font-size:11px;font-family:monospace;"></div>
+          </div>
+        </div>
+        <div style="margin-top:8px;">
+          <div style="color:#94a3b8;font-size:11px;margin-bottom:4px;">DGs atuais:</div>
+          <div id="dgItemCurrentDgs" style="display:flex;flex-wrap:wrap;gap:4px;min-height:24px;"></div>
+        </div>
+      </div>
+
+      <!-- Contador de selecionados (Modo Múltiplo) -->
+      <div id="dgSelCount" style="color:#60a5fa;text-align:center;font-size:14px;font-weight:600;">0 selecionado(s)</div>
+
+      <!-- Input DG (agora textarea para múltiplas linhas) -->
+      <div style="position:relative;">
+        <label style="color:#94a3b8;font-size:12px;display:block;margin-bottom:4px;" data-i18n="dg_editor_input_label">Valor DG:</label>
+        <textarea id="dgInput" placeholder="ex: tomb-of-the-ancients, the-shatters" autocomplete="off" style="width:100%;background:#0c1423;color:#fff;border:1px solid #334155;padding:8px;border-radius:6px;font-size:14px;min-height:60px;resize:vertical;font-family:inherit;"></textarea>
+        <!-- Lista de sugestões autocomplete -->
+        <div id="dgSuggestions" style="display:none;position:absolute;bottom:100%;left:0;right:0;max-height:200px;overflow-y:auto;background:#0c1423;border:1px solid #60a5fa;border-radius:6px;margin-bottom:4px;box-shadow:0 4px 12px rgba(0,0,0,0.5);z-index:1000;"></div>
+      </div>
+
+      <!-- Botões -->
+      <button id="dgApplyBtn" class="btn" style="width:100%;padding:10px;" data-i18n="dg_editor_apply_btn">Aplicar aos selecionados</button>
+      <button id="dgSaveBtn" class="btn" style="width:100%;padding:10px;" data-i18n="dg_editor_save_btn">Salvar XML</button>
+    </div>
+  </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,8 @@
+# Ignore large tools and build files
+tools/
+
+# Ignore Claude settings
+.claude/
+
+# Ignore temporary files
+nul

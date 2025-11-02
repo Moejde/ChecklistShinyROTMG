@@ -1,0 +1,765 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<items generated="2025-10-21T20:55:13Z" total="762">
+  <item objType="0x0243" category="White Bag" path="White Bag/0x0243.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x0244" category="White Bag" path="White Bag/0x0244.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x024c" category="White Bag" path="White Bag/0x024c.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0x024d" category="White Bag" path="White Bag/0x024d.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0x024e" category="White Bag" path="White Bag/0x024e.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0x024f" category="White Bag" path="White Bag/0x024f.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0x0250" category="White Bag" path="White Bag/0x0250.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x0251" category="White Bag" path="White Bag/0x0251.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0x0252" category="White Bag" path="White Bag/0x0252.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x0253" category="White Bag" path="White Bag/0x0253.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x0254" category="White Bag" path="White Bag/0x0254.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x0255" category="White Bag" path="White Bag/0x0255.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x0256" category="White Bag" path="White Bag/0x0256.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x0257" category="White Bag" path="White Bag/0x0257.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x260" category="White Bag" path="White Bag/0x260.png" DG="wine-cellar" DGDisplay="Wine Cellar" />
+  <item objType="0x262" category="White Bag" path="White Bag/0x262.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x264" category="White Bag" path="White Bag/0x264.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x312" category="White Bag" path="White Bag/0x312.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x313" category="White Bag" path="White Bag/0x313.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x314" category="White Bag" path="White Bag/0x314.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x315" category="White Bag" path="White Bag/0x315.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x3fd" category="White Bag" path="White Bag/0x3fd.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x3ff" category="White Bag" path="White Bag/0x3ff.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x400" category="White Bag" path="White Bag/0x400.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x047f" category="White Bag" path="White Bag/0x047f.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x0483" category="White Bag" path="White Bag/0x0483.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x0484" category="White Bag" path="White Bag/0x0484.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x0485" category="White Bag" path="White Bag/0x0485.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x0498" category="White Bag" path="White Bag/0x0498.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x0499" category="White Bag" path="White Bag/0x0499.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x049a" category="White Bag" path="White Bag/0x049a.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x04b0" category="White Bag" path="White Bag/0x04b0.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x04b1" category="White Bag" path="White Bag/0x04b1.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x04b2" category="White Bag" path="White Bag/0x04b2.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x04b3" category="White Bag" path="White Bag/0x04b3.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x04b5" category="White Bag" path="White Bag/0x04b5.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x04b6" category="White Bag" path="White Bag/0x04b6.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x4ba" category="Shiny" path="Shiny/0x4ba.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4bb" category="Shiny" path="Shiny/0x4bb.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x4bc" category="Shiny" path="Shiny/0x4bc.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0x4bd" category="Shiny" path="Shiny/0x4bd.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x4be" category="Shiny" path="Shiny/0x4be.png" DG="the-third-dimension" DGDisplay="The Third Dimension" />
+  <item objType="0x4bf" category="Shiny" path="Shiny/0x4bf.png" DG="cave-of-a-thousand-treasures" DGDisplay="Cave Of A Thousand Treasures" />
+  <item objType="0x4ca" category="Shiny" path="Shiny/0x4ca.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0x4cb" category="Shiny" path="Shiny/0x4cb.png" DG="candyland-hunting-grounds" DGDisplay="Candyland Hunting Grounds" />
+  <item objType="0x4cc" category="Shiny" path="Shiny/0x4cc.png" DG="the-crawling-depths" DGDisplay="The Crawling Depths" />
+  <item objType="0x4ce" category="Shiny" path="Shiny/0x4ce.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x4d4" category="Shiny" path="Shiny/0x4d4.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4d5" category="Shiny" path="Shiny/0x4d5.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4d6" category="Shiny" path="Shiny/0x4d6.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4d7" category="Shiny" path="Shiny/0x4d7.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4d8" category="Shiny" path="Shiny/0x4d8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4d9" category="Shiny" path="Shiny/0x4d9.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4fa" category="Shiny" path="Shiny/0x4fa.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x4fb" category="Shiny" path="Shiny/0x4fb.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0x4fc" category="Shiny" path="Shiny/0x4fc.png" DG="candyland-hunting-grounds" DGDisplay="Candyland Hunting Grounds" />
+  <item objType="0x4fd" category="Shiny" path="Shiny/0x4fd.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x4fe" category="Shiny" path="Shiny/0x4fe.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x530" category="Shiny" path="Shiny/0x530.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x531" category="Shiny" path="Shiny/0x531.png" DG="deadwater-docks" DGDisplay="Deadwater Docks" />
+  <item objType="0x532" category="Shiny" path="Shiny/0x532.png" DG="forbidden-jungle" DGDisplay="Forbidden Jungle" />
+  <item objType="0x533" category="Shiny" path="Shiny/0x533.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0x564" category="White Bag" path="White Bag/0x564.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x565" category="White Bag" path="White Bag/0x565.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x566" category="White Bag" path="White Bag/0x566.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x567" category="White Bag" path="White Bag/0x567.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x56c" category="Shiny" path="Shiny/0x56c.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0x56d" category="Shiny" path="Shiny/0x56d.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x572" category="White Bag" path="White Bag/0x572.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x573" category="White Bag" path="White Bag/0x573.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x574" category="White Bag" path="White Bag/0x574.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x575" category="White Bag" path="White Bag/0x575.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x576" category="White Bag" path="White Bag/0x576.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x577" category="White Bag" path="White Bag/0x577.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x57d" category="White Bag" path="White Bag/0x57d.png" DG="cursed-library" DGDisplay="Cursed Library" />
+  <item objType="0x57e" category="White Bag" path="White Bag/0x57e.png" DG="cursed-library" DGDisplay="Cursed Library" />
+  <item objType="0x580" category="White Bag" path="White Bag/0x580.png" DG="cursed-library" DGDisplay="Cursed Library" />
+  <item objType="0x589" category="White Bag" path="White Bag/0x589.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x58a" category="White Bag" path="White Bag/0x58a.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x58d" category="White Bag" path="White Bag/0x58d.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x5f7" category="Shiny" path="Shiny/0x5f7.png" DG="puppet-master-s-theatre" DGDisplay="Puppet Master's Theatre" />
+  <item objType="0x5f8" category="Shiny" path="Shiny/0x5f8.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x5f9" category="Shiny" path="Shiny/0x5f9.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x5fa" category="Shiny" path="Shiny/0x5fa.png" DG="puppet-master-s-encore" DGDisplay="Puppet Master's Encore" />
+  <item objType="0x5fb" category="Shiny" path="Shiny/0x5fb.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x5fc" category="Shiny" path="Shiny/0x5fc.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x6a9" category="White Bag" path="White Bag/0x6a9.png" DG="oryx-s-chamber" DGDisplay="Oryx's Chamber" />
+  <item objType="0x6f4" category="White Bag" path="White Bag/0x6f4.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6f5" category="White Bag" path="White Bag/0x6f5.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6f7" category="Shiny" path="Shiny/0x6f7.png" DG="sprite-world" DGDisplay="Sprite World" />
+  <item objType="0x766" category="White Bag" path="White Bag/0x766.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x767" category="White Bag" path="White Bag/0x767.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x0770" category="White Bag" path="White Bag/0x0770.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x7a1" category="White Bag" path="White Bag/0x7a1.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x7b8" category="White Bag" path="White Bag/0x7b8.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x7b9" category="White Bag" path="White Bag/0x7b9.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x7ba" category="White Bag" path="White Bag/0x7ba.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x7df" category="Shiny" path="Shiny/0x7df.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0x7e2" category="Shiny" path="Shiny/0x7e2.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x7e5" category="Shiny" path="Shiny/0x7e5.png" DG="toxic-sewers" DGDisplay="Toxic Sewers" />
+  <item objType="0x7e7" category="Shiny" path="Shiny/0x7e7.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x7e9" category="Shiny" path="Shiny/0x7e9.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x7ea" category="Shiny" path="Shiny/0x7ea.png" DG="deadwater-docks" DGDisplay="Deadwater Docks" />
+  <item objType="0x7f2" category="Shiny" path="Shiny/0x7f2.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x7f4" category="Shiny" path="Shiny/0x7f4.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0x7f6" category="Shiny" path="Shiny/0x7f6.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x7f8" category="Shiny" path="Shiny/0x7f8.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x7f9" category="Shiny" path="Shiny/0x7f9.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x7fa" category="Shiny" path="Shiny/0x7fa.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x83d" category="White Bag" path="White Bag/0x83d.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x83e" category="White Bag" path="White Bag/0x83e.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x83f" category="White Bag" path="White Bag/0x83f.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x840" category="White Bag" path="White Bag/0x840.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x8a8" category="White Bag" path="White Bag/0x8a8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x8a9" category="White Bag" path="White Bag/0x8a9.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x08b1" category="White Bag" path="White Bag/0x08b1.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0x911" category="White Bag" path="White Bag/0x911.png" DG="lair-of-shaitan" DGDisplay="Lair Of Shaitan" />
+  <item objType="0x912" category="White Bag" path="White Bag/0x912.png" DG="puppet-master-s-theatre" DGDisplay="Puppet Master's Theatre" />
+  <item objType="0x913" category="White Bag" path="White Bag/0x913.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x914" category="White Bag" path="White Bag/0x914.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x915" category="White Bag" path="White Bag/0x915.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x916" category="White Bag" path="White Bag/0x916.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x9d2" category="White Bag" path="White Bag/0x9d2.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x9d5" category="White Bag" path="White Bag/0x9d5.png" DG="puppet-master-s-encore" DGDisplay="Puppet Master's Encore" />
+  <item objType="0x9fc" category="White Bag" path="White Bag/0x9fc.png" DG="cnidarian-reef" DGDisplay="Cnidarian Reef" />
+  <item objType="0x9fd" category="White Bag" path="White Bag/0x9fd.png" DG="cnidarian-reef" DGDisplay="Cnidarian Reef" />
+  <item objType="0xa03" category="White Bag" path="White Bag/0xa03.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xa3e" category="White Bag" path="White Bag/0xa3e.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0xa41" category="White Bag" path="White Bag/0xa41.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0xa5a" category="White Bag" path="White Bag/0xa5a.png" DG="sprite-world" DGDisplay="Sprite World" />
+  <item objType="0xb21" category="White Bag" path="White Bag/0xb21.png" DG="oryx-s-chamber" DGDisplay="Oryx's Chamber" />
+  <item objType="0xb3f" category="White Bag" path="White Bag/0xb3f.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xb40" category="White Bag" path="White Bag/0xb40.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xb41" category="White Bag" path="White Bag/0xb41.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xba0" category="White Bag" path="White Bag/0xba0.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0xba1" category="White Bag" path="White Bag/0xba1.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0xba2" category="White Bag" path="White Bag/0xba2.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0xbab" category="White Bag" path="White Bag/0xbab.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xbac" category="White Bag" path="White Bag/0xbac.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xbad" category="White Bag" path="White Bag/0xbad.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xbe4" category="Shiny" path="Shiny/0xbe4.png" DG="secluded-thicket" DGDisplay="Secluded Thicket" />
+  <item objType="0xbe5" category="Shiny" path="Shiny/0xbe5.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xbe6" category="Shiny" path="Shiny/0xbe6.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0xbe7" category="Shiny" path="Shiny/0xbe7.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0xbe8" category="Shiny" path="Shiny/0xbe8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xbe9" category="Shiny" path="Shiny/0xbe9.png" DG="abyss-of-demons" DGDisplay="Abyss Of Demons" />
+  <item objType="0xc01" category="White Bag" path="White Bag/0xc01.png" DG="abyss-of-demons" DGDisplay="Abyss Of Demons" />
+  <item objType="0xc02" category="White Bag" path="White Bag/0xc02.png" DG="undead-lair" DGDisplay="Undead Lair" />
+  <item objType="0xc03" category="White Bag" path="White Bag/0xc03.png" DG="sprite-world" DGDisplay="Sprite World" />
+  <item objType="0xc04" category="White Bag" path="White Bag/0xc04.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0xc05" category="White Bag" path="White Bag/0xc05.png" DG="oryx-s-castle" DGDisplay="Oryx's Castle" />
+  <item objType="0xc06" category="White Bag" path="White Bag/0xc06.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc07" category="White Bag" path="White Bag/0xc07.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc08" category="White Bag" path="White Bag/0xc08.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc09" category="White Bag" path="White Bag/0xc09.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xc0a" category="White Bag" path="White Bag/0xc0a.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc0b" category="White Bag" path="White Bag/0xc0b.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc0f" category="White Bag" path="White Bag/0xc0f.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc10" category="White Bag" path="White Bag/0xc10.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0xc13" category="White Bag" path="White Bag/0xc13.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0xc18" category="White Bag" path="White Bag/0xc18.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0xc1c" category="White Bag" path="White Bag/0xc1c.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0xc1d" category="White Bag" path="White Bag/0xc1d.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xc1e" category="White Bag" path="White Bag/0xc1e.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0xc1f" category="White Bag" path="White Bag/0xc1f.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xc20" category="White Bag" path="White Bag/0xc20.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xc22" category="White Bag" path="White Bag/0xc22.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xc24" category="White Bag" path="White Bag/0xc24.png" DG="oryx-s-chamber" DGDisplay="Oryx's Chamber" />
+  <item objType="0xc27" category="White Bag" path="White Bag/0xc27.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0xc28" category="White Bag" path="White Bag/0xc28.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0xc29" category="White Bag" path="White Bag/0xc29.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0xc2a" category="White Bag" path="White Bag/0xc2a.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0xc2d" category="White Bag" path="White Bag/0xc2d.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xc30" category="White Bag" path="White Bag/0xc30.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0xc31" category="White Bag" path="White Bag/0xc31.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0xc32" category="White Bag" path="White Bag/0xc32.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0xc33" category="White Bag" path="White Bag/0xc33.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0xc3e" category="White Bag" path="White Bag/0xc3e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xc3f" category="White Bag" path="White Bag/0xc3f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xc40" category="White Bag" path="White Bag/0xc40.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xc61" category="White Bag" path="White Bag/0xc61.png" DG="candyland-hunting-grounds" DGDisplay="Candyland Hunting Grounds" />
+  <item objType="0xc6d" category="White Bag" path="White Bag/0xc6d.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0xc6e" category="White Bag" path="White Bag/0xc6e.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0xc82" category="White Bag" path="White Bag/0xc82.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0xc83" category="White Bag" path="White Bag/0xc83.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0xc84" category="White Bag" path="White Bag/0xc84.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0xcdb" category="White Bag" path="White Bag/0xcdb.png" DG="deadwater-docks" DGDisplay="Deadwater Docks" />
+  <item objType="0xcdc" category="White Bag" path="White Bag/0xcdc.png" DG="the-crawling-depths" DGDisplay="The Crawling Depths" />
+  <item objType="0xcde" category="White Bag" path="White Bag/0xcde.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0xcdf" category="White Bag" path="White Bag/0xcdf.png" DG="battle-for-the-nexus" DGDisplay="Battle For The Nexus" />
+  <item objType="0xcea" category="White Bag" path="White Bag/0xcea.png" DG="battle-for-the-nexus" DGDisplay="Battle For The Nexus" />
+  <item objType="0xceb" category="White Bag" path="White Bag/0xceb.png" DG="battle-for-the-nexus" DGDisplay="Battle For The Nexus" />
+  <item objType="0xcec" category="White Bag" path="White Bag/0xcec.png" DG="battle-for-the-nexus" DGDisplay="Battle For The Nexus" />
+  <item objType="0xced" category="White Bag" path="White Bag/0xced.png" DG="battle-for-the-nexus" DGDisplay="Battle For The Nexus" />
+  <item objType="0xcee" category="White Bag" path="White Bag/0xcee.png" DG="battle-for-the-nexus" DGDisplay="Battle For The Nexus" />
+  <item objType="0x0d42" category="White Bag" path="White Bag/0x0d42.png" DG="puppet-master-s-encore" DGDisplay="Puppet Master's Encore" />
+  <item objType="0x0d43" category="White Bag" path="White Bag/0x0d43.png" DG="oryx-s-castle" DGDisplay="Oryx's Castle" />
+  <item objType="0xeec" category="White Bag" path="White Bag/0xeec.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xeed" category="White Bag" path="White Bag/0xeed.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xf0b" category="White Bag" path="White Bag/0xf0b.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xf48" category="Shiny" path="Shiny/0xf48.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0xf49" category="Shiny" path="Shiny/0xf49.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0xf4a" category="Shiny" path="Shiny/0xf4a.png" DG="oryx-s-castle" DGDisplay="Oryx's Castle" />
+  <item objType="0xf4c" category="Shiny" path="Shiny/0xf4c.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xf4d" category="Shiny" path="Shiny/0xf4d.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xf50" category="Shiny" path="Shiny/0xf50.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0xf51" category="Shiny" path="Shiny/0xf51.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0xf52" category="Shiny" path="Shiny/0xf52.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xf54" category="Shiny" path="Shiny/0xf54.png" DG="forbidden-jungle" DGDisplay="Forbidden Jungle" />
+  <item objType="0xf55" category="Shiny" path="Shiny/0xf55.png" DG="puppet-master-s-theatre" DGDisplay="Puppet Master's Theatre" />
+  <item objType="0xf56" category="Shiny" path="Shiny/0xf56.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0xf57" category="Shiny" path="Shiny/0xf57.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0xf58" category="Shiny" path="Shiny/0xf58.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0xf59" category="Shiny" path="Shiny/0xf59.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xf8c" category="Shiny" path="Shiny/0xf8c.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xf8d" category="Shiny" path="Shiny/0xf8d.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xf8e" category="Shiny" path="Shiny/0xf8e.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xf8f" category="Shiny" path="Shiny/0xf8f.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xf91" category="Shiny" path="Shiny/0xf91.png" DG="advanced-kogbold-steamworks" DGDisplay="Advanced Kogbold Steamworks" />
+  <item objType="0xf92" category="Shiny" path="Shiny/0xf92.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xf93" category="Shiny" path="Shiny/0xf93.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xf94" category="Shiny" path="Shiny/0xf94.png" DG="undead-lair" DGDisplay="Undead Lair" />
+  <item objType="0xf95" category="Shiny" path="Shiny/0xf95.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0xf96" category="Shiny" path="Shiny/0xf96.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xfd5" category="White Bag" path="White Bag/0xfd5.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xfd6" category="White Bag" path="White Bag/0xfd6.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xfd7" category="White Bag" path="White Bag/0xfd7.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x109f" category="White Bag" path="White Bag/0x109f.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0x10ce" category="White Bag" path="White Bag/0x10ce.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x10ed" category="White Bag" path="White Bag/0x10ed.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x10f2" category="White Bag" path="White Bag/0x10f2.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x10f3" category="White Bag" path="White Bag/0x10f3.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x13a8" category="White Bag" path="White Bag/0x13a8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x13aa" category="White Bag" path="White Bag/0x13aa.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x13ab" category="White Bag" path="White Bag/0x13ab.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x13ac" category="White Bag" path="White Bag/0x13ac.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x13ad" category="White Bag" path="White Bag/0x13ad.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1412" category="White Bag" path="White Bag/0x1412.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x1413" category="White Bag" path="White Bag/0x1413.png" DG="ice-tomb" DGDisplay="Ice Tomb" />
+  <item objType="0x1414" category="Shiny" path="Shiny/0x1414.png" DG="oryx-s-castle" DGDisplay="Oryx's Castle" />
+  <item objType="0x1415" category="Shiny" path="Shiny/0x1415.png" DG="toxic-sewers" DGDisplay="Toxic Sewers" />
+  <item objType="0x1416" category="Shiny" path="Shiny/0x1416.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x1417" category="Shiny" path="Shiny/0x1417.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x1418" category="Shiny" path="Shiny/0x1418.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0x1419" category="Shiny" path="Shiny/0x1419.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x141a" category="Shiny" path="Shiny/0x141a.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x141b" category="Shiny" path="Shiny/0x141b.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x141c" category="Shiny" path="Shiny/0x141c.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x1421" category="Shiny" path="Shiny/0x1421.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x1424" category="Shiny" path="Shiny/0x1424.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1425" category="Shiny" path="Shiny/0x1425.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1426" category="Shiny" path="Shiny/0x1426.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1427" category="Shiny" path="Shiny/0x1427.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1428" category="Shiny" path="Shiny/0x1428.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1429" category="Shiny" path="Shiny/0x1429.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x142a" category="Shiny" path="Shiny/0x142a.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x142b" category="Shiny" path="Shiny/0x142b.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x142c" category="White Bag" path="White Bag/0x142c.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x1440" category="White Bag" path="White Bag/0x1440.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x1443" category="White Bag" path="White Bag/0x1443.png" DG="candyland-hunting-grounds" DGDisplay="Candyland Hunting Grounds" />
+  <item objType="0x1445" category="White Bag" path="White Bag/0x1445.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x144a" category="White Bag" path="White Bag/0x144a.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x1492" category="White Bag" path="White Bag/0x1492.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x1497" category="White Bag" path="White Bag/0x1497.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x1498" category="Shiny" path="Shiny/0x1498.png" DG="forbidden-jungle" DGDisplay="Forbidden Jungle" />
+  <item objType="0x1499" category="Shiny" path="Shiny/0x1499.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0x149a" category="Shiny" path="Shiny/0x149a.png" DG="forest-maze" DGDisplay="Forest Maze" />
+  <item objType="0x149b" category="Shiny" path="Shiny/0x149b.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0x149c" category="Shiny" path="Shiny/0x149c.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x149d" category="Shiny" path="Shiny/0x149d.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x149e" category="Shiny" path="Shiny/0x149e.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x149f" category="Shiny" path="Shiny/0x149f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a0" category="Shiny" path="Shiny/0x14a0.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a1" category="Shiny" path="Shiny/0x14a1.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a2" category="Shiny" path="Shiny/0x14a2.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a3" category="Shiny" path="Shiny/0x14a3.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a4" category="Shiny" path="Shiny/0x14a4.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a5" category="Shiny" path="Shiny/0x14a5.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14a6" category="Shiny" path="Shiny/0x14a6.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x14af" category="Shiny" path="Shiny/0x14af.png" DG="the-hive" DGDisplay="The Hive" />
+  <item objType="0x14b0" category="Shiny" path="Shiny/0x14b0.png" DG="forbidden-jungle" DGDisplay="Forbidden Jungle" />
+  <item objType="0x14b1" category="Shiny" path="Shiny/0x14b1.png" DG="lost-halls" DGDisplay="Lost Halls" />
+  <item objType="0x14b2" category="Shiny" path="Shiny/0x14b2.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0x14b3" category="Shiny" path="Shiny/0x14b3.png" DG="puppet-master-s-theatre" DGDisplay="Puppet Master's Theatre" />
+  <item objType="0x14b4" category="Shiny" path="Shiny/0x14b4.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x14be" category="Shiny" path="Shiny/0x14be.png" DG="sprite-world" DGDisplay="Sprite World" />
+  <item objType="0x14bf" category="Shiny" path="Shiny/0x14bf.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0x14c0" category="Shiny" path="Shiny/0x14c0.png" DG="cnidarian-reef" DGDisplay="Cnidarian Reef" />
+  <item objType="0x14c1" category="Shiny" path="Shiny/0x14c1.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x14c4" category="Shiny" path="Shiny/0x14c4.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x14c5" category="Shiny" path="Shiny/0x14c5.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x14c7" category="Shiny" path="Shiny/0x14c7.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x14c8" category="Shiny" path="Shiny/0x14c8.png" DG="undead-lair" DGDisplay="Undead Lair" />
+  <item objType="0x14c9" category="Shiny" path="Shiny/0x14c9.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x14ca" category="Shiny" path="Shiny/0x14ca.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x14cd" category="Shiny" path="Shiny/0x14cd.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x14ce" category="Shiny" path="Shiny/0x14ce.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0x15c5" category="Shiny" path="Shiny/0x15c5.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0x15c7" category="Shiny" path="Shiny/0x15c7.png" DG="the-crawling-depths" DGDisplay="The Crawling Depths" />
+  <item objType="0x15c8" category="Shiny" path="Shiny/0x15c8.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x15c9" category="Shiny" path="Shiny/0x15c9.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x15cb" category="Shiny" path="Shiny/0x15cb.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x15cc" category="Shiny" path="Shiny/0x15cc.png" DG="the-third-dimension" DGDisplay="The Third Dimension" />
+  <item objType="0x164a" category="White Bag" path="White Bag/0x164a.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x164b" category="White Bag" path="White Bag/0x164b.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x16d6" category="White Bag" path="White Bag/0x16d6.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x16d7" category="White Bag" path="White Bag/0x16d7.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x16d8" category="White Bag" path="White Bag/0x16d8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x16d9" category="White Bag" path="White Bag/0x16d9.png" DG="ice-tomb" DGDisplay="Ice Tomb" />
+  <item objType="0x16dc" category="White Bag" path="White Bag/0x16dc.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x16de" category="White Bag" path="White Bag/0x16de.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x1794" category="White Bag" path="White Bag/0x1794.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x183b" category="White Bag" path="White Bag/0x183b.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x183d" category="White Bag" path="White Bag/0x183d.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x183e" category="White Bag" path="White Bag/0x183e.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x1a2f" category="White Bag" path="White Bag/0x1a2f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1b6d" category="White Bag" path="White Bag/0x1b6d.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1b6e" category="White Bag" path="White Bag/0x1b6e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1c20" category="White Bag" path="White Bag/0x1c20.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x1e4e" category="White Bag" path="White Bag/0x1e4e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x20c2" category="White Bag" path="White Bag/0x20c2.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x2301" category="White Bag" path="White Bag/0x2301.png" DG="heroic-undead-lair" DGDisplay="Heroic Undead Lair" />
+  <item objType="0x2303" category="White Bag" path="White Bag/0x2303.png" DG="infernal-abyss-of-demons" DGDisplay="Infernal Abyss Of Demons" />
+  <item objType="0x2322" category="White Bag" path="White Bag/0x2322.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0x23c0" category="White Bag" path="White Bag/0x23c0.png" DG="lair-of-shaitan" DGDisplay="Lair Of Shaitan" />
+  <item objType="0x25bb" category="White Bag" path="White Bag/0x25bb.png" DG="ancient-ruins" DGDisplay="Ancient Ruins" />
+  <item objType="0x2833" category="White Bag" path="White Bag/0x2833.png" DG="sprite-world" DGDisplay="Sprite World" />
+  <item objType="0x283f" category="White Bag" path="White Bag/0x283f.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0x2840" category="White Bag" path="White Bag/0x2840.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x2f2c" category="White Bag" path="White Bag/0x2f2c.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x2f2d" category="White Bag" path="White Bag/0x2f2d.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x2f2e" category="White Bag" path="White Bag/0x2f2e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x2f80" category="White Bag" path="White Bag/0x2f80.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x2f81" category="White Bag" path="White Bag/0x2f81.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x2f82" category="White Bag" path="White Bag/0x2f82.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x2f83" category="White Bag" path="White Bag/0x2f83.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x2f84" category="White Bag" path="White Bag/0x2f84.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x2f85" category="White Bag" path="White Bag/0x2f85.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x33d1" category="White Bag" path="White Bag/0x33d1.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x36a2" category="White Bag" path="White Bag/0x36a2.png" DG="secluded-thicket" DGDisplay="Secluded Thicket" />
+  <item objType="0x36a3" category="White Bag" path="White Bag/0x36a3.png" DG="secluded-thicket" DGDisplay="Secluded Thicket" />
+  <item objType="0x36a4" category="White Bag" path="White Bag/0x36a4.png" DG="secluded-thicket" DGDisplay="Secluded Thicket" />
+  <item objType="0x36fa" category="White Bag" path="White Bag/0x36fa.png" DG="secluded-thicket" DGDisplay="Secluded Thicket" />
+  <item objType="0x377f" category="White Bag" path="White Bag/0x377f.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x3784" category="White Bag" path="White Bag/0x3784.png" DG="the-crawling-depths" DGDisplay="The Crawling Depths" />
+  <item objType="0x3786" category="White Bag" path="White Bag/0x3786.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x37b9" category="White Bag" path="White Bag/0x37b9.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x37cb" category="White Bag" path="White Bag/0x37cb.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x37d6" category="White Bag" path="White Bag/0x37d6.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x37f6" category="White Bag" path="White Bag/0x37f6.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x3800" category="White Bag" path="White Bag/0x3800.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3842" category="White Bag" path="White Bag/0x3842.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x384e" category="White Bag" path="White Bag/0x384e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x3850" category="White Bag" path="White Bag/0x3850.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x385a" category="White Bag" path="White Bag/0x385a.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x385b" category="White Bag" path="White Bag/0x385b.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x385c" category="White Bag" path="White Bag/0x385c.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x3870" category="White Bag" path="White Bag/0x3870.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3871" category="White Bag" path="White Bag/0x3871.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3872" category="White Bag" path="White Bag/0x3872.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3873" category="White Bag" path="White Bag/0x3873.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3874" category="White Bag" path="White Bag/0x3874.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3875" category="White Bag" path="White Bag/0x3875.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3878" category="White Bag" path="White Bag/0x3878.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x3879" category="White Bag" path="White Bag/0x3879.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x387a" category="White Bag" path="White Bag/0x387a.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x3880" category="White Bag" path="White Bag/0x3880.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3881" category="White Bag" path="White Bag/0x3881.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3882" category="White Bag" path="White Bag/0x3882.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3886" category="White Bag" path="White Bag/0x3886.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3887" category="White Bag" path="White Bag/0x3887.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3888" category="White Bag" path="White Bag/0x3888.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x38a5" category="White Bag" path="White Bag/0x38a5.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x38a6" category="Shiny" path="Shiny/0x38a6.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x38a7" category="Shiny" path="Shiny/0x38a7.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x38a8" category="Shiny" path="Shiny/0x38a8.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x396a" category="White Bag" path="White Bag/0x396a.png" DG="heroic-undead-lair" DGDisplay="Heroic Undead Lair" />
+  <item objType="0x39a4" category="White Bag" path="White Bag/0x39a4.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x39df" category="White Bag" path="White Bag/0x39df.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x39e0" category="White Bag" path="White Bag/0x39e0.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x39e1" category="White Bag" path="White Bag/0x39e1.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x39e2" category="White Bag" path="White Bag/0x39e2.png" DG="abyss-of-demons" DGDisplay="Abyss Of Demons" />
+  <item objType="0x39e3" category="White Bag" path="White Bag/0x39e3.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0x39e4" category="White Bag" path="White Bag/0x39e4.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0x3a1b" category="White Bag" path="White Bag/0x3a1b.png" DG="infernal-abyss-of-demons" DGDisplay="Infernal Abyss Of Demons" />
+  <item objType="0x3a1c" category="White Bag" path="White Bag/0x3a1c.png" DG="infernal-abyss-of-demons" DGDisplay="Infernal Abyss Of Demons" />
+  <item objType="0x3a2f" category="White Bag" path="White Bag/0x3a2f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x3a30" category="White Bag" path="White Bag/0x3a30.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a31" category="White Bag" path="White Bag/0x3a31.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a33" category="White Bag" path="White Bag/0x3a33.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a34" category="White Bag" path="White Bag/0x3a34.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a35" category="White Bag" path="White Bag/0x3a35.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a36" category="White Bag" path="White Bag/0x3a36.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a38" category="White Bag" path="White Bag/0x3a38.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a39" category="White Bag" path="White Bag/0x3a39.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a3a" category="White Bag" path="White Bag/0x3a3a.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a3b" category="White Bag" path="White Bag/0x3a3b.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a3c" category="White Bag" path="White Bag/0x3a3c.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a3d" category="White Bag" path="White Bag/0x3a3d.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a3e" category="White Bag" path="White Bag/0x3a3e.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a3f" category="White Bag" path="White Bag/0x3a3f.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a40" category="White Bag" path="White Bag/0x3a40.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a80" category="White Bag" path="White Bag/0x3a80.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a84" category="White Bag" path="White Bag/0x3a84.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a85" category="White Bag" path="White Bag/0x3a85.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3a90" category="White Bag" path="White Bag/0x3a90.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x3d65" category="White Bag" path="White Bag/0x3d65.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3d66" category="White Bag" path="White Bag/0x3d66.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x3d8d" category="White Bag" path="White Bag/0x3d8d.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x3d8e" category="White Bag" path="White Bag/0x3d8e.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x3d8f" category="White Bag" path="White Bag/0x3d8f.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x3d91" category="White Bag" path="White Bag/0x3d91.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x4221" category="White Bag" path="White Bag/0x4221.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x4291" category="White Bag" path="White Bag/0x4291.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0x4323" category="White Bag" path="White Bag/0x4323.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x445b" category="White Bag" path="White Bag/0x445b.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0x445d" category="White Bag" path="White Bag/0x445d.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0x4498" category="White Bag" path="White Bag/0x4498.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x4499" category="White Bag" path="White Bag/0x4499.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x449b" category="White Bag" path="White Bag/0x449b.png" DG="cultist-hideout" DGDisplay="Cultist Hideout" />
+  <item objType="0x449c" category="White Bag" path="White Bag/0x449c.png" DG="plagued-nest" DGDisplay="Plagued Nest" />
+  <item objType="0x44c1" category="White Bag" path="White Bag/0x44c1.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x44c2" category="White Bag" path="White Bag/0x44c2.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x44e0" category="White Bag" path="White Bag/0x44e0.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x44e1" category="White Bag" path="White Bag/0x44e1.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x44e2" category="White Bag" path="White Bag/0x44e2.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x44e3" category="White Bag" path="White Bag/0x44e3.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x44e4" category="White Bag" path="White Bag/0x44e4.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x451b" category="White Bag" path="White Bag/0x451b.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x4524" category="Shiny" path="Shiny/0x4524.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0x452a" category="White Bag" path="White Bag/0x452a.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x452b" category="White Bag" path="White Bag/0x452b.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x452c" category="White Bag" path="White Bag/0x452c.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x452d" category="White Bag" path="White Bag/0x452d.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x452e" category="White Bag" path="White Bag/0x452e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x452f" category="White Bag" path="White Bag/0x452f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x4536" category="Shiny" path="Shiny/0x4536.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0x4537" category="Shiny" path="Shiny/0x4537.png" DG="parasite-chambers" DGDisplay="Parasite Chambers" />
+  <item objType="0x4538" category="Shiny" path="Shiny/0x4538.png" DG="secluded-thicket" DGDisplay="Secluded Thicket" />
+  <item objType="0x45b0" category="Shiny" path="Shiny/0x45b0.png" DG="abyss-of-demons" DGDisplay="Abyss Of Demons" />
+  <item objType="0x45b2" category="Shiny" path="Shiny/0x45b2.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x45b5" category="Shiny" path="Shiny/0x45b5.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0x45b6" category="Shiny" path="Shiny/0x45b6.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x45b7" category="White Bag" path="White Bag/0x45b7.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x45b8" category="White Bag" path="White Bag/0x45b8.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x45b9" category="White Bag" path="White Bag/0x45b9.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x45ba" category="White Bag" path="White Bag/0x45ba.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x45c0" category="White Bag" path="White Bag/0x45c0.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x45c1" category="White Bag" path="White Bag/0x45c1.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0x4607" category="Shiny" path="Shiny/0x4607.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x4608" category="Shiny" path="Shiny/0x4608.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x4609" category="Shiny" path="Shiny/0x4609.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x460a" category="Shiny" path="Shiny/0x460a.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x460b" category="Shiny" path="Shiny/0x460b.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x460d" category="Shiny" path="Shiny/0x460d.png" DG="spider-den" DGDisplay="Spider Den" />
+  <item objType="0x460e" category="Shiny" path="Shiny/0x460e.png" DG="oryx-s-chamber" DGDisplay="Oryx's Chamber" />
+  <item objType="0x460f" category="Shiny" path="Shiny/0x460f.png" DG="cnidarian-reef" DGDisplay="Cnidarian Reef" />
+  <item objType="0x4610" category="Shiny" path="Shiny/0x4610.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x469a" category="White Bag" path="White Bag/0x469a.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x469f" category="White Bag" path="White Bag/0x469f.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x47a9" category="White Bag" path="White Bag/0x47a9.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x47ab" category="White Bag" path="White Bag/0x47ab.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x47b3" category="White Bag" path="White Bag/0x47b3.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x47b6" category="White Bag" path="White Bag/0x47b6.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x47b8" category="White Bag" path="White Bag/0x47b8.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x4843" category="White Bag" path="White Bag/0x4843.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x4b0c" category="White Bag" path="White Bag/0x4b0c.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4b32" category="White Bag" path="White Bag/0x4b32.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4b34" category="White Bag" path="White Bag/0x4b34.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x4b36" category="White Bag" path="White Bag/0x4b36.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x4b68" category="White Bag" path="White Bag/0x4b68.png" DG="the-third-dimension" DGDisplay="The Third Dimension" />
+  <item objType="0x4b6b" category="White Bag" path="White Bag/0x4b6b.png" DG="the-third-dimension" DGDisplay="The Third Dimension" />
+  <item objType="0x4b79" category="White Bag" path="White Bag/0x4b79.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x4b7a" category="White Bag" path="White Bag/0x4b7a.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x4b7c" category="White Bag" path="White Bag/0x4b7c.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x4b96" category="White Bag" path="White Bag/0x4b96.png" DG="belladonna-s-garden" DGDisplay="Belladonna's Garden" />
+  <item objType="0x4b9a" category="White Bag" path="White Bag/0x4b9a.png" DG="belladonna-s-garden" DGDisplay="Belladonna's Garden" />
+  <item objType="0x4dec" category="White Bag" path="White Bag/0x4dec.png" DG="deadwater-docks" DGDisplay="Deadwater Docks" />
+  <item objType="0x4dee" category="White Bag" path="White Bag/0x4dee.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0x4def" category="White Bag" path="White Bag/0x4def.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0x4ff2" category="White Bag" path="White Bag/0x4ff2.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x4ff4" category="White Bag" path="White Bag/0x4ff4.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x5000" category="White Bag" path="White Bag/0x5000.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x507c" category="White Bag" path="White Bag/0x507c.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x507d" category="White Bag" path="White Bag/0x507d.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x507e" category="White Bag" path="White Bag/0x507e.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x50e2" category="White Bag" path="White Bag/0x50e2.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x50f3" category="White Bag" path="White Bag/0x50f3.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x50f6" category="White Bag" path="White Bag/0x50f6.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x5109" category="White Bag" path="White Bag/0x5109.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x510a" category="White Bag" path="White Bag/0x510a.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x511c" category="White Bag" path="White Bag/0x511c.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x511d" category="White Bag" path="White Bag/0x511d.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x511e" category="White Bag" path="White Bag/0x511e.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x513b" category="White Bag" path="White Bag/0x513b.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x517a" category="White Bag" path="White Bag/0x517a.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x5192" category="White Bag" path="White Bag/0x5192.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x5193" category="White Bag" path="White Bag/0x5193.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x5195" category="White Bag" path="White Bag/0x5195.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x5199" category="White Bag" path="White Bag/0x5199.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x519d" category="White Bag" path="White Bag/0x519d.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51a4" category="White Bag" path="White Bag/0x51a4.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51a5" category="White Bag" path="White Bag/0x51a5.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51a7" category="White Bag" path="White Bag/0x51a7.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51a8" category="White Bag" path="White Bag/0x51a8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51a9" category="White Bag" path="White Bag/0x51a9.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51aa" category="White Bag" path="White Bag/0x51aa.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51b5" category="White Bag" path="White Bag/0x51b5.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x51f1" category="White Bag" path="White Bag/0x51f1.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x51f7" category="White Bag" path="White Bag/0x51f7.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x5280" category="White Bag" path="White Bag/0x5280.png" DG="the-third-dimension" DGDisplay="The Third Dimension" />
+  <item objType="0x5b1e" category="White Bag" path="White Bag/0x5b1e.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x5b1f" category="White Bag" path="White Bag/0x5b1f.png" DG="oryx-s-chamber" DGDisplay="Oryx's Chamber" />
+  <item objType="0x5b20" category="White Bag" path="White Bag/0x5b20.png" DG="magic-woods" DGDisplay="Magic Woods" />
+  <item objType="0x5b22" category="White Bag" path="White Bag/0x5b22.png" DG="mad-god-mayhem" DGDisplay="Mad God Mayhem" />
+  <item objType="0x5b24" category="White Bag" path="White Bag/0x5b24.png" DG="mad-god-mayhem" DGDisplay="Mad God Mayhem" />
+  <item objType="0x5b26" category="White Bag" path="White Bag/0x5b26.png" DG="mad-god-mayhem" DGDisplay="Mad God Mayhem" />
+  <item objType="0x5b27" category="White Bag" path="White Bag/0x5b27.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b29" category="White Bag" path="White Bag/0x5b29.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b2b" category="White Bag" path="White Bag/0x5b2b.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b2d" category="White Bag" path="White Bag/0x5b2d.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b2f" category="White Bag" path="White Bag/0x5b2f.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b30" category="White Bag" path="White Bag/0x5b30.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b32" category="White Bag" path="White Bag/0x5b32.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b33" category="White Bag" path="White Bag/0x5b33.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b35" category="White Bag" path="White Bag/0x5b35.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b37" category="White Bag" path="White Bag/0x5b37.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b38" category="White Bag" path="White Bag/0x5b38.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b39" category="White Bag" path="White Bag/0x5b39.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b3a" category="White Bag" path="White Bag/0x5b3a.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b3b" category="White Bag" path="White Bag/0x5b3b.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b3d" category="White Bag" path="White Bag/0x5b3d.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5b3f" category="White Bag" path="White Bag/0x5b3f.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x5bd8" category="White Bag" path="White Bag/0x5bd8.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5c47" category="White Bag" path="White Bag/0x5c47.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x5c48" category="White Bag" path="White Bag/0x5c48.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x5c49" category="White Bag" path="White Bag/0x5c49.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x5c4b" category="White Bag" path="White Bag/0x5c4b.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0x5c4f" category="White Bag" path="White Bag/0x5c4f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x5cb4" category="White Bag" path="White Bag/0x5cb4.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5cbe" category="White Bag" path="White Bag/0x5cbe.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5cc1" category="White Bag" path="White Bag/0x5cc1.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5cf2" category="White Bag" path="White Bag/0x5cf2.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x5d5a" category="White Bag" path="White Bag/0x5d5a.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5d6b" category="White Bag" path="White Bag/0x5d6b.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5d6c" category="White Bag" path="White Bag/0x5d6c.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5d6f" category="White Bag" path="White Bag/0x5d6f.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x5f5e" category="White Bag" path="White Bag/0x5f5e.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0x6102" category="White Bag" path="White Bag/0x6102.png" DG="haunted-cemetery" DGDisplay="Haunted Cemetery" />
+  <item objType="0x6215" category="White Bag" path="White Bag/0x6215.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x6219" category="White Bag" path="White Bag/0x6219.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x6371" category="White Bag" path="White Bag/0x6371.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x63f6" category="White Bag" path="White Bag/0x63f6.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x6404" category="White Bag" path="White Bag/0x6404.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6405" category="White Bag" path="White Bag/0x6405.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6406" category="White Bag" path="White Bag/0x6406.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6407" category="White Bag" path="White Bag/0x6407.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6456" category="White Bag" path="White Bag/0x6456.png" DG="malogia" DGDisplay="Malogia" />
+  <item objType="0x6458" category="White Bag" path="White Bag/0x6458.png" DG="forax" DGDisplay="Forax" />
+  <item objType="0x645a" category="White Bag" path="White Bag/0x645a.png" DG="malogia" DGDisplay="Malogia" />
+  <item objType="0x645b" category="White Bag" path="White Bag/0x645b.png" DG="katalund" DGDisplay="Katalund" />
+  <item objType="0x645c" category="White Bag" path="White Bag/0x645c.png" DG="forax" DGDisplay="Forax" />
+  <item objType="0x645d" category="White Bag" path="White Bag/0x645d.png" DG="malogia" DGDisplay="Malogia" />
+  <item objType="0x645e" category="White Bag" path="White Bag/0x645e.png" DG="untaris" DGDisplay="Untaris" />
+  <item objType="0x645f" category="White Bag" path="White Bag/0x645f.png" DG="katalund" DGDisplay="Katalund" />
+  <item objType="0x6460" category="White Bag" path="White Bag/0x6460.png" DG="malogia" DGDisplay="Malogia" />
+  <item objType="0x6461" category="White Bag" path="White Bag/0x6461.png" DG="forax" DGDisplay="Forax" />
+  <item objType="0x6462" category="White Bag" path="White Bag/0x6462.png" DG="untaris" DGDisplay="Untaris" />
+  <item objType="0x6463" category="White Bag" path="White Bag/0x6463.png" DG="katalund" DGDisplay="Katalund" />
+  <item objType="0x6464" category="White Bag" path="White Bag/0x6464.png" DG="untaris" DGDisplay="Untaris" />
+  <item objType="0x6465" category="White Bag" path="White Bag/0x6465.png" DG="katalund" DGDisplay="Katalund" />
+  <item objType="0x6466" category="White Bag" path="White Bag/0x6466.png" DG="forax" DGDisplay="Forax" />
+  <item objType="0x6467" category="White Bag" path="White Bag/0x6467.png" DG="untaris" DGDisplay="Untaris" />
+  <item objType="0x64ba" category="White Bag" path="White Bag/0x64ba.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x64bc" category="White Bag" path="White Bag/0x64bc.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x64bd" category="White Bag" path="White Bag/0x64bd.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x64be" category="White Bag" path="White Bag/0x64be.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x64bf" category="White Bag" path="White Bag/0x64bf.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6587" category="White Bag" path="White Bag/0x6587.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x65aa" category="White Bag" path="White Bag/0x65aa.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x65b4" category="White Bag" path="White Bag/0x65b4.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x6611" category="White Bag" path="White Bag/0x6611.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x6692" category="White Bag" path="White Bag/0x6692.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6693" category="White Bag" path="White Bag/0x6693.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x6696" category="White Bag" path="White Bag/0x6696.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6697" category="White Bag" path="White Bag/0x6697.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x6698" category="White Bag" path="White Bag/0x6698.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x66a2" category="White Bag" path="White Bag/0x66a2.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x66a3" category="White Bag" path="White Bag/0x66a3.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x66a4" category="White Bag" path="White Bag/0x66a4.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x66a5" category="White Bag" path="White Bag/0x66a5.png" DG="hidden-interregnum" DGDisplay="Hidden Interregnum" />
+  <item objType="0x6beb" category="White Bag" path="White Bag/0x6beb.png" DG="undead-lair" DGDisplay="Undead Lair" />
+  <item objType="0x6e51" category="White Bag" path="White Bag/0x6e51.png" DG="heroic-undead-lair" DGDisplay="Heroic Undead Lair" />
+  <item objType="0x6f3e" category="White Bag" path="White Bag/0x6f3e.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6f3f" category="White Bag" path="White Bag/0x6f3f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x6f40" category="White Bag" path="White Bag/0x6f40.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x709d" category="White Bag" path="White Bag/0x709d.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x709e" category="White Bag" path="White Bag/0x709e.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a0" category="White Bag" path="White Bag/0x70a0.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a1" category="White Bag" path="White Bag/0x70a1.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a2" category="White Bag" path="White Bag/0x70a2.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a3" category="White Bag" path="White Bag/0x70a3.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a5" category="White Bag" path="White Bag/0x70a5.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a6" category="White Bag" path="White Bag/0x70a6.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a7" category="White Bag" path="White Bag/0x70a7.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70a8" category="White Bag" path="White Bag/0x70a8.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70ab" category="White Bag" path="White Bag/0x70ab.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70ac" category="White Bag" path="White Bag/0x70ac.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70ae" category="White Bag" path="White Bag/0x70ae.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70af" category="White Bag" path="White Bag/0x70af.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70b0" category="White Bag" path="White Bag/0x70b0.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70b1" category="White Bag" path="White Bag/0x70b1.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70b3" category="White Bag" path="White Bag/0x70b3.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70b5" category="White Bag" path="White Bag/0x70b5.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70b7" category="White Bag" path="White Bag/0x70b7.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x70b8" category="White Bag" path="White Bag/0x70b8.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x716c" category="White Bag" path="White Bag/0x716c.png" DG="toxic-sewers" DGDisplay="Toxic Sewers" />
+  <item objType="0x716d" category="White Bag" path="White Bag/0x716d.png" DG="toxic-sewers" DGDisplay="Toxic Sewers" />
+  <item objType="0x7170" category="White Bag" path="White Bag/0x7170.png" DG="toxic-sewers" DGDisplay="Toxic Sewers" />
+  <item objType="0x73ce" category="White Bag" path="White Bag/0x73ce.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x73cf" category="White Bag" path="White Bag/0x73cf.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x7416" category="White Bag" path="White Bag/0x7416.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x7418" category="White Bag" path="White Bag/0x7418.png" DG="rainbow-road" DGDisplay="Rainbow Road" />
+  <item objType="0x7448" category="White Bag" path="White Bag/0x7448.png" DG="puppet-master-s-theatre" DGDisplay="Puppet Master's Theatre" />
+  <item objType="0x7555" category="White Bag" path="White Bag/0x7555.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x7556" category="White Bag" path="White Bag/0x7556.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x7557" category="White Bag" path="White Bag/0x7557.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x7559" category="White Bag" path="White Bag/0x7559.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x755a" category="White Bag" path="White Bag/0x755a.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x7562" category="White Bag" path="White Bag/0x7562.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x7563" category="White Bag" path="White Bag/0x7563.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x7564" category="White Bag" path="White Bag/0x7564.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x7565" category="White Bag" path="White Bag/0x7565.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x7eb6" category="White Bag" path="White Bag/0x7eb6.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x7fd2" category="White Bag" path="White Bag/0x7fd2.png" DG="ice-tomb" DGDisplay="Ice Tomb" />
+  <item objType="0x7fd3" category="White Bag" path="White Bag/0x7fd3.png" DG="ice-tomb" DGDisplay="Ice Tomb" />
+  <item objType="0x7fd4" category="White Bag" path="White Bag/0x7fd4.png" DG="ice-tomb" DGDisplay="Ice Tomb" />
+  <item objType="0x861f" category="White Bag" path="White Bag/0x861f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x8620" category="White Bag" path="White Bag/0x8620.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x8621" category="White Bag" path="White Bag/0x8621.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x8622" category="White Bag" path="White Bag/0x8622.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x8623" category="White Bag" path="White Bag/0x8623.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x8624" category="White Bag" path="White Bag/0x8624.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x928c" category="Shiny" path="Shiny/0x928c.png" DG="high-tech-terror" DGDisplay="High Tech Terror" />
+  <item objType="0x928d" category="Shiny" path="Shiny/0x928d.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x928e" category="White Bag" path="White Bag/0x928e.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0x928f" category="Shiny" path="Shiny/0x928f.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0x9290" category="Shiny" path="Shiny/0x9290.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0x9291" category="Shiny" path="Shiny/0x9291.png" DG="moonlight-village" DGDisplay="Moonlight Village" />
+  <item objType="0x932b" category="Shiny" path="Shiny/0x932b.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0x932d" category="White Bag" path="White Bag/0x932d.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x932e" category="White Bag" path="White Bag/0x932e.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x932f" category="White Bag" path="White Bag/0x932f.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x9330" category="White Bag" path="White Bag/0x9330.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x9331" category="White Bag" path="White Bag/0x9331.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x9332" category="White Bag" path="White Bag/0x9332.png" DG="the-machine" DGDisplay="The Machine" />
+  <item objType="0x9339" category="White Bag" path="White Bag/0x9339.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x9594" category="Shiny" path="Shiny/0x9594.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x9595" category="Shiny" path="Shiny/0x9595.png" DG="spider-den" DGDisplay="Spider Den" />
+  <item objType="0x9596" category="Shiny" path="Shiny/0x9596.png" DG="cursed-library" DGDisplay="Cursed Library" />
+  <item objType="0x9597" category="Shiny" path="Shiny/0x9597.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x9598" category="Shiny" path="Shiny/0x9598.png" DG="sulfurous-wetlands" DGDisplay="Sulfurous Wetlands" />
+  <item objType="0x9599" category="Shiny" path="Shiny/0x9599.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x959a" category="Shiny" path="Shiny/0x959a.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x959b" category="Shiny" path="Shiny/0x959b.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x9664" category="Shiny" path="Shiny/0x9664.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x9665" category="Shiny" path="Shiny/0x9665.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0x9666" category="Shiny" path="Shiny/0x9666.png" DG="the-hive" DGDisplay="The Hive" />
+  <item objType="0x966f" category="Shiny" path="Shiny/0x966f.png" DG="infernal-abyss-of-demons" DGDisplay="Infernal Abyss Of Demons" />
+  <item objType="0x9673" category="Shiny" path="Shiny/0x9673.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x9678" category="Shiny" path="Shiny/0x9678.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0x967a" category="Shiny" path="Shiny/0x967a.png" DG="snake-pit" DGDisplay="Snake Pit" />
+  <item objType="0x967c" category="Shiny" path="Shiny/0x967c.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x967d" category="Shiny" path="Shiny/0x967d.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0x9680" category="Shiny" path="Shiny/0x9680.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0x9681" category="Shiny" path="Shiny/0x9681.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x9682" category="Shiny" path="Shiny/0x9682.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0x968f" category="Shiny" path="Shiny/0x968f.png" DG="forest-maze" DGDisplay="Forest Maze" />
+  <item objType="0x9690" category="Shiny" path="Shiny/0x9690.png" DG="pirate-cave" DGDisplay="Pirate Cave" />
+  <item objType="0x9691" category="Shiny" path="Shiny/0x9691.png" DG="mountain-temple" DGDisplay="Mountain Temple" />
+  <item objType="0x9692" category="Shiny" path="Shiny/0x9692.png" DG="lair-of-draconis" DGDisplay="Lair Of Draconis" />
+  <item objType="0x9693" category="Shiny" path="Shiny/0x9693.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0x9694" category="Shiny" path="Shiny/0x9694.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0x9695" category="Shiny" path="Shiny/0x9695.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0x9697" category="Shiny" path="Shiny/0x9697.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0x9699" category="Shiny" path="Shiny/0x9699.png" DG="ocean-trench" DGDisplay="Ocean Trench" />
+  <item objType="0x969a" category="Shiny" path="Shiny/0x969a.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0x969b" category="Shiny" path="Shiny/0x969b.png" DG="spider-den" DGDisplay="Spider Den" />
+  <item objType="0x969c" category="Shiny" path="Shiny/0x969c.png" DG="tomb-of-the-ancients" DGDisplay="Tomb Of The Ancients" />
+  <item objType="0x981f" category="White Bag" path="White Bag/0x981f.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x9820" category="White Bag" path="White Bag/0x9820.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99aa" category="White Bag" path="White Bag/0x99aa.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99ab" category="White Bag" path="White Bag/0x99ab.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99ac" category="White Bag" path="White Bag/0x99ac.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99ad" category="White Bag" path="White Bag/0x99ad.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99ae" category="White Bag" path="White Bag/0x99ae.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99af" category="White Bag" path="White Bag/0x99af.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0x99b0" category="White Bag" path="White Bag/0x99b0.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xa209" category="Shiny" path="Shiny/0xa209.png" DG="the-tavern" DGDisplay="The Tavern" />
+  <item objType="0xa20a" category="Shiny" path="Shiny/0xa20a.png" DG="spectral-penitentiary" DGDisplay="Spectral Penitentiary" />
+  <item objType="0xa20c" category="Shiny" path="Shiny/0xa20c.png" DG="ancient-ruins" DGDisplay="Ancient Ruins" />
+  <item objType="0xa20d" category="Shiny" path="Shiny/0xa20d.png" DG="davy-jones-locker" DGDisplay="Davy Jones Locker" />
+  <item objType="0xa20e" category="Shiny" path="Shiny/0xa20e.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xa210" category="Shiny" path="Shiny/0xa210.png" DG="belladonna-s-garden" DGDisplay="Belladonna's Garden" />
+  <item objType="0xa30b" category="White Bag" path="White Bag/0xa30b.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xa30c" category="White Bag" path="White Bag/0xa30c.png" DG="puppet-master-s-theatre" DGDisplay="Puppet Master's Theatre" />
+  <item objType="0xa30e" category="White Bag" path="White Bag/0xa30e.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xa310" category="White Bag" path="White Bag/0xa310.png" DG="undead-lair" DGDisplay="Undead Lair" />
+  <item objType="0xa312" category="White Bag" path="White Bag/0xa312.png" DG="the-crawling-depths" DGDisplay="The Crawling Depths" />
+  <item objType="0xa315" category="White Bag" path="White Bag/0xa315.png" DG="woodland-labyrinth" DGDisplay="Woodland Labyrinth" />
+  <item objType="0xa317" category="White Bag" path="White Bag/0xa317.png" DG="cursed-library" DGDisplay="Cursed Library" />
+  <item objType="0xb3f7" category="White Bag" path="White Bag/0xb3f7.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0xb3f8" category="White Bag" path="White Bag/0xb3f8.png" DG="ice-citadel" DGDisplay="Ice Citadel" />
+  <item objType="0xc13c" category="White Bag" path="White Bag/0xc13c.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xc13d" category="White Bag" path="White Bag/0xc13d.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xc13e" category="White Bag" path="White Bag/0xc13e.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xc13f" category="White Bag" path="White Bag/0xc13f.png" DG="forge" DGDisplay="Forge" />
+  <item objType="0xc184" category="White Bag" path="White Bag/0xc184.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xc1e8" category="White Bag" path="White Bag/0xc1e8.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc21a" category="White Bag" path="White Bag/0xc21a.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xc21d" category="White Bag" path="White Bag/0xc21d.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xc21e" category="White Bag" path="White Bag/0xc21e.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xc21f" category="White Bag" path="White Bag/0xc21f.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xc220" category="White Bag" path="White Bag/0xc220.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xc483" category="White Bag" path="White Bag/0xc483.png" DG="advanced-kogbold-steamworks" DGDisplay="Advanced Kogbold Steamworks" />
+  <item objType="0xc9db" category="Shiny" path="Shiny/0xc9db.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xc9dc" category="Shiny" path="Shiny/0xc9dc.png" DG="lair-of-shaitan" DGDisplay="Lair Of Shaitan" />
+  <item objType="0xc9dd" category="Shiny" path="Shiny/0xc9dd.png" DG="cursed-library" DGDisplay="Cursed Library" />
+  <item objType="0xc9de" category="Shiny" path="Shiny/0xc9de.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xc9df" category="Shiny" path="Shiny/0xc9df.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0xc9e0" category="Shiny" path="Shiny/0xc9e0.png" DG="ancient-ruins" DGDisplay="Ancient Ruins" />
+  <item objType="0xca22" category="Shiny" path="Shiny/0xca22.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xcb60" category="Shiny" path="Shiny/0xcb60.png" DG="forax" DGDisplay="Forax" />
+  <item objType="0xcb62" category="Shiny" path="Shiny/0xcb62.png" DG="katalund" DGDisplay="Katalund" />
+  <item objType="0xcb64" category="Shiny" path="Shiny/0xcb64.png" DG="untaris" DGDisplay="Untaris" />
+  <item objType="0xcb66" category="Shiny" path="Shiny/0xcb66.png" DG="malogia" DGDisplay="Malogia" />
+  <item objType="0xd23c" category="White Bag" path="White Bag/0xd23c.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xd855" category="White Bag" path="White Bag/0xd855.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0xd856" category="White Bag" path="White Bag/0xd856.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xd857" category="White Bag" path="White Bag/0xd857.png" DG="fungal-cavern" DGDisplay="Fungal Cavern" />
+  <item objType="0xd871" category="White Bag" path="White Bag/0xd871.png" DG="lair-of-shaitan" DGDisplay="Lair Of Shaitan" />
+  <item objType="0xd876" category="White Bag" path="White Bag/0xd876.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0xd878" category="White Bag" path="White Bag/0xd878.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xd87a" category="Shiny" path="Shiny/0xd87a.png" DG="puppet-master-s-encore" DGDisplay="Puppet Master's Encore" />
+  <item objType="0xe9f5" category="White Bag" path="White Bag/0xe9f5.png" DG="white-snake-invasion-iii" DGDisplay="White Snake Invasion Iii" />
+  <item objType="0xff3b" category="White Bag" path="White Bag/0xff3b.png" DG="NONE" DGDisplay="NONE" />
+  <item objType="0xffe0" category="Shiny" path="Shiny/0xffe0.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0xffe1" category="Shiny" path="Shiny/0xffe1.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0xffe2" category="Shiny" path="Shiny/0xffe2.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0xffe3" category="Shiny" path="Shiny/0xffe3.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0xffe4" category="Shiny" path="Shiny/0xffe4.png" DG="oryx-s-sanctuary" DGDisplay="Oryx's Sanctuary" />
+  <item objType="0xffe5" category="Shiny" path="Shiny/0xffe5.png" DG="the-void" DGDisplay="The Void" />
+  <item objType="0xffe6" category="Shiny" path="Shiny/0xffe6.png" DG="the-nest" DGDisplay="The Nest" />
+  <item objType="0xffe7" category="Shiny" path="Shiny/0xffe7.png" DG="kogbold-steamworks" DGDisplay="Kogbold Steamworks" />
+  <item objType="0xffe8" category="Shiny" path="Shiny/0xffe8.png" DG="the-shatters" DGDisplay="The Shatters" />
+  <item objType="0xffe9" category="Shiny" path="Shiny/0xffe9.png" DG="crystal-cavern" DGDisplay="Crystal Cavern" />
+  <item objType="0xffea" category="Shiny" path="Shiny/0xffea.png" DG="undead-lair" DGDisplay="Undead Lair" />
+  <item objType="0xffeb" category="Shiny" path="Shiny/0xffeb.png" DG="sprite-world" DGDisplay="Sprite World" />
+  <item objType="0xffec" category="Shiny" path="Shiny/0xffec.png" DG="realm-event" DGDisplay="Realm Event" />
+  <item objType="0xffed" category="Shiny" path="Shiny/0xffed.png" DG="mad-lab" DGDisplay="Mad Lab" />
+  <item objType="0xffee" category="Shiny" path="Shiny/0xffee.png" DG="manor-of-the-immortals" DGDisplay="Manor Of The Immortals" />
+  <item objType="0xfffb" category="Shiny" path="Shiny/0xfffb.png" DG="realm-event" DGDisplay="Realm Event" />
+</items>
