@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![ROTMG Checklist](imgs/favicon.png)
+<img src="imgs/favicon.png" alt="ROTMG Checklist" width="128">
 
 A modern, feature-rich checklist application for tracking **White Bag** and **Shiny** items in Realm of the Mad God.
 
