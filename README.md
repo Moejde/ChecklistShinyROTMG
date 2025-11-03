@@ -12,7 +12,7 @@ A modern, feature-rich checklist application for tracking **White Bag** and **Sh
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[Features](#features) • [Demo](#demo) • [Installation](#installation) • [Usage](#usage) • [Technologies](#technologies)
+[Features](#features) • [Demo](https://moejde.github.io/ChecklistShinyROTMG/) • [Installation](#installation) • [Usage](#usage) • [Technologies](#technologies)
 
 </div>
 
@@ -72,7 +72,7 @@ ROTMG Whitebag & Shiny Checklist is a comprehensive web application designed to 
 - **Category Breakdown** - Separate stats for Shiny and White Bag items
 - **Matched Items** - View items successfully matched with game data
 
-## 🚀 Demo
+#demo
 
 **[🎮 Try Live Demo](https://moejde.github.io/ChecklistShinyROTMG/)** — Hosted on GitHub Pages, automatically updated with every commit!
 
