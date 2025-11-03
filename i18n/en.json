@@ -33,6 +33,8 @@
   "language_title": "Idioma / Language",
   "removed_items_title": "Removed Items Library",
   "no_removed_items": "No removed items.",
+  "release_notes_title": "Release Notes",
+  "no_release_notes": "No releases yet.",
   "tooltip_sort_mode": "Toggle sort mode",
   "tooltip_sort_dir": "Toggle Asc/Desc",
   "tooltip_delete_mode": "Show red button to remove item while active",

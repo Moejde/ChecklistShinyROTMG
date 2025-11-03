@@ -1284,6 +1284,15 @@
           <div class="gallery" id="removedGallery" style="min-height:100px"></div>
           <div id="removedEmpty" class="muted" style="display:none;margin-top:8px" data-i18n="no_removed_items">Nenhum item removido.</div>
         </div>
+
+        <!-- Release Notes / Histórico de Versões -->
+        <div style="margin-top:24px">
+          <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px">
+            <h4 style="margin:0;color:#60a5fa;font-size:16px" data-i18n="release_notes_title">Histórico de Versões</h4>
+          </div>
+          <div id="releaseNotesContainer"></div>
+          <div id="releaseNotesEmpty" class="muted" style="display:none;margin-top:8px" data-i18n="no_release_notes">Nenhuma release ainda.</div>
+        </div>
       </section>
 
     </section>
@@ -1419,6 +1428,30 @@
       "0x14a0","0x14a1","0x14a2","0x14a3","0x14a4","0x14a5","0x14a6","0x967c","0xf93","0xf92",
       "0x7fa","0x9d2","0x1e4e","0x7555","0x7556","0x7557","0x7559","0x755a","0xca22","0x6587",
       "0xc2d","0x5c4f","0xc40","0xc3e","0xc3f"
+    ];
+
+    // Release Notes / Histórico de Versões
+    const RELEASE_NOTES = [
+      {
+        version: "1.0.0",
+        date: "2025-11-02",
+        changes: {
+          en: [
+            "Initial release",
+            "804 items with White Bag and Shiny categorization",
+            "Multi-language support (EN/PT-BR)",
+            "Auto-save progress with import/export",
+            "Delete mode with item library"
+          ],
+          "pt-BR": [
+            "Lançamento inicial",
+            "804 itens com categorização White Bag e Shiny",
+            "Suporte multi-idioma (EN/PT-BR)",
+            "Auto-save de progresso com import/export",
+            "Modo de exclusão com biblioteca de itens"
+          ]
+        }
+      }
     ];
 
     // Atlas único (spritesheet) e índice
@@ -3089,6 +3122,87 @@
       cont.replaceChildren(frag);
     }
 
+    function renderReleaseNotes(){
+      const container = $("#releaseNotesContainer");
+      const empty = $("#releaseNotesEmpty");
+      if(!container || !empty) return;
+
+      container.replaceChildren();
+
+      if(RELEASE_NOTES.length === 0){
+        empty.style.display = "block";
+        return;
+      }
+
+      empty.style.display = "none";
+
+      const frag = document.createDocumentFragment();
+
+      // Reverse chronological order (newest first)
+      const sortedReleases = [...RELEASE_NOTES].reverse();
+
+      for(const release of sortedReleases){
+        const releaseCard = document.createElement("div");
+        releaseCard.style.cssText = `
+          background: rgba(71, 85, 105, 0.3);
+          border-left: 3px solid #60a5fa;
+          padding: 16px;
+          margin-bottom: 12px;
+          border-radius: 4px;
+        `;
+
+        const header = document.createElement("div");
+        header.style.cssText = `
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 8px;
+        `;
+
+        const version = document.createElement("span");
+        version.style.cssText = `
+          color: #60a5fa;
+          font-weight: bold;
+          font-size: 14px;
+        `;
+        version.textContent = `v${release.version}`;
+
+        const date = document.createElement("span");
+        date.style.cssText = `
+          color: #94a3b8;
+          font-size: 12px;
+        `;
+        date.textContent = release.date;
+
+        header.appendChild(version);
+        header.appendChild(date);
+        releaseCard.appendChild(header);
+
+        const changesList = document.createElement("ul");
+        changesList.style.cssText = `
+          margin: 0;
+          padding-left: 20px;
+          color: #cbd5e1;
+          font-size: 13px;
+          line-height: 1.6;
+        `;
+
+        const currentLangChanges = release.changes[currentLang] || release.changes.en || [];
+
+        for(const change of currentLangChanges){
+          const li = document.createElement("li");
+          li.textContent = change;
+          li.style.marginBottom = "4px";
+          changesList.appendChild(li);
+        }
+
+        releaseCard.appendChild(changesList);
+        frag.appendChild(releaseCard);
+      }
+
+      container.replaceChildren(frag);
+    }
+
 
     function renderProgressBars(matchedRows){
       const shinyFill=$("#progressFillShiny");
@@ -3474,6 +3588,7 @@
       } else {
         renderStats(rows, matchedRows);
         renderRemoved(rows);
+        renderReleaseNotes();
       }
       updateDgBulkUI();
     }

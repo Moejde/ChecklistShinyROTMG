@@ -33,6 +33,8 @@
   "language_title": "Idioma / Language",
   "removed_items_title": "Biblioteca de itens removidos",
   "no_removed_items": "Nenhum item removido.",
+  "release_notes_title": "Histórico de Versões",
+  "no_release_notes": "Nenhuma release ainda.",
   "tooltip_sort_mode": "Alternar modo de ordenação",
   "tooltip_sort_dir": "Alternar Asc/Desc",
   "tooltip_delete_mode": "Exibir botão vermelho para remover item enquanto estiver ativo",
