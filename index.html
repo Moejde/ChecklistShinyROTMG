@@ -1132,6 +1132,7 @@
       </div>
       <nav class="tabs">
         <div class="tabs-left">
+          <span id="versionBadge" style="padding:8px 12px;font-size:11px;color:#94a3b8;font-weight:500;align-self:center;user-select:none;">v1.0.0</span>
           <button id="tabItemsBtn" class="tab active" data-i18n="tab_items">Itens</button>
           <button id="tabConfigBtn" class="tab" data-i18n="tab_config">Configurações</button>
         </div>
@@ -3845,8 +3846,17 @@
       setLanguage("en");
     });
 
+    // Atualizar badge de versão
+    function updateVersionBadge() {
+      const badge = document.getElementById("versionBadge");
+      if (badge && RELEASE_NOTES.length > 0) {
+        badge.textContent = `v${RELEASE_NOTES[0].version}`;
+      }
+    }
+
     // Aplicar traduções no carregamento
     applyTranslations();
+    updateVersionBadge();
 
     const deleteToggle=document.getElementById("deleteModeToggle");
     if(deleteToggle){
