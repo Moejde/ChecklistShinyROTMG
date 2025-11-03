@@ -208,7 +208,6 @@ The application loads data from several sources:
 ## 🔧 Development Tools
 
 The `tools/` directory contains utilities for:
-- Asset extraction from Unity builds
 - Sprite sheet processing
 - Data categorization and filtering
 - Build automation
