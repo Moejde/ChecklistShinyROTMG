@@ -9,7 +9,7 @@
     :root{
       --bg:#0b0f14; --card:#0f172a; --border:#1f2937; --text:#e5e7eb; --muted:#93a0ad;
       --chip:#172136; --chip-br:#24324a; --accent:#60a5fa;
-      --panel:#0b1322; --gap:8px; --cols:5; --tile:160px; /* tamanho do tile em px (ajustado via JS) */
+      --panel:#0b1322; --gap:8px; --cols:12; --tile:160px; /* tamanho do tile em px (ajustado via JS) */
     }
     *{box-sizing:border-box} html,body{height:100%}
     body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,Segoe UI,Roboto,Arial}
@@ -122,6 +122,96 @@
       -webkit-appearance:none;
       appearance:none;
     }
+
+    /* Count badge - aparece quando item está collected e count > 1 */
+    .count-badge{
+      position:absolute;
+      bottom:clamp(4px, calc(var(--tile)*0.04), 8px);
+      right:clamp(4px, calc(var(--tile)*0.04), 8px);
+      min-width:clamp(18px, calc(var(--tile)*0.16), 28px);
+      height:clamp(18px, calc(var(--tile)*0.16), 28px);
+      padding:0 clamp(4px, calc(var(--tile)*0.03), 6px);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:clamp(10px, calc(var(--tile)*0.09), 14px);
+      color:#fff;
+      background:#00b646;
+      border:1px solid #047833;
+      box-shadow:0 1px 3px rgba(0,0,0,.4);
+      z-index:3;
+      cursor:pointer;
+      transition:all .12s ease;
+      font-variant-numeric:tabular-nums;
+    }
+    .count-badge:hover{
+      background:#00d452;
+      transform:scale(1.05);
+    }
+
+    /* Count controls - aparecem ao fazer hover prolongado no badge */
+    .count-controls{
+      position:absolute;
+      top:clamp(4px, calc(var(--tile)*0.04), 8px);
+      left:clamp(4px, calc(var(--tile)*0.04), 8px);
+      display:flex;
+      gap:2px;
+      background:rgba(11,15,20,0.95);
+      border:1px solid #00b646;
+      border-radius:12px;
+      padding:2px;
+      box-shadow:0 2px 8px rgba(0,0,0,.5);
+      z-index:5;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease;
+    }
+    .thumb:hover .count-controls,
+    .count-badge:hover ~ .count-controls,
+    .count-controls:hover{
+      opacity:1;
+      pointer-events:auto;
+      transition-delay:0.3s; /* Aparece após 300ms de hover */
+    }
+    .count-control-btn{
+      width:clamp(16px, calc(var(--tile)*0.14), 24px);
+      height:clamp(16px, calc(var(--tile)*0.14), 24px);
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:clamp(11px, calc(var(--tile)*0.1), 15px);
+      color:#fff;
+      background:#1e293b;
+      border:1px solid #334155;
+      cursor:pointer;
+      transition:all .1s ease;
+      padding:0;
+      line-height:1;
+      font-family:inherit;
+    }
+    .count-control-btn:hover{
+      background:#334155;
+      border-color:#475569;
+    }
+    .count-control-btn:active{
+      transform:scale(0.95);
+    }
+    .count-display{
+      min-width:clamp(20px, calc(var(--tile)*0.18), 32px);
+      padding:0 clamp(4px, calc(var(--tile)*0.03), 6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:clamp(10px, calc(var(--tile)*0.09), 14px);
+      color:#00d452;
+      font-weight:700;
+      font-variant-numeric:tabular-nums;
+    }
+
     .dgModeToggle{
       display:flex;
       align-items:center;
@@ -447,6 +537,7 @@
       cursor:pointer;
       user-select:none;
       transition:border-color 0.2s ease;
+      position:relative;
     }
     .col-icon-ctrl:hover{
       border-color:#3a4a6a;
@@ -461,6 +552,72 @@
       font-variant-numeric:tabular-nums;
       min-width:20px;
       text-align:center;
+    }
+
+    /* Slider de colunas expandível */
+    .col-slider-wrapper{
+      position:absolute;
+      bottom:calc(100% + 8px);
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:8px 16px;
+      background:#0c1423;
+      border:1px solid var(--border);
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      animation:slideDown 0.2s ease;
+      z-index:100;
+      white-space:nowrap;
+    }
+    @keyframes slideDown{
+      from{ opacity:0; transform:translateX(-50%) translateY(10px); }
+      to{ opacity:1; transform:translateX(-50%) translateY(0); }
+    }
+    .col-slider{
+      -webkit-appearance:none;
+      appearance:none;
+      width:200px;
+      height:6px;
+      background:#1e293b;
+      border-radius:3px;
+      outline:none;
+      cursor:pointer;
+    }
+    .col-slider::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      appearance:none;
+      width:16px;
+      height:16px;
+      background:#60a5fa;
+      border-radius:50%;
+      cursor:pointer;
+      transition:background 0.2s ease;
+    }
+    .col-slider::-webkit-slider-thumb:hover{
+      background:#3b82f6;
+    }
+    .col-slider::-moz-range-thumb{
+      width:16px;
+      height:16px;
+      background:#60a5fa;
+      border-radius:50%;
+      border:none;
+      cursor:pointer;
+      transition:background 0.2s ease;
+    }
+    .col-slider::-moz-range-thumb:hover{
+      background:#3b82f6;
+    }
+    .col-slider-label{
+      font-size:14px;
+      color:var(--text);
+      font-variant-numeric:tabular-nums;
+      min-width:24px;
+      text-align:center;
+      font-weight:500;
     }
 
     /* DG Filter Pagination - Layout centralizado */
@@ -1190,7 +1347,12 @@
               <!-- Controle de colunas via scroll -->
               <div id="colIconCtrl" class="col-icon-ctrl" data-i18n-title="tooltip_columns" title="Scroll do mouse para ajustar colunas">
                 <span class="col-icon">⊞</span>
-                <span id="colLabel" class="col-value">5</span>
+                <span id="colLabel" class="col-value">12</span>
+                <!-- Slider de colunas (expandível ao clicar) -->
+                <div id="colSliderWrapper" class="col-slider-wrapper" style="display:none">
+                  <input type="range" id="colSlider" class="col-slider" min="1" max="32" value="12" step="1">
+                  <span id="colSliderLabel" class="col-slider-label">12</span>
+                </div>
               </div>
             </div>
             <div class="dg-filter-scroll-wrapper">
@@ -1483,6 +1645,7 @@
       dgSelected: new Set(),
       dgFilterActive: null, // null = todos, "dungeon-name" = filtrar por DG específica
       collected: new Set(),
+      itemCounts: new Map(), // objType -> número de cópias coletadas
       searchQuery: "",
       deleteMode: false,
       removed: new Set(),
@@ -2149,12 +2312,19 @@
         metaByTypeObj[objType] = meta;
       }
 
+      // Converter itemCounts (Map) para objeto serializável
+      const itemCountsObj = {};
+      for(const [objType, count] of state.itemCounts.entries()){
+        itemCountsObj[objType] = count;
+      }
+
       return {
         version:1,
         initialized:true, // Flag indicando que o usuário já foi inicializado
         collected:Array.from(state.collected),
         removed:Array.from(state.removed), // Salvar TODOS os itens removidos
-        metaByType:metaByTypeObj
+        metaByType:metaByTypeObj,
+        itemCounts:itemCountsObj
       };
     }
     function updateProgressFileInfo({name,status}={}){
@@ -2346,6 +2516,15 @@
           state.collected=new Set(arr.map(normHex));
           const removedArr=Array.isArray(parsed?.removed)?parsed.removed:[];
           state.removed = new Set(removedArr.map(normHex));
+
+          // Carregar itemCounts
+          if(parsed?.itemCounts && typeof parsed.itemCounts === 'object'){
+            state.itemCounts.clear();
+            for(const [objType, count] of Object.entries(parsed.itemCounts)){
+              state.itemCounts.set(normHex(objType), parseInt(count) || 1);
+            }
+          }
+
           loaded=true;
         }
       }catch(e){}
@@ -2353,6 +2532,7 @@
         // Primeira vez: inicializar com DEFAULT_REMOVED
         state.collected.clear();
         state.removed=new Set(DEFAULT_REMOVED.map(normHex));
+        state.itemCounts.clear();
       }
     }
     function saveProgress({skipFile=false}={}){
@@ -2781,6 +2961,10 @@
 
       if(matched.length===0){ empty.textContent=dict.no_items_found; empty.style.display="block"; return; }
 
+      // Debug: mostrar estado dos counts
+      console.log(`[COUNT DEBUG] Total itemCounts entries:`, state.itemCounts.size);
+      console.log(`[COUNT DEBUG] ItemCounts Map:`, Array.from(state.itemCounts.entries()));
+
       const frag=document.createDocumentFragment();
       for(const r of matched){
         const wrap=document.createElement("div");
@@ -2817,6 +3001,56 @@
             handleRemove(wrap);
           });
           div.appendChild(closeBtn);
+        }
+
+        // Count badge - aparece quando item está collected (desde count >= 1)
+        const itemCount = state.itemCounts.get(r.objType) || 1;
+        if(r.collected && itemCount >= 1){
+          const countBadge = document.createElement("div");
+          countBadge.className = "count-badge";
+          countBadge.textContent = String(itemCount);
+          countBadge.dataset.objtype = r.objType;
+          div.appendChild(countBadge);
+
+          // Count controls - aparecem ao hover no badge
+          const countControls = document.createElement("div");
+          countControls.className = "count-controls";
+          countControls.dataset.objtype = r.objType;
+
+          const decrementBtn = document.createElement("button");
+          decrementBtn.type = "button";
+          decrementBtn.className = "count-control-btn";
+          decrementBtn.textContent = "−";
+          decrementBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const currentCount = state.itemCounts.get(r.objType) || 1;
+            if(currentCount > 1){
+              state.itemCounts.set(r.objType, currentCount - 1);
+              saveProgress();
+              renderAll();
+            }
+          });
+          countControls.appendChild(decrementBtn);
+
+          const countDisplay = document.createElement("span");
+          countDisplay.className = "count-display";
+          countDisplay.textContent = String(itemCount);
+          countControls.appendChild(countDisplay);
+
+          const incrementBtn = document.createElement("button");
+          incrementBtn.type = "button";
+          incrementBtn.className = "count-control-btn";
+          incrementBtn.textContent = "+";
+          incrementBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const currentCount = state.itemCounts.get(r.objType) || 1;
+            state.itemCounts.set(r.objType, currentCount + 1);
+            saveProgress();
+            renderAll();
+          });
+          countControls.appendChild(incrementBtn);
+
+          div.appendChild(countControls);
         }
 
         const img=document.createElement("img");
@@ -2865,6 +3099,7 @@
         state.pendingRemovals=(state.pendingRemovals||0)+1;
         state.removed.add(objType);
         state.collected.delete(objType);
+        state.itemCounts.delete(objType); // Limpar contador ao remover item
         const rect=tile.getBoundingClientRect();
         const clone=tile.cloneNode(true);
         clone.classList.add("tile-clone");
@@ -2958,7 +3193,16 @@
           handleRemove(tile);
           return;
         }
-        if(state.collected.has(objType)) state.collected.delete(objType); else state.collected.add(objType);
+        if(state.collected.has(objType)){
+          state.collected.delete(objType);
+          state.itemCounts.delete(objType); // Limpar contador ao desmarcar
+        } else {
+          state.collected.add(objType);
+          // Inicializar contador em 1 se ainda não existe
+          if(!state.itemCounts.has(objType)){
+            state.itemCounts.set(objType, 1);
+          }
+        }
         saveProgress(); renderAll();
       };
     }
@@ -3677,8 +3921,8 @@
       if(!controls.length) return;
 
       const getStoredValue=()=>{
-        let val=parseInt(localStorage.getItem(COLS_KEY)||'5',10);
-        if(isNaN(val) || val<1) val=5;
+        let val=parseInt(localStorage.getItem(COLS_KEY)||'12',10);
+        if(isNaN(val) || val<1) val=12;
         return val;
       };
 
@@ -3815,16 +4059,64 @@
 
     // Controle de colunas via scroll do mouse
     const colIconCtrl = document.getElementById("colIconCtrl");
+    const colSliderWrapper = document.getElementById("colSliderWrapper");
+    const colSlider = document.getElementById("colSlider");
+    const colSliderLabel = document.getElementById("colSliderLabel");
+    const colLabel = document.getElementById("colLabel");
+
+    let sliderVisible = false;
+
+    // Toggle slider ao clicar no ícone
+    if(colIconCtrl && colSliderWrapper){
+      colIconCtrl.addEventListener("click", (e) => {
+        e.stopPropagation();
+        sliderVisible = !sliderVisible;
+        colSliderWrapper.style.display = sliderVisible ? "flex" : "none";
+
+        // Sincronizar valor do slider com o valor atual
+        if(sliderVisible){
+          const current = parseInt(document.documentElement.style.getPropertyValue('--cols') || '12');
+          colSlider.value = String(current);
+          colSliderLabel.textContent = String(current);
+        }
+      });
+
+      // Fechar slider ao clicar fora
+      document.addEventListener("click", (e) => {
+        if(sliderVisible && !colSliderWrapper.contains(e.target) && !colIconCtrl.contains(e.target)){
+          sliderVisible = false;
+          colSliderWrapper.style.display = "none";
+        }
+      });
+    }
+
+    // Atualizar colunas quando o slider mudar
+    if(colSlider){
+      colSlider.addEventListener("input", (e) => {
+        const newValue = parseInt(e.target.value);
+        applyCols(newValue);
+        localStorage.setItem(COLS_KEY, String(newValue));
+        colLabel.textContent = String(newValue);
+        colSliderLabel.textContent = String(newValue);
+      });
+    }
+
+    // Manter funcionalidade de scroll
     if(colIconCtrl){
       colIconCtrl.addEventListener("wheel", (e) => {
         e.preventDefault();
-        const current = parseInt(document.documentElement.style.getPropertyValue('--cols') || '5');
+        const current = parseInt(document.documentElement.style.getPropertyValue('--cols') || '12');
         const delta = e.deltaY > 0 ? -1 : 1; // scroll down = diminui, scroll up = aumenta
         const newValue = Math.max(1, Math.min(32, current + delta));
         applyCols(newValue);
-        // Salvar manualmente já que não passa por applyWithBounds
         localStorage.setItem(COLS_KEY, String(newValue));
-        document.getElementById("colLabel").textContent = String(newValue);
+        colLabel.textContent = String(newValue);
+
+        // Atualizar slider se estiver visível
+        if(sliderVisible && colSlider){
+          colSlider.value = String(newValue);
+          colSliderLabel.textContent = String(newValue);
+        }
       });
     }
 
@@ -4158,7 +4450,7 @@
         renderAll();
 
         // Garantir que as colunas sejam restauradas após tudo carregar
-        const savedCols = parseInt(localStorage.getItem(COLS_KEY) || '5', 10);
+        const savedCols = parseInt(localStorage.getItem(COLS_KEY) || '12', 10);
         if(savedCols) {
           applyCols(savedCols);
           const colLabel = document.getElementById("colLabel");
