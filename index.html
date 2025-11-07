@@ -154,7 +154,7 @@
     /* Count controls - aparecem ao fazer hover prolongado no badge */
     .count-controls{
       position:absolute;
-      top:clamp(4px, calc(var(--tile)*0.04), 8px);
+      bottom:clamp(4px, calc(var(--tile)*0.04), 8px);
       left:clamp(4px, calc(var(--tile)*0.04), 8px);
       display:flex;
       gap:2px;
@@ -166,14 +166,18 @@
       z-index:5;
       opacity:0;
       pointer-events:none;
-      transition:opacity .2s ease;
+      transition:none;
     }
     .thumb:hover .count-controls,
     .count-badge:hover ~ .count-controls,
     .count-controls:hover{
       opacity:1;
       pointer-events:auto;
-      transition-delay:0.3s; /* Aparece após 300ms de hover */
+    }
+    /* Esconder contador e botões quando colunas >= 21 */
+    html.hide-counters .count-badge,
+    html.hide-counters .count-controls{
+      display:none !important;
     }
     .count-control-btn{
       width:clamp(16px, calc(var(--tile)*0.14), 24px);
@@ -3026,9 +3030,13 @@
             const currentCount = state.itemCounts.get(r.objType) || 1;
             if(currentCount > 1){
               state.itemCounts.set(r.objType, currentCount - 1);
-              saveProgress();
-              renderAll();
+            } else {
+              // Se contador é 1, desmarcar o item completamente
+              state.collected.delete(r.objType);
+              state.itemCounts.delete(r.objType);
             }
+            saveProgress();
+            renderAll();
           });
           countControls.appendChild(decrementBtn);
 
@@ -3194,8 +3202,13 @@
           return;
         }
         if(state.collected.has(objType)){
-          state.collected.delete(objType);
-          state.itemCounts.delete(objType); // Limpar contador ao desmarcar
+          // Só permite desmarcar se o contador for 1 ou não existir
+          const currentCount = state.itemCounts.get(objType) || 1;
+          if(currentCount === 1){
+            state.collected.delete(objType);
+            state.itemCounts.delete(objType); // Limpar contador ao desmarcar
+          }
+          // Se contador > 1, não faz nada (previne reset acidental)
         } else {
           state.collected.add(objType);
           // Inicializar contador em 1 se ainda não existe
@@ -3874,6 +3887,13 @@
       // tamanho do tile -> CSS
       const tilePx = computeTileSize(n);
       document.documentElement.style.setProperty('--tile', tilePx+'px');
+
+      // Adicionar classe para esconder contador quando colunas >= 21
+      if(n >= 21){
+        document.documentElement.classList.add('hide-counters');
+      } else {
+        document.documentElement.classList.remove('hide-counters');
+      }
 
       const controls=getColControls();
       for(const {slider,label} of controls){
