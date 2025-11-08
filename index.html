@@ -155,7 +155,8 @@
     .count-controls{
       position:absolute;
       bottom:clamp(4px, calc(var(--tile)*0.04), 8px);
-      left:clamp(4px, calc(var(--tile)*0.04), 8px);
+      left:50%;
+      transform:translateX(-50%);
       display:flex;
       gap:2px;
       background:rgba(11,15,20,0.95);
@@ -166,13 +167,20 @@
       z-index:5;
       opacity:0;
       pointer-events:none;
-      transition:none;
+      transition:opacity 0s 0.1s;
     }
     .thumb:hover .count-controls,
     .count-badge:hover ~ .count-controls,
     .count-controls:hover{
       opacity:1;
       pointer-events:auto;
+      transition:opacity .2s ease;
+    }
+    /* Esconde o count-badge quando count-controls está visível */
+    .thumb:hover .count-badge,
+    .count-controls:hover ~ .count-badge{
+      opacity:0;
+      pointer-events:none;
     }
     /* Esconder contador e botões quando colunas >= 21 */
     html.hide-counters .count-badge,
@@ -180,14 +188,14 @@
       display:none !important;
     }
     .count-control-btn{
-      width:clamp(16px, calc(var(--tile)*0.14), 24px);
-      height:clamp(16px, calc(var(--tile)*0.14), 24px);
-      border-radius:8px;
+      width:clamp(18px, calc(var(--tile)*0.16), 28px);
+      height:clamp(18px, calc(var(--tile)*0.16), 28px);
+      border-radius:12px;
       display:flex;
       align-items:center;
       justify-content:center;
       font-weight:700;
-      font-size:clamp(11px, calc(var(--tile)*0.1), 15px);
+      font-size:clamp(10px, calc(var(--tile)*0.09), 14px);
       color:#fff;
       background:#1e293b;
       border:1px solid #334155;
@@ -627,7 +635,7 @@
     /* DG Filter Pagination - Layout centralizado */
     .dg-filter-container{
       position:relative;
-      margin:10px 0 14px;
+  
       display:flex;
       align-items:center;
       justify-content:center;
@@ -673,40 +681,101 @@
     .dg-filter-scroll.sliding{
       transition:transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .dg-pagination-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:32px;
-      height:32px;
+    /* Botão de expansão do DG Filter */
+    .dg-expand-btn-wrapper{
+      position:fixed;
+      z-index:999999;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity .2s ease;
+    }
+    .dg-filter-scroll-wrapper:hover ~ .dg-expand-btn-wrapper,
+    .dg-expand-btn-wrapper:hover{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .dg-expand-btn{
       border:none;
       background:transparent;
-      color:var(--accent);
       cursor:pointer;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:28px;
-      font-weight:700;
-      transition:all .15s;
+      transition:opacity .2s ease;
       user-select:none;
-      z-index:10;
-      text-shadow:0 2px 4px rgba(0,0,0,.8);
+      pointer-events:auto;
+      padding:0;
+      width:32px;
+      height:32px;
     }
-    .dg-pagination-btn:hover:not(:disabled){
-      transform:translateY(-50%) scale(1.25);
-      text-shadow:0 3px 8px rgba(0,0,0,.9);
-      filter:brightness(1.2);
+    .dg-expand-arrow{
+      width:40%;
+      height:40%;
+      transform:rotate(90deg);
+      transition:transform .2s ease, fill .2s ease;
+      fill:#3b82f6;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,.8));
     }
-    .dg-pagination-btn:disabled{
-      opacity:0.2;
-      cursor:not-allowed;
+    .dg-expand-btn:hover .dg-expand-arrow{
+      fill:#60a5fa;
+      filter:drop-shadow(0 3px 6px rgba(0,0,0,.9));
     }
-    #dgPrevBtn{
-      left:15px;
+    .dg-expand-btn.expanded .dg-expand-arrow{
+      transform:rotate(270deg);
     }
-    #dgNextBtn{
-      right:15px;
+    /* Animação de expansão do painel */
+    @keyframes expandPanelWidth {
+      0% {
+        opacity:0;
+        width:0;
+      }
+      40% {
+        opacity:1;
+        width:var(--panel-width);
+      }
+      100% {
+        opacity:1;
+        width:var(--panel-width);
+      }
+    }
+    @keyframes expandPanelHeight {
+      0% {
+        height:0;
+      }
+      40% {
+        height:0;
+      }
+      100% {
+        height:var(--panel-height);
+      }
+    }
+    /* Retângulo de expansão */
+    .dg-expand-panel{
+      position:fixed;
+      z-index:999998;
+      width:0;
+      height:0;
+      background:rgba(11,15,20,0.98);
+      border:1px solid var(--accent);
+      border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.9);
+      overflow:hidden;
+      padding:16px;
+      opacity:0;
+      visibility:hidden;
+      transform:translateX(-50%);
+      display:grid;
+      grid-template-columns:repeat(9, 48px);
+      gap:8px;
+      justify-content:center;
+      align-content:center;
+      --panel-width:500px;
+      --panel-height:300px;
+    }
+    .dg-expand-panel.visible{
+      visibility:visible;
+      animation:expandPanelWidth 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+                expandPanelHeight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     .dg-filter-chip{
       position:relative;
@@ -773,7 +842,7 @@
       pointer-events:none;
       border:1px solid var(--border);
       box-shadow:0 4px 16px rgba(0,0,0,.5);
-      z-index:9999;
+      z-index:9999999;
       opacity:0;
       transition:opacity .15s;
     }
@@ -1233,6 +1302,28 @@
         transform: scale(1);
       }
     }
+
+    /* Footer Legal Disclaimer */
+    .legal-footer {
+      width: 100%;
+      text-align: center;
+      padding: 20px 10px;
+      background: rgba(11, 15, 20, 0.8);
+      border-top: 1px solid rgba(96, 165, 250, 0.2);
+      font-size: 12px;
+      color: #9ca3af;
+      line-height: 1.6;
+      margin-top: 40px;
+    }
+    .legal-footer a {
+      color: #60a5fa;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .legal-footer a:hover {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -1293,7 +1384,7 @@
       </div>
       <nav class="tabs">
         <div class="tabs-left">
-          <span id="versionBadge" style="padding:8px 12px;font-size:11px;color:#94a3b8;font-weight:500;align-self:center;user-select:none;">v1.0.0</span>
+          <span id="versionBadge" style="padding:8px 12px;font-size:11px;color:#94a3b8;font-weight:500;align-self:center;user-select:none;">v1.1.0</span>
           <button id="tabItemsBtn" class="tab active" data-i18n="tab_items">Itens</button>
           <button id="tabConfigBtn" class="tab" data-i18n="tab_config">Configurações</button>
         </div>
@@ -1359,11 +1450,19 @@
                 </div>
               </div>
             </div>
-            <div class="dg-filter-scroll-wrapper">
-              <button id="dgPrevBtn" class="dg-pagination-btn" data-i18n-title="tooltip_prev" title="Anterior">‹</button>
+            <div class="dg-filter-scroll-wrapper" id="dgFilterScrollWrapper">
               <div class="dg-filter-scroll" id="dgFilterScroll"></div>
-              <button id="dgNextBtn" class="dg-pagination-btn" data-i18n-title="tooltip_next" title="Próximo">›</button>
             </div>
+            <!-- Botão de expansão (fora do wrapper) -->
+            <div class="dg-expand-btn-wrapper">
+              <button class="dg-expand-btn" id="dgExpandBtn" title="Expandir dungeons">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 21.239999771118164 11.0600004196167 22.26999855041504" class="dg-expand-arrow">
+                  <path d="M6.47 32.32L0 21.24L3.64 21.24L11.06 32.18L3.64 43.51L0 43.51L6.47 32.32Z"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Retângulo de expansão -->
+            <div class="dg-expand-panel" id="dgExpandPanel"></div>
             <!-- Switch 3 fases (Coletados) -->
             <div class="triCtrl triCtrl-compact">
               <span class="label" data-i18n="collected" data-i18n-title="tooltip_collected" title="Coletados">Col.</span>
@@ -1599,6 +1698,24 @@
 
     // Release Notes / Histórico de Versões
     const RELEASE_NOTES = [
+      {
+        version: "1.1.0",
+        date: "2025-01-07",
+        changes: {
+          en: [
+            "New expandable dungeon drawer for easier navigation",
+            "Item duplicate counter - track multiple copies of the same item",
+            "Default grid columns increased from 5 to 12 for better first-time experience",
+            'Special thanks to Artexias via <a href="https://www.reddit.com/r/RotMG/comments/1onr5kq/i_made_a_free_white_bag_shiny_tracker_for_rotmg/" target="_blank" rel="noopener">Reddit</a> for the feedback!'
+          ],
+          "pt-BR": [
+            "Nova gaveta expansível de dungeons para navegação mais fácil",
+            "Contador de cópias duplicadas - rastreie múltiplas cópias do mesmo item",
+            "Colunas padrão aumentadas de 5 para 12 para melhor experiência inicial",
+            'Agradecimento especial ao Artexias via <a href="https://www.reddit.com/r/RotMG/comments/1onr5kq/i_made_a_free_white_bag_shiny_tracker_for_rotmg/" target="_blank" rel="noopener">Reddit</a> pelo feedback!'
+          ]
+        }
+      },
       {
         version: "1.0.0",
         date: "2025-11-02",
@@ -3030,13 +3147,19 @@
             const currentCount = state.itemCounts.get(r.objType) || 1;
             if(currentCount > 1){
               state.itemCounts.set(r.objType, currentCount - 1);
+              // Atualiza o display localmente sem re-render
+              countDisplay.textContent = String(currentCount - 1);
+              // Atualiza o badge se existir
+              const badge = div.querySelector('.count-badge');
+              if(badge) badge.textContent = String(currentCount - 1);
+              saveProgress();
             } else {
               // Se contador é 1, desmarcar o item completamente
               state.collected.delete(r.objType);
               state.itemCounts.delete(r.objType);
+              saveProgress();
+              renderAll();
             }
-            saveProgress();
-            renderAll();
           });
           countControls.appendChild(decrementBtn);
 
@@ -3053,8 +3176,12 @@
             e.stopPropagation();
             const currentCount = state.itemCounts.get(r.objType) || 1;
             state.itemCounts.set(r.objType, currentCount + 1);
+            // Atualiza o display localmente sem re-render
+            countDisplay.textContent = String(currentCount + 1);
+            // Atualiza o badge se existir
+            const badge = div.querySelector('.count-badge');
+            if(badge) badge.textContent = String(currentCount + 1);
             saveProgress();
-            renderAll();
           });
           countControls.appendChild(incrementBtn);
 
@@ -3201,12 +3328,14 @@
           handleRemove(tile);
           return;
         }
+        let needsRender = false;
         if(state.collected.has(objType)){
           // Só permite desmarcar se o contador for 1 ou não existir
           const currentCount = state.itemCounts.get(objType) || 1;
           if(currentCount === 1){
             state.collected.delete(objType);
             state.itemCounts.delete(objType); // Limpar contador ao desmarcar
+            needsRender = true;
           }
           // Se contador > 1, não faz nada (previne reset acidental)
         } else {
@@ -3215,8 +3344,12 @@
           if(!state.itemCounts.has(objType)){
             state.itemCounts.set(objType, 1);
           }
+          needsRender = true;
         }
-        saveProgress(); renderAll();
+        if(needsRender){
+          saveProgress();
+          renderAll();
+        }
       };
     }
 
@@ -3396,10 +3529,8 @@
 
       const frag = document.createDocumentFragment();
 
-      // Reverse chronological order (newest first)
-      const sortedReleases = [...RELEASE_NOTES].reverse();
-
-      for(const release of sortedReleases){
+      // Array já está em ordem cronológica reversa (mais recente primeiro)
+      for(const release of RELEASE_NOTES){
         const releaseCard = document.createElement("div");
         releaseCard.style.cssText = `
           background: rgba(71, 85, 105, 0.3);
@@ -3449,8 +3580,24 @@
 
         for(const change of currentLangChanges){
           const li = document.createElement("li");
-          li.textContent = change;
+          li.innerHTML = change;
           li.style.marginBottom = "4px";
+
+          // Estilizar links dentro da li para usar o azul padrão do site
+          const links = li.querySelectorAll("a");
+          links.forEach(link => {
+            link.style.color = "#60a5fa";
+            link.style.textDecoration = "none";
+            link.addEventListener("mouseenter", () => {
+              link.style.color = "#93c5fd";
+              link.style.textDecoration = "underline";
+            });
+            link.addEventListener("mouseleave", () => {
+              link.style.color = "#60a5fa";
+              link.style.textDecoration = "none";
+            });
+          });
+
           changesList.appendChild(li);
         }
 
@@ -3601,35 +3748,14 @@
       // Mostra o container
       if(container) container.style.display = "flex";
 
-      // Ordena as DGs alfabeticamente e adiciona "Todos" no início
-      const dgList = ["ALL", ...Array.from(dgSet).sort()];
-
-      // Calcula paginação - renderiza ícones adjacentes para efeito de carrossel
-      const totalPages = Math.ceil(dgList.length / DG_ITEMS_PER_PAGE);
-      const startIdx = dgFilterPage * DG_ITEMS_PER_PAGE;
-      const endIdx = startIdx + DG_ITEMS_PER_PAGE;
-
-      // Pega 2 itens antes e 2 depois para mostrar preview
-      const extendedStart = Math.max(0, startIdx - 2);
-      const extendedEnd = Math.min(dgList.length, endIdx + 2);
-      const extendedItems = dgList.slice(extendedStart, extendedEnd);
-
-      // Calcula quantos espaçadores invisíveis adicionar para centralizar
-      const itemsBeforeMain = startIdx - extendedStart;
-      const spacersBefore = 2 - itemsBeforeMain; // Quantos faltam para completar 2 antes
-
-      const itemsAfterMain = extendedEnd - endIdx;
-      const spacersAfter = 2 - itemsAfterMain; // Quantos faltam para completar 2 depois
-
-      // Marca quais são os itens principais (não preview)
-      const mainStartOffset = startIdx - extendedStart;
-      const mainEndOffset = mainStartOffset + DG_ITEMS_PER_PAGE;
-
-      // Popula o scroll
+      // Popula o scroll com apenas o chip do filtro atual
       const scroll = document.getElementById("dgFilterScroll");
       if(!scroll) return;
 
       scroll.innerHTML = "";
+
+      // Determina qual DG está ativa (apenas um chip será mostrado)
+      const currentDg = state.dgFilterActive || "ALL";
 
       // Pega o portal correspondente à DG ou um item aleatório como fallback
       const getIconForDG = (dgName) => {
@@ -3679,148 +3805,337 @@
 
       const tooltip = document.getElementById("dgTooltip");
 
-      // Adiciona espaçadores invisíveis antes (para centralizar quando no início)
-      for(let i = 0; i < spacersBefore; i++){
-        const spacer = document.createElement("div");
-        spacer.className = "dg-filter-chip";
-        spacer.style.opacity = "0";
-        spacer.style.pointerEvents = "none";
-        scroll.appendChild(spacer);
+      // Cria apenas o chip do filtro atual (centralizado)
+      const chip = document.createElement("div");
+      const isAll = (currentDg === "ALL");
+      chip.className = "dg-filter-chip active";
+      chip.dataset.dg = isAll ? "" : currentDg;
+      chip.dataset.dgDisplay = isAll ? (getDict()['filter_all'] || "All") : formatDgName(currentDg);
+
+      // Adiciona imagem
+      let iconItem;
+      if(isAll){
+        // "Todos" usa o Portal to Nexus (0x071d)
+        if(dgIconCache.has("ALL")){
+          iconItem = dgIconCache.get("ALL");
+        } else {
+          iconItem = {
+            objType: "0x071d",
+            textureFile: "lofiEnvironment2",
+            textureIndex: 0x36,
+            isPortal: true
+          };
+          dgIconCache.set("ALL", iconItem);
+        }
+      } else if(currentDg === "forge"){
+        // "Forge" usa um dos 3 itens de forge aleatoriamente (muda a cada renderização)
+        // Busca direto no equipByType, independente de estar em ignorados ou não
+        const forgeItems = ["0xc141", "0x513c", "0x5cbf"]; // Kogbold Enhancement Core, Concentrated Soul Fire, Vial of Soul Extract
+        const randomForgeType = forgeItems[Math.floor(Math.random() * forgeItems.length)];
+        const equipData = state.equipByType?.get(randomForgeType);
+        if(equipData){
+          iconItem = {
+            objType: randomForgeType,
+            textureFile: equipData.textureFile,
+            textureIndex: equipData.textureIndex
+          };
+        }
+      } else {
+        iconItem = getIconForDG(currentDg);
       }
 
-      // Cria chips incluindo preview dos adjacentes
-      extendedItems.forEach((dg, idx) => {
-        const chip = document.createElement("div");
-        const isAll = (dg === "ALL");
-        const isActive = isAll ? (state.dgFilterActive === null) : (state.dgFilterActive === dg);
-        const isPreview = (idx < mainStartOffset || idx >= mainEndOffset);
+      // Renderiza a imagem
+      const img = document.createElement("img");
 
-        chip.className = "dg-filter-chip" + (isActive ? " active" : "") + (isPreview ? " preview" : "");
-        chip.dataset.dg = isAll ? "" : dg;
-        chip.dataset.dgDisplay = isAll ? (getDict()['filter_all'] || "All") : formatDgName(dg);
+      if(currentDg === "realm-event"){
+        // "realm-event" usa imagem customizada direta
+        img.src = "imgs/Realm-Event.png";
+        img.alt = chip.dataset.dgDisplay;
+        chip.appendChild(img);
+      } else if(iconItem){
+        const url = getRowImgUrl(iconItem);
+        img.src = url || TRANSPARENT_PX;
+        img.alt = chip.dataset.dgDisplay;
+        chip.appendChild(img);
+      }
 
-        // Adiciona imagem
-        let iconItem;
-        if(isAll){
-          // "Todos" usa o Portal to Nexus (0x071d)
-          if(dgIconCache.has("ALL")){
-            iconItem = dgIconCache.get("ALL");
-          } else {
-            iconItem = {
-              objType: "0x071d",
-              textureFile: "lofiEnvironment2",
-              textureIndex: 0x36,
-              isPortal: true
-            };
-            dgIconCache.set("ALL", iconItem);
-          }
-        } else if(dg === "forge"){
-          // "Forge" usa um dos 3 itens de forge aleatoriamente (muda a cada renderização)
-          // Busca direto no equipByType, independente de estar em ignorados ou não
-          const forgeItems = ["0xc141", "0x513c", "0x5cbf"]; // Kogbold Enhancement Core, Concentrated Soul Fire, Vial of Soul Extract
-          const randomForgeType = forgeItems[Math.floor(Math.random() * forgeItems.length)];
-          const equipData = state.equipByType?.get(randomForgeType);
-          if(equipData){
-            iconItem = {
-              objType: randomForgeType,
-              textureFile: equipData.textureFile,
-              textureIndex: equipData.textureIndex
-            };
-          }
-        } else {
-          iconItem = getIconForDG(dg);
+      // Click handler - abre/fecha o painel de expansão
+      chip.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        const expandBtn = document.getElementById("dgExpandBtn");
+
+        // Se já está expandido, fecha
+        if(expandBtn && expandBtn.classList.contains("expanded")){
+          const clickEvent = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+          });
+          expandBtn.dispatchEvent(clickEvent);
+        } else if(window.openExpandPanel){
+          // Se está fechado, abre
+          window.openExpandPanel();
         }
-
-        // Renderiza a imagem
-        const img = document.createElement("img");
-
-        if(dg === "realm-event"){
-          // "realm-event" usa imagem customizada direta
-          img.src = "imgs/Realm-Event.png";
-          img.alt = chip.dataset.dgDisplay;
-          chip.appendChild(img);
-        } else if(iconItem){
-          const url = getRowImgUrl(iconItem);
-          img.src = url || TRANSPARENT_PX;
-          img.alt = chip.dataset.dgDisplay;
-          chip.appendChild(img);
-        } else {
-        }
-
-        // Click handler
-        chip.addEventListener("click", ()=>{
-          state.dgFilterActive = isAll ? null : dg;
-          renderAll();
-        });
-
-        // Tooltip handlers
-        chip.addEventListener("mouseenter", (e)=>{
-          const displayName = chip.dataset.dgDisplay;
-          if(!displayName || !tooltip) return;
-
-          tooltip.textContent = displayName;
-          tooltip.classList.add("visible");
-
-          const rect = chip.getBoundingClientRect();
-          tooltip.style.left = (rect.left + rect.width / 2) + "px";
-          tooltip.style.top = (rect.top - 10) + "px";
-          tooltip.style.transform = "translate(-50%, -100%)";
-        });
-
-        chip.addEventListener("mouseleave", ()=>{
-          if(tooltip) tooltip.classList.remove("visible");
-        });
-
-        scroll.appendChild(chip);
       });
 
-      // Adiciona espaçadores invisíveis depois (para centralizar quando no final)
-      for(let i = 0; i < spacersAfter; i++){
-        const spacer = document.createElement("div");
-        spacer.className = "dg-filter-chip";
-        spacer.style.opacity = "0";
-        spacer.style.pointerEvents = "none";
-        scroll.appendChild(spacer);
-      }
+      // Tooltip handlers
+      chip.addEventListener("mouseenter", (e)=>{
+        const displayName = chip.dataset.dgDisplay;
+        if(!displayName || !tooltip) return;
 
-      // Atualiza estado dos botões de navegação
-      const prevBtn = document.getElementById("dgPrevBtn");
-      const nextBtn = document.getElementById("dgNextBtn");
+        tooltip.textContent = displayName;
+        tooltip.classList.add("visible");
 
-      if(prevBtn){
-        prevBtn.disabled = (dgFilterPage === 0);
-        if(!prevBtn.hasAttribute('data-initialized')){
-          prevBtn.addEventListener("click", ()=>{
-            if(dgFilterPage > 0){
-              dgFilterPage--;
-              if(skipAnimation){
-                populateDgFilter(true);
-              } else {
-                animateDgPageChange("prev", () => populateDgFilter(true));
-              }
-            }
-          });
-          prevBtn.setAttribute('data-initialized', 'true');
+        const rect = chip.getBoundingClientRect();
+        tooltip.style.left = (rect.left + rect.width / 2) + "px";
+        tooltip.style.top = (rect.top - 10) + "px";
+        tooltip.style.transform = "translate(-50%, -100%)";
+      });
+
+      chip.addEventListener("mouseleave", ()=>{
+        if(tooltip) tooltip.classList.remove("visible");
+      });
+
+      scroll.appendChild(chip);
+
+      // Botão de expansão (toggle ˄ / ˅)
+      const expandBtn = document.getElementById("dgExpandBtn");
+      const expandBtnWrapper = document.querySelector(".dg-expand-btn-wrapper");
+
+      // Função para posicionar o botão centralizado absolutamente
+      function updateExpandBtnPosition(){
+        const scroll = document.getElementById("dgFilterScroll");
+        if(scroll && expandBtnWrapper){
+          const scrollRect = scroll.getBoundingClientRect();
+          expandBtnWrapper.style.left = '50%';
+          expandBtnWrapper.style.top = `${scrollRect.bottom - 10}px`;
+          expandBtnWrapper.style.transform = 'translateX(-50%)';
         }
       }
 
-      if(nextBtn){
-        nextBtn.disabled = (dgFilterPage >= totalPages - 1);
-        if(!nextBtn.hasAttribute('data-initialized')){
-          nextBtn.addEventListener("click", ()=>{
-            if(dgFilterPage < totalPages - 1){
-              dgFilterPage++;
-              if(skipAnimation){
-                populateDgFilter(true);
-              } else {
-                animateDgPageChange("next", () => populateDgFilter(true));
-              }
-            }
-          });
-          nextBtn.setAttribute('data-initialized', 'true');
+      // Função para posicionar o painel de expansão
+      const expandPanel = document.getElementById("dgExpandPanel");
+      function updateExpandPanelPosition(){
+        const scroll = document.getElementById("dgFilterScroll");
+        if(scroll && expandPanel){
+          const scrollRect = scroll.getBoundingClientRect();
+          expandPanel.style.left = '50%';
+          expandPanel.style.top = `${scrollRect.bottom + 20}px`;
+          // Não sobrescrever transform aqui - deixar o CSS controlar
         }
       }
+
+      // Atualizar posição inicial e em eventos
+      updateExpandBtnPosition();
+      updateExpandPanelPosition();
+      window.addEventListener('resize', () => {
+        updateExpandBtnPosition();
+        updateExpandPanelPosition();
+      });
+      window.addEventListener('scroll', () => {
+        updateExpandBtnPosition();
+        updateExpandPanelPosition();
+      });
+
+      // Função para popular o painel com todos os dungeons
+      function populateExpandPanel(){
+        if(!expandPanel) return;
+
+        // Coletar todos os dungeons únicos
+        const dgSet = new Set();
+        const allRows = deriveRows();
+
+        for(const row of allRows){
+          const dgValue = row.dg || "NONE";
+          if(dgValue && dgValue !== "NONE") {
+            const dgs = dgValue.split(',').map(d => d.trim()).filter(Boolean);
+            dgs.forEach(dg => dgSet.add(dg));
+          }
+        }
+
+        const dgList = ["ALL", ...Array.from(dgSet).sort()];
+        expandPanel.innerHTML = "";
+
+        // Calcular tamanho do painel baseado na quantidade de dungeons
+        const totalDungeons = dgList.length;
+        const cols = 9;
+        const gridRows = Math.ceil(totalDungeons / cols);
+        const chipSize = 48;
+        const gap = 8;
+        const padding = 32; // 16px * 2
+
+        const panelWidth = (cols * chipSize) + ((cols - 1) * gap) + padding;
+        const panelHeight = (gridRows * chipSize) + ((gridRows - 1) * gap) + padding;
+
+        // Definir CSS variables para o tamanho
+        expandPanel.style.setProperty('--panel-width', `${panelWidth}px`);
+        expandPanel.style.setProperty('--panel-height', `${panelHeight}px`);
+
+        dgList.forEach(dgName => {
+          const chip = document.createElement("div");
+          chip.className = "dg-filter-chip";
+          chip.dataset.dg = dgName;
+
+          const img = document.createElement("img");
+
+          // Casos especiais primeiro
+          if(dgName === "realm-event"){
+            // Realm Event usa PNG customizado
+            img.src = "imgs/Realm-Event.png";
+            img.alt = dgName;
+            chip.appendChild(img);
+          } else if(dgName === "forge"){
+            // Forge usa um dos 3 itens aleatoriamente
+            const forgeItems = ["0xc141", "0x513c", "0x5cbf"]; // Kogbold Enhancement Core, Concentrated Soul Fire, Vial of Soul Extract
+            const randomForgeType = forgeItems[Math.floor(Math.random() * forgeItems.length)];
+            const equipData = state.equipByType?.get(randomForgeType);
+            if(equipData){
+              const iconItem = {
+                objType: randomForgeType,
+                textureFile: equipData.textureFile,
+                textureIndex: equipData.textureIndex
+              };
+              img.src = getRowImgUrl(iconItem);
+            }
+            img.alt = dgName;
+            chip.appendChild(img);
+          } else {
+            // Usa a mesma lógica do carrossel para buscar ícone
+            const getDgIcon = (dgName) => {
+              if(dgIconCache.has(dgName)){
+                return dgIconCache.get(dgName);
+              }
+
+              if(dgName === "ALL" || dgName === "NONE"){
+                const nexusPortal = {
+                  objType: "0x071d",
+                  textureFile: "lofiEnvironment2",
+                  textureIndex: 0x36,
+                  isPortal: true
+                };
+                dgIconCache.set(dgName, nexusPortal);
+                return nexusPortal;
+              }
+
+              // Primeiro tenta encontrar um portal correspondente
+              if(state.portalsBy){
+                for(const [objType, portal] of state.portalsBy.entries()){
+                  if(portal.dgSlug === dgName){
+                    const portalAsRow = {
+                      objType: portal.objType,
+                      textureFile: portal.textureFile,
+                      textureIndex: portal.textureIndex,
+                      isPortal: true
+                    };
+                    dgIconCache.set(dgName, portalAsRow);
+                    return portalAsRow;
+                  }
+                }
+              }
+
+              // Fallback: usa um item aleatório da DG
+              const itemsInDG = allRows.filter(r => (r.dg || "NONE") === dgName);
+              if(itemsInDG.length === 0) return null;
+
+              const randomItem = itemsInDG[Math.floor(Math.random() * itemsInDG.length)];
+              dgIconCache.set(dgName, randomItem);
+              return randomItem;
+            };
+
+            const iconItem = getDgIcon(dgName);
+            if(iconItem){
+              img.src = getRowImgUrl(iconItem);
+            }
+
+            img.alt = dgName === "ALL" ? "Todos" : dgName;
+            chip.appendChild(img);
+          }
+
+          // Define dados para hover
+          const isAll = (dgName === "ALL");
+          const displayName = isAll ? (getDict()['filter_all'] || "All") : formatDgName(dgName);
+          chip.dataset.dg = isAll ? "" : dgName;
+          chip.dataset.dgDisplay = displayName;
+
+          // Marca chip ativo
+          const isActive = isAll ? (state.dgFilterActive === null) : (state.dgFilterActive === dgName);
+          if(isActive){
+            chip.classList.add("active");
+          }
+
+          // Clique: filtra dungeons
+          chip.addEventListener("click", () => {
+            state.dgFilterActive = isAll ? null : dgName;
+            renderAll();
+            expandPanel.classList.remove("visible");
+            expandBtn.classList.remove("expanded");
+          });
+
+          // Tooltip no hover
+          const tooltip = document.getElementById("dgTooltip");
+          chip.addEventListener("mouseenter", (e) => {
+            if(!tooltip) return;
+            tooltip.textContent = displayName;
+            tooltip.classList.add("visible");
+
+            const rect = chip.getBoundingClientRect();
+            tooltip.style.left = (rect.left + rect.width / 2) + "px";
+            tooltip.style.top = (rect.top - 10) + "px";
+            tooltip.style.transform = "translate(-50%, -100%)";
+          });
+
+          chip.addEventListener("mouseleave", () => {
+            if(tooltip) tooltip.classList.remove("visible");
+          });
+
+          expandPanel.appendChild(chip);
+        });
+      }
+
+      if(expandBtn){
+        if(!expandBtn.hasAttribute('data-initialized')){
+          expandBtn.addEventListener("click", ()=>{
+            expandBtn.classList.toggle("expanded");
+            if(expandBtn.classList.contains("expanded")){
+              populateExpandPanel();
+              expandPanel.classList.add("visible");
+              updateExpandPanelPosition();
+              console.log("Expandido - mostrar painel");
+            } else {
+              expandPanel.classList.remove("visible");
+              console.log("Recolhido - esconder painel");
+            }
+          });
+          expandBtn.setAttribute('data-initialized', 'true');
+        }
+      }
+
+      // Fechar painel ao clicar fora
+      document.addEventListener("click", (e) => {
+        if(expandPanel && expandBtn &&
+           !expandPanel.contains(e.target) &&
+           !expandBtn.contains(e.target) &&
+           expandPanel.classList.contains("visible")){
+          expandBtn.classList.remove("expanded");
+          expandPanel.classList.remove("visible");
+        }
+      });
     }
+
+    // Funções globais para abrir/fechar o painel de expansão
+    window.openExpandPanel = function(){
+      const expandBtn = document.getElementById("dgExpandBtn");
+
+      if(expandBtn && !expandBtn.classList.contains("expanded")){
+        // Simula um clique programático que vai disparar o event listener correto
+        const clickEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        expandBtn.dispatchEvent(clickEvent);
+      }
+    };
 
     function renderAll(){
       document.body.classList.toggle("delete-mode", state.deleteMode);
@@ -4895,6 +5210,12 @@
       <button id="dgSaveBtn" class="btn" style="width:100%;padding:10px;" data-i18n="dg_editor_save_btn">Salvar XML</button>
     </div>
   </div>
+
+  <!-- Legal Disclaimer Footer -->
+  <footer class="legal-footer">
+    Unofficial <a href="https://remaster.realmofthemadgod.com/" target="_blank" rel="noopener">ROTMG</a> Community Tool • Not affiliated with <a href="https://www.decagames.com/" target="_blank" rel="noopener">DECA Games</a><br>
+    All game content © DECA Games • <a href="https://github.com/Moejde/ChecklistShinyROTMG/tree/main" target="_blank" rel="noopener">Open Source Project</a>
+  </footer>
 </body>
 </html>
 
