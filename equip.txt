@@ -17495,7 +17495,7 @@
     <ActivateOnEquip amount="50" stat="MAXMP">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="10" stat="DEF">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="5" stat="SPD">IncrementStat</ActivateOnEquip>
-    <OnPlayerShootActivate proc="1" amount="100" cooldown="5" ManaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
+    <OnPlayerShootActivate proc="1" amount="100" cooldown="5" manaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
     <BagType>8</BagType>
     <feedPower>850</feedPower>
     <Soulbound />
@@ -29844,7 +29844,7 @@
     <ActivateOnEquip amount="50" stat="MAXMP">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="10" stat="DEF">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="5" stat="SPD">IncrementStat</ActivateOnEquip>
-    <OnPlayerShootActivate proc="1" amount="100" cooldown="5" ManaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
+    <OnPlayerShootActivate proc="1" amount="100" cooldown="5" manaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
     <BagType>8</BagType>
     <feedPower>850</feedPower>
     <Soulbound />
@@ -30856,7 +30856,8 @@
       <ObjectId>Cannonball</ObjectId>
       <Speed>70</Speed>
       <LifetimeMS>1000</LifetimeMS>
-      <Damage>1000</Damage>
+      <MinDamage>1000</MinDamage>
+      <MaxDamage>1000</MaxDamage>
       <Size>140</Size>
       <CollisionMult>2</CollisionMult>
       <MultiHit />
@@ -31335,7 +31336,7 @@
     </Texture>
     <SlotType>9</SlotType>
     <ExtraTooltipData>
-      <EffectInfo name="On shooting while Armored" description="Gain an additional 20% Damage Reduction" />
+      <EffectInfo name="On shooting while Berserk" description="Gain the Damaging buff for 1 second." />
     </ExtraTooltipData>
     <Description>A memento of a life long gone. You can still feel the warmth from years past through the frigid ice that has taken over.</Description>
     <ActivateOnEquip stat="MAXHP" amount="80">IncrementStat</ActivateOnEquip>
@@ -36773,7 +36774,7 @@
       <EffectInfo name="On Shoot" description="Restore 100 mana when In Combat below 50% MP" />
       <EffectInfo name="Cooldown" description="30 seconds" />
     </ExtraTooltipData>
-    <OnPlayerShootActivate proc="1" amount="100" cooldown="30" ManaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
+    <OnPlayerShootActivate proc="1" amount="100" cooldown="30" manaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
     <OnPlayerHitActivate cooldown="10" proc="1" amount="5" duration="5" stat="DEF" requiredConditions="In Combat" channel="noStackItm">StatBoostSelf</OnPlayerHitActivate>
     <ActivateOnEquip amount="40" stat="MAXHP">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="2" stat="ATT">IncrementStat</ActivateOnEquip>
@@ -36801,7 +36802,7 @@
       <EffectInfo name="On Shoot" description="Restore 150 mana when In Combat below 50% MP" />
       <EffectInfo name="Cooldown" description="30 seconds" />
     </ExtraTooltipData>
-    <OnPlayerShootActivate proc="1" amount="150" cooldown="30" ManaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
+    <OnPlayerShootActivate proc="1" amount="150" cooldown="30" manaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
     <OnPlayerHitActivate cooldown="10" proc="1" amount="10" duration="5" stat="DEF" requiredConditions="In Combat" channel="noStackItm">StatBoostSelf</OnPlayerHitActivate>
     <ActivateOnEquip amount="40" stat="MAXHP">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="4" stat="ATT">IncrementStat</ActivateOnEquip>
@@ -36829,7 +36830,7 @@
       <EffectInfo name="On Shoot" description="Restore 200 mana when In Combat below 50% MP" />
       <EffectInfo name="Cooldown" description="30 seconds" />
     </ExtraTooltipData>
-    <OnPlayerShootActivate proc="1" amount="200" cooldown="30" ManaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
+    <OnPlayerShootActivate proc="1" amount="200" cooldown="30" manaMinThresholdRelative="0.5" requiredConditions="In Combat">Magic</OnPlayerShootActivate>
     <OnPlayerHitActivate cooldown="10" proc="1" amount="15" duration="5" stat="DEF" requiredConditions="In Combat" channel="noStackItm">StatBoostSelf</OnPlayerHitActivate>
     <ActivateOnEquip amount="40" stat="MAXHP">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip amount="6" stat="ATT">IncrementStat</ActivateOnEquip>
@@ -48366,6 +48367,7 @@
       <EffectInfo name="Multiplier" description="8/12/17/23/30 % to WIS" />
       <EffectInfo name="" description="Each stack lasts for 10 seconds" />
       <EffectInfo name="Explosion" description="400 base dmg and 50 more dmg for each 5 WIS above 50." />
+      <EffectInfo name="Explosion Radius" description="4 tiles with an additional tile every 10 WIS above 50." />
     </ExtraTooltipData>
     <ActivateOnEquip stat="WIS" amount="5">IncrementStat</ActivateOnEquip>
     <Usable />
@@ -58219,6 +58221,7 @@
     <XPBonus>4</XPBonus>
     <UniqueID />
     <Labels>EQUIPMENT,RING,ST,TAB_ST,ST_RING,STGEN_3,POWERTIER_B,XPBONUS</Labels>
+    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x686d" id="3PriestST0" setType="0x425d" setName="Plague Doctor Priest Set" collectionIcon="3">
     <DisplayId>Cane of Caduceus</DisplayId>
@@ -63138,7 +63141,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,WEAPON,SWORD,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x452b" id="Aspirant's Bow">
     <Class>Equipment</Class>
@@ -63188,7 +63191,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,WEAPON,BOW,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x452c" id="Aspirant's Wand">
     <Class>Equipment</Class>
@@ -63234,7 +63237,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,WEAPON,WAND,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x452d" id="Aspirant's Dagger">
     <Class>Equipment</Class>
@@ -63282,7 +63285,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,WEAPON,DAGGER,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x452e" id="Aspirant's Staff">
     <Class>Equipment</Class>
@@ -63330,7 +63333,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,WEAPON,STAFF,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x452f" id="Aspirant's Blade">
     <Class>Equipment</Class>
@@ -63376,7 +63379,7 @@
     <feedPower>450</feedPower>
     <XPBonus>6</XPBonus>
     <Labels>EQUIPMENT,WEAPON,KATANA,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44e0" id="Aspirant's Plate">
     <Class>Equipment</Class>
@@ -63399,7 +63402,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,ARMOR,HEAVY,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44e1" id="Aspirant's Robes">
     <Class>Equipment</Class>
@@ -63425,7 +63428,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,ARMOR,ROBE,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44e2" id="Aspirant's Hide">
     <Class>Equipment</Class>
@@ -63449,7 +63452,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,ARMOR,LEATHER,UT,MOTMG2023</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44e3" id="Ring of the Stalwart" setType="0x4560" setName="Path of the Stalwart">
     <Class>Equipment</Class>
@@ -63472,7 +63475,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,RING,UT,MOTMG2023,STALWART</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44e4" id="Ring of the Magus" setType="0x4561" setName="Path of the Magus">
     <Class>Equipment</Class>
@@ -63496,7 +63499,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,RING,UT,MOTMG2023,MAGUS</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44c1" id="Ring of the Sniper" setType="0x4562" setName="Path of the Sniper">
     <Class>Equipment</Class>
@@ -63519,7 +63522,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,RING,UT,MOTMG2023,SNIPER</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44c2" id="Ring of the Swiftblade" setType="0x4563" setName="Path of the Swiftblade">
     <Class>Equipment</Class>
@@ -63543,7 +63546,7 @@
     <UniqueID />
     <Soulbound />
     <Labels>EQUIPMENT,RING,UT,MOTMG2023,SWIFTBLADE</Labels>
-    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+    <EnchantmentSlots slotChance="1,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
   <Object type="0x44ee" id="Path of the Magus Engraving">
     <DisplayId>Path of the Magus Engraving</DisplayId>
@@ -85880,7 +85883,7 @@
     <Labels>EQUIPMENT,ABILITY,TOME,TIERED,T5,T5_ABILITY,MPCOST,STATMOD,XPBONUS,APPLY_STAT_EFF</Labels>
     <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
   </Object>
-  <Object type="0x9449" id="Tome of Holy Guidance (SB)">
+  <Object type="0x9449" id="s (SB)">
     <Class>Equipment</Class>
     <Item />
     <Texture xOffset="2" yOffset="0">
@@ -91069,7 +91072,7 @@
     <PowerLevel>170</PowerLevel>
     <Texture>
       <File>lofiObjShiny</File>
-      <Index>360</Index>
+      <Index>499</Index>
     </Texture>
     <SlotType>8</SlotType>
     <Description>A wand made from a brilliant white cross designed to ward off evil.</Description>
@@ -98052,11 +98055,12 @@
     </Texture>
     <SlotType>9</SlotType>
     <Description>The ultimate prize of a master blood mage, this ring's crimson stone glows faintly with restless energy. It rewrites the rules of the flesh it touches.</Description>
-    <ActivateOnEquip stat="MAXHP" amount="120">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="MAXHP" amount="135">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="MAXMP" amount="30">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip stat="VIT" amount="4">IncrementStat</ActivateOnEquip>
     <ActivateOnEquip stat="WIS" amount="3">IncrementStat</ActivateOnEquip>
     <BagType>4</BagType>
-    <feedPower>200</feedPower>
+    <feedPower>500</feedPower>
     <Soulbound />
     <XPBonus>7</XPBonus>
     <UniqueID />
@@ -98633,6 +98637,736 @@
     <SlotType>10</SlotType>
     <Description>Grants a random item from the list when used!</Description>
     <ChestType>3</ChestType>
+    <Activate>OpenChest</Activate>
+    <Consumable />
+    <Soulbound />
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE,UT</Labels>
+  </Object>
+  <Object type="0x6F46" id="Snow Orb">
+    <Class>Equipment</Class>
+    <Item />
+    <Texture xOffset="-2" yOffset="1">
+      <File>d3LofiObjEmbed</File>
+      <Index>0x23F</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>A frozen orb of packed snow that bursts on impact, dealing damage and slowing nearby enemies.</Description>
+    <ExtraTooltipData>
+      <EffectInfo name="" description="When activated, it is thrown 3 tiles away in the current direction with a 0.25s throw time." />
+      <EffectInfo name="" description="Slows enemies within 5 tiles for 2.5s." />
+      <EffectInfo name="" description="350 area damage within 5 tiles." />
+    </ExtraTooltipData>
+    <Sound>use_potion</Sound>
+    <Activate objectId="Snow Orb Object" color="0XE3FAFF" throwTime="0.25" maxDistance="3">ObjectToss</Activate>
+    <Consumable />
+    <BagType>0</BagType>
+    <feedPower>5</feedPower>
+    <DropTradable />
+    <UniqueID />
+    <Track />
+    <Cooldown>0.5</Cooldown>
+    <QuickslotAllowed maxstack="9" />
+    <Labels>CONSUMABLE,TRADEABLE,SNOW_ORB</Labels>
+  </Object>
+  <Object type="0xA2B2" id="Icy Givings Mystery Chest">
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture>
+      <File>d2LofiObjEmbed</File>
+      <Index>1801</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>A frosty festive chest filled with wintry treats and surprises to spread seasonal cheer and power.</Description>
+    <ChestType>3</ChestType>
+    <Activate>OpenChest</Activate>
+    <Consumable />
+    <Soulbound />
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE,ST</Labels>
+  </Object>
+  <Object type="0xA2B3" id="Arsenal Of Ice Chest">
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture>
+      <File>d2LofiObjEmbed</File>
+      <Index>1802</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>Choose from a chilling collection of frost-forged gear and relics.</Description>
+    <Consumable />
+    <Soulbound />
+    <ChestType>1</ChestType>
+    <Activate>OpenChest</Activate>
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE</Labels>
+  </Object>
+  <Object id="Frost Storm Bow" type="0xA2B4" collectionIcon="19">
+    <Class>Equipment</Class>
+    <Item />
+    <PowerLevel>190</PowerLevel>
+    <Texture>
+      <File>lofiObj</File>
+      <Index>1245</Index>
+    </Texture>
+    <SlotType>3</SlotType>
+    <Description>A bow forged from a frozen tempest. Each fired arrow becomes a shard of winter itself.</Description>
+    <RateOfFire>0.33</RateOfFire>
+    <Sound>weapon/golden_bow</Sound>
+    <Projectile>
+      <ObjectId>Frost Storm Arrow</ObjectId>
+      <Speed>140</Speed>
+      <MinDamage>625</MinDamage>
+      <MaxDamage>700</MaxDamage>
+      <LifetimeMS>503</LifetimeMS>
+      <MultiHit />
+    </Projectile>
+    <BagType>6</BagType>
+    <NumProjectiles>1</NumProjectiles>
+    <OldSound>arrowShoot</OldSound>
+    <feedPower>1400</feedPower>
+    <Soulbound />
+    <XPBonus>8</XPBonus>
+    <UniqueID />
+    <Labels>EQUIPMENT,WEAPON,BOW,UT,TAB_UT,POWERTIER_S,ORG_KOGBOLD,RESKIN,XPBONUS</Labels>
+    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0xA2B6" id="Snow Branch" collectionIcon="140">
+    <Class>Equipment</Class>
+    <Item />
+    <Texture>
+      <File>lofiObj</File>
+      <Index>1246</Index>
+    </Texture>
+    <PowerLevel>150</PowerLevel>
+    <SlotType>17</SlotType>
+    <Description>A staff created from a tree covered in snow. It spreads cold wherever it strikes.</Description>
+    <RateOfFire>1.6</RateOfFire>
+    <Sound>weapon/sprite_wand</Sound>
+    <Projectile>
+      <ObjectId>Snow Branch Leaf</ObjectId>
+      <Speed>80</Speed>
+      <Size>90</Size>
+      <MinDamage>60</MinDamage>
+      <MaxDamage>115</MaxDamage>
+      <LifetimeMS>1200</LifetimeMS>
+      <Amplitude>0.30</Amplitude>
+      <Frequency>1.25</Frequency>
+    </Projectile>
+    <ActivateOnEquip stat="WIS" amount="4">IncrementStat</ActivateOnEquip>
+    <BagType>6</BagType>
+    <NumProjectiles>2</NumProjectiles>
+    <OldSound>magicShoot</OldSound>
+    <feedPower>800</feedPower>
+    <XPBonus>6</XPBonus>
+    <UniqueID />
+    <Soulbound />
+    <Labels>EQUIPMENT,WEAPON,STAFF,UT,TAB_UT,POWERTIER_B,XPBONUS,RESKIN,ORG_WLAB</Labels>
+    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0xA2B8" id="Snowflake Blade" collectionIcon="150">
+    <Class>Equipment</Class>
+    <Item />
+    <PowerLevel>216</PowerLevel>
+    <Texture>
+      <File>lofiObj</File>
+      <Index>1247</Index>
+    </Texture>
+    <SlotType>24</SlotType>
+    <Description>A katana created from eternal frost. It can break through ice with a single hit.</Description>
+    <Sound>weapon/long_sword</Sound>
+    <RateOfFire>1</RateOfFire>
+    <Projectile>
+      <ObjectId>Snowflake Blade Bullet</ObjectId>
+      <Speed>130</Speed>
+      <MinDamage>205</MinDamage>
+      <MaxDamage>225</MaxDamage>
+      <LifetimeMS>400</LifetimeMS>
+      <Amplitude>0.55</Amplitude>
+      <Frequency>0.55</Frequency>
+    </Projectile>
+    <BagType>6</BagType>
+    <feedPower>850</feedPower>
+    <OldSound>bladeSwing</OldSound>
+    <Soulbound />
+    <UniqueID />
+    <XPBonus>6</XPBonus>
+    <Labels>EQUIPMENT,WEAPON,KATANA,UT,TAB_UT,POWERTIER_A,XPBONUS,RESKIN,ORG_LOD</Labels>
+    <EnchantmentSlots slotChance="0.5,0.375,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0xA2BE" id="Snow Cone">
+    <Class>Equipment</Class>
+    <Item />
+    <SlotType>10</SlotType>
+    <Texture>
+      <File>d2LofiObjEmbed</File>
+      <Index>0x680</Index>
+    </Texture>
+    <Description>Shaved from the finest frozen ice in the Realm, resembling the soft texture of freshly fallen snow.</Description>
+    <BagType>7</BagType>
+    <feedPower>400</feedPower>
+    <PetFood />
+    <Soulbound />
+    <Labels>EQUIPMENT,CONSUMABLE,UT</Labels>
+  </Object>
+  <Object id="EH Arrow Shot Shiny" type="0x14DB">
+    <Class>Projectile</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>507</Index>
+    </Texture>
+    <AngleCorrection>1</AngleCorrection>
+  </Object>
+  <Object id="EH Red Arrow Shot Shiny" type="0x14DC">
+    <Class>Projectile</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>503</Index>
+    </Texture>
+    <AngleCorrection>1</AngleCorrection>
+  </Object>
+  <Object id="EH Blue Arrow Shot Shiny" type="0x14DD">
+    <Class>Projectile</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>505</Index>
+    </Texture>
+    <AngleCorrection>1</AngleCorrection>
+  </Object>
+  <Object id="EH Green Arrow Shot Shiny" type="0x14DE">
+    <Class>Projectile</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>501</Index>
+    </Texture>
+    <AngleCorrection>1</AngleCorrection>
+  </Object>
+  <Object type="0x14DF" id="EH Yellow Quiver Shiny" collectionIcon="100">
+    <DisplayId>Beehemoth Quiver</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>506</Index>
+    </Texture>
+    <SlotType>15</SlotType>
+    <Description>A quiver crafted from the remains of a yellow Beehemoth, filled with razor-sharp arrows fashioned from Killer Bee stingers.</Description>
+    <ActivateOnEquip stat="ATT" amount="3">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="DEX" amount="3">IncrementStat</ActivateOnEquip>
+    <Usable />
+    <Projectile>
+      <ObjectId>EH Arrow Shot Shiny</ObjectId>
+      <Speed>160</Speed>
+      <MinDamage>300</MinDamage>
+      <MaxDamage>420</MaxDamage>
+      <LifetimeMS>600</LifetimeMS>
+      <Size>140</Size>
+      <ConditionEffect duration="5">Slowed</ConditionEffect>
+      <MultiHit />
+      <PassesCover />
+      <ParticleTrail>0x992803</ParticleTrail>
+    </Projectile>
+    <MpCost>90</MpCost>
+    <ArcGap>8</ArcGap>
+    <Activate scalingStat="DEX" statModScalingMin="34" statModDamage="13">Shoot</Activate>
+    <NumProjectiles>3</NumProjectiles>
+    <Soulbound />
+    <Sound>spell/fire_spray</Sound>
+    <BagType>6</BagType>
+    <feedPower>800</feedPower>
+    <XPBonus>8</XPBonus>
+    <UniqueID />
+    <Labels>EQUIPMENT,ABILITY,QUIVER,UT,TAB_UT,POWERTIER_S,XPBONUS,MPCOST,STATMOD,REALMWHITE,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0x14E0" id="EH Red Quiver Shiny" collectionIcon="100">
+    <DisplayId>Beehemoth Quiver</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>502</Index>
+    </Texture>
+    <SlotType>15</SlotType>
+    <Description>A quiver crafted from the remains of a red Beehemoth, filled with razor-sharp arrows fashioned from Killer Bee stingers.</Description>
+    <ActivateOnEquip stat="ATT" amount="3">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="DEX" amount="3">IncrementStat</ActivateOnEquip>
+    <Usable />
+    <Projectile>
+      <ObjectId>EH Red Arrow Shot Shiny</ObjectId>
+      <Speed>160</Speed>
+      <MinDamage>300</MinDamage>
+      <MaxDamage>420</MaxDamage>
+      <LifetimeMS>600</LifetimeMS>
+      <Size>140</Size>
+      <ConditionEffect duration="5">Slowed</ConditionEffect>
+      <MultiHit />
+      <PassesCover />
+      <ParticleTrail>0x910a16</ParticleTrail>
+    </Projectile>
+    <Soulbound />
+    <MpCost>90</MpCost>
+    <ArcGap>8</ArcGap>
+    <Activate scalingStat="DEX" statModScalingMin="34" statModDamage="13">Shoot</Activate>
+    <NumProjectiles>3</NumProjectiles>
+    <Sound>spell/fire_spray</Sound>
+    <BagType>6</BagType>
+    <feedPower>800</feedPower>
+    <XPBonus>8</XPBonus>
+    <UniqueID />
+    <Labels>EQUIPMENT,ABILITY,QUIVER,UT,TAB_UT,POWERTIER_S,XPBONUS,MPCOST,STATMOD,REALMWHITE,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0x14E1" id="EH Blue Quiver Shiny" collectionIcon="100">
+    <DisplayId>Beehemoth Quiver</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>504</Index>
+    </Texture>
+    <SlotType>15</SlotType>
+    <Description>A quiver crafted from the remains of a blue Beehemoth, filled with razor-sharp arrows fashioned from Killer Bee stingers.</Description>
+    <ActivateOnEquip stat="ATT" amount="3">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="DEX" amount="3">IncrementStat</ActivateOnEquip>
+    <Usable />
+    <Projectile>
+      <ObjectId>EH Blue Arrow Shot Shiny</ObjectId>
+      <Speed>160</Speed>
+      <MinDamage>300</MinDamage>
+      <MaxDamage>420</MaxDamage>
+      <LifetimeMS>600</LifetimeMS>
+      <Size>140</Size>
+      <ConditionEffect duration="5">Slowed</ConditionEffect>
+      <MultiHit />
+      <PassesCover />
+      <ParticleTrail>0x001133</ParticleTrail>
+    </Projectile>
+    <Soulbound />
+    <MpCost>90</MpCost>
+    <ArcGap>8</ArcGap>
+    <Activate scalingStat="DEX" statModScalingMin="34" statModDamage="13">Shoot</Activate>
+    <NumProjectiles>3</NumProjectiles>
+    <Sound>spell/fire_spray</Sound>
+    <BagType>6</BagType>
+    <feedPower>800</feedPower>
+    <XPBonus>8</XPBonus>
+    <UniqueID />
+    <Labels>EQUIPMENT,ABILITY,QUIVER,UT,TAB_UT,POWERTIER_S,XPBONUS,MPCOST,STATMOD,REALMWHITE,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0x14E2" id="EH Green Quiver Shiny" collectionIcon="13">
+    <DisplayId>Beehemoth Quiver</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>500</Index>
+    </Texture>
+    <SlotType>15</SlotType>
+    <Description>A quiver crafted from the remains of a Green Beehemoth, filled with razor-sharp arrows fashioned from Killer Bee stingers.</Description>
+    <ActivateOnEquip stat="ATT" amount="3">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="DEX" amount="3">IncrementStat</ActivateOnEquip>
+    <Usable />
+    <Projectile>
+      <ObjectId>EH Green Arrow Shot Shiny</ObjectId>
+      <Speed>160</Speed>
+      <MinDamage>300</MinDamage>
+      <MaxDamage>420</MaxDamage>
+      <LifetimeMS>600</LifetimeMS>
+      <Size>140</Size>
+      <ConditionEffect duration="5">Slowed</ConditionEffect>
+      <MultiHit />
+      <PassesCover />
+      <ParticleTrail>0x001133</ParticleTrail>
+    </Projectile>
+    <Soulbound />
+    <MpCost>90</MpCost>
+    <ArcGap>8</ArcGap>
+    <Activate scalingStat="DEX" statModScalingMin="34" statModDamage="13">Shoot</Activate>
+    <NumProjectiles>3</NumProjectiles>
+    <Sound>spell/fire_spray</Sound>
+    <BagType>6</BagType>
+    <feedPower>800</feedPower>
+    <XPBonus>8</XPBonus>
+    <UniqueID />
+    <Labels>EQUIPMENT,ABILITY,QUIVER,UT,TAB_UT,POWERTIER_S,XPBONUS,MPCOST,ORG_NEST,STATMOD,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0x14E3" id="Crystal Sentry Shiny">
+    <Class>GameObject</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>490</Index>
+    </Texture>
+    <AltTexture id="1">
+      <Texture>
+        <File>lofiObjShiny</File>
+        <Index>490</Index>
+      </Texture>
+    </AltTexture>
+    <AltTexture id="2">
+      <Texture>
+        <File>lofiObjShiny</File>
+        <Index>491</Index>
+      </Texture>
+    </AltTexture>
+    <AltTexture id="3">
+      <Texture>
+        <File>lofiObjShiny</File>
+        <Index>492</Index>
+      </Texture>
+    </AltTexture>
+    <AltTexture id="4">
+      <Texture>
+        <File>lofiObjShiny</File>
+        <Index>493</Index>
+      </Texture>
+    </AltTexture>
+    <Presentation>
+      <Style id="SetAlt4">
+        <StyleStep altTextureId="4">SetAltTexture</StyleStep>
+      </Style>
+      <Style id="SetAlt1">
+        <StyleStep altTextureId="1">SetAltTexture</StyleStep>
+      </Style>
+      <Style id="SetAlt2">
+        <StyleStep altTextureId="2">SetAltTexture</StyleStep>
+      </Style>
+      <Style id="SetAlt3">
+        <StyleStep altTextureId="3">SetAltTexture</StyleStep>
+      </Style>
+    </Presentation>
+  </Object>
+  <Object type="0x14E4" id="Cave Dweller Trap Shiny" collectionIcon="11">
+    <DisplayId>Cave Dweller Trap</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>490</Index>
+    </Texture>
+    <SlotType>20</SlotType>
+    <Description>A ceremonial trap used by the elite members of the Mushroom Tribes to ensnare those who trespass their sacred sanctum.</Description>
+    <ExtraTooltipData>
+      <EffectInfo name="Trap" description="Spawn a Crystal Sentry for 5 seconds" />
+      <EffectInfo name="Crystal Sentry" description="Deals 450 damage to the closest target within 8 sqrs every 0.8 seconds" />
+    </ExtraTooltipData>
+    <ActivateOnEquip stat="ATT" amount="6">IncrementStat</ActivateOnEquip>
+    <Usable />
+    <BagType>6</BagType>
+    <MpCost>80</MpCost>
+    <Activate objectId="Crystal Sentry Shiny" throwTime="0.5" color="0xFADA4D">ObjectToss</Activate>
+    <feedPower>850</feedPower>
+    <Soulbound />
+    <XPBonus>7</XPBonus>
+    <UniqueID />
+    <Labels>EQUIPMENT,ABILITY,TRAP,UT,TAB_UT,POWERTIER_S,XPBONUS,MPCOST,ORG_FUNGAL,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="purpleDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0x14E5" id="Spectral Cloth Armor Shiny" collectionIcon="138">
+    <DisplayId>Spectral Cloth Armor</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <PowerLevel>63</PowerLevel>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>489</Index>
+    </Texture>
+    <SlotType>6</SlotType>
+    <Description>A ghostly fabric from the other side.</Description>
+    <ActivateOnEquip stat="DEF" amount="13">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="ATT" amount="5">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="DEX" amount="5">IncrementStat</ActivateOnEquip>
+    <BagType>6</BagType>
+    <feedPower>800</feedPower>
+    <XPBonus>7</XPBonus>
+    <UniqueID />
+    <Soulbound />
+    <Labels>EQUIPMENT,ARMOR,LEATHER,UT,TAB_UT,POWERTIER_B,TRADEABLE,XPBONUS,ORG_DAVY,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object id="Energy Arrow Shiny" type="0x14E6">
+    <Class>Projectile</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>495</Index>
+    </Texture>
+    <AngleCorrection>1</AngleCorrection>
+  </Object>
+  <Object type="0x14E7" id="B.O.W. S.H.I.N.Y." collectionIcon="147">
+    <DisplayId>B.O.W.</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>494</Index>
+    </Texture>
+    <SlotType>3</SlotType>
+    <Description>The arrows of this grotesque bow are laced with an inverted energy, causing shots to lose velocity and create brief barriers.</Description>
+    <RateOfFire>1.2</RateOfFire>
+    <BurstCount>3</BurstCount>
+    <BurstDelay>1</BurstDelay>
+    <BurstMinDelay>0.6</BurstMinDelay>
+    <ExtraTooltipData>
+      <EffectInfo description="3" name="Burst Count" />
+      <EffectInfo description="1 second" name="Burst Delay" />
+      <EffectInfo description="0.6 seconds" name="Minimum Burst Delay" />
+    </ExtraTooltipData>
+    <Projectile>
+      <ObjectId>Energy Arrow Shiny</ObjectId>
+      <Speed>180</Speed>
+      <MinDamage>70</MinDamage>
+      <MaxDamage>95</MaxDamage>
+      <Acceleration>-200</Acceleration>
+      <AccelerationDelay>150</AccelerationDelay>
+      <SpeedClamp>20</SpeedClamp>
+      <LifetimeMS>1200</LifetimeMS>
+      <MultiHit />
+    </Projectile>
+    <NumProjectiles>5</NumProjectiles>
+    <ArcGap>9</ArcGap>
+    <BagType>6</BagType>
+    <XPBonus>6</XPBonus>
+    <Sound>weapon/double_bow</Sound>
+    <OldSound>arrowShoot</OldSound>
+    <Soulbound />
+    <feedPower>950</feedPower>
+    <UniqueID />
+    <Labels>EQUIPMENT,WEAPON,BOW,UT,TAB_UT,POWERTIER_A,XPBONUS,ORG_HTT,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="redDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0x14E8" id="Chasuble of Holy Light Shiny" collectionIcon="132">
+    <DisplayId>Chasuble of Holy Light</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <PowerLevel>55</PowerLevel>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>498</Index>
+    </Texture>
+    <SlotType>14</SlotType>
+    <Description>An ornate robe worn by servants of the faith.</Description>
+    <ActivateOnEquip stat="MAXHP" amount="30">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="MAXMP" amount="30">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="DEF" amount="12">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="VIT" amount="6">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip stat="WIS" amount="6">IncrementStat</ActivateOnEquip>
+    <BagType>6</BagType>
+    <feedPower>700</feedPower>
+    <XPBonus>6</XPBonus>
+    <UniqueID />
+    <Soulbound />
+    <Labels>EQUIPMENT,ARMOR,ROBE,UT,TAB_UT,POWERTIER_C,TRADEABLE,XPBONUS,ORG_MANOR,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="greenDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object id="Wandering Souls Spell Proj Shiny" type="0x14E9">
+    <Class>Projectile</Class>
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>497</Index>
+    </Texture>
+    <Rotation>80</Rotation>
+    <AngleCorrection>1</AngleCorrection>
+  </Object>
+  <Object id="ChainScytheProcD Shiny" type="0x14EA">
+    <Class>Equipment</Class>
+    <Item />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>1</Index>
+    </Texture>
+    <SlotType>15</SlotType>
+    <Soulbound />
+    <Projectile>
+      <ObjectId>ChainScytheChain</ObjectId>
+      <Speed>0</Speed>
+      <MinDamage>0</MinDamage>
+      <MaxDamage>0</MaxDamage>
+      <LifetimeMS>0</LifetimeMS>
+      <Amplitude>.5</Amplitude>
+      <Frequency>0.5</Frequency>
+      <Size>80</Size>
+    </Projectile>
+    <Labels>EQUIPMENT,ABILITY,EFFECT</Labels>
+  </Object>
+  <Object id="Wandering Soul Shiny" type="0x14EB">
+    <Class>Summon</Class>
+    <AnimatedTexture>
+      <File>UGCSetPieceChars8x8</File>
+      <Index>35</Index>
+    </AnimatedTexture>
+    <Size>100</Size>
+    <ShadowSize>75</ShadowSize>
+    <Flying />
+    <NoCollisionWhenMovement />
+    <Z>0.4</Z>
+    <NoMiniMap />
+    <Sound id="0">monster/beholder_death</Sound>
+    <OrbitCreepMaster minRadius="1" maxRadius="1.5" speed="0.9" clockwiseProb="0.5" radiusVariability="0.25" />
+  </Object>
+  <Object id="Wandering Souls Spell Shiny" type="0x14EC" collectionIcon="128">
+    <DisplayId>Wandering Souls Spell</DisplayId>
+    <Class>Equipment</Class>
+    <Item />
+    <InventoryAnimation />
+    <Texture>
+      <File>lofiObjShiny</File>
+      <Index>496</Index>
+    </Texture>
+    <SlotType>11</SlotType>
+    <Description>Shaping raw magic into spirit-like forms, phantasmal projectiles are launched, each one homing in on the target with the precision of a well trained archer.</Description>
+    <ExtraTooltipData>
+      <EffectInfo description="6 Shots" name="Spell" />
+      <EffectInfo description="20% chance with a 2 second cooldown to release a Wandering Soul for 6 seconds" name="On Ability Use" />
+      <EffectInfo description="250" name="Soul Damage" />
+    </ExtraTooltipData>
+    <Sound>spell/magic_nova</Sound>
+    <Projectile>
+      <ObjectId>Wandering Souls Spell Proj Shiny</ObjectId>
+      <Speed>120</Speed>
+      <MinDamage>345</MinDamage>
+      <MaxDamage>500</MaxDamage>
+      <Acceleration>-99999</Acceleration>
+      <AccelerationDelay>0</AccelerationDelay>
+      <SpeedClamp>60</SpeedClamp>
+      <LifetimeMS>450</LifetimeMS>
+      <Amplitude>2</Amplitude>
+      <Frequency>0.5</Frequency>
+      <CollisionMult>1.33</CollisionMult>
+      <FaceDir />
+      <Size>120</Size>
+      <MultiHit />
+      <PassesCover />
+      <ProtectFromSink />
+    </Projectile>
+    <ActivateOnEquip amount="3" stat="DEF">IncrementStat</ActivateOnEquip>
+    <ActivateOnEquip amount="3" stat="SPD">IncrementStat</ActivateOnEquip>
+    <Usable />
+    <BagType>6</BagType>
+    <MpCost>85</MpCost>
+    <Activate numShots="1" maxDistance="13" offsetAngle="60" scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001">BulletCreate</Activate>
+    <MaxProjSpawnDist>6</MaxProjSpawnDist>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EA">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="120" proc="1" targetMouse="true" type="0x14EC">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EA">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="180" proc="1" targetMouse="true" type="0x14EC">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EA">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="240" proc="1" targetMouse="true" type="0x14EC">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EA">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="300" proc="1" targetMouse="true" type="0x14EC">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EA">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EC">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate scalingStat="SPD" statModScalingMin="36" statModDamage="6" statModNumShots="0.00001" cooldown="0" maxDistance="13" numShots="1" offsetAngle="0" proc="1" targetMouse="true" type="0x14EA">BulletCreate</OnPlayerAbilityActivate>
+    <OnPlayerAbilityActivate maxSpawnDistance="1.5" cooldown="2" objectId="Wandering Soul Shiny" proc="0.33">SpawnCreep</OnPlayerAbilityActivate>
+    <feedPower>800</feedPower>
+    <XPBonus>6</XPBonus>
+    <UniqueID />
+    <Soulbound />
+    <Labels>EQUIPMENT,ABILITY,SPELL,STATMOD,UT,TAB_UT,POWERTIER_A,XPBONUS,MPCOST,ORG_UDL,SHINY</Labels>
+    <EnchantmentSlots slotChance="1,1,0.25,0.125" seasonalSlotMod="1.05" forgeSlotMod="0.8" dustType="greenDust" dustAmounts="50,65,80,100" enchantmentList="Default Enchantment Pool" />
+  </Object>
+  <Object type="0xFF32" id="Beginner Gear Selection Chest">
+    <DisplayId>Beginner Gear Selection Chest</DisplayId>
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture xOffset="0" yOffset="0">
+      <File>d2LofiObjEmbed</File>
+      <Index>1665</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>Select tiered equipment of choice with minimum Uncommon Rarity.</Description>
+    <ChestType>2</ChestType>
+    <Activate>OpenChest</Activate>
+    <Consumable />
+    <Soulbound />
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE,UT</Labels>
+  </Object>
+  <Object type="0xFF33" id="Intermediate Gear Selection Chest">
+    <DisplayId>Intermediate Gear Selection Chest</DisplayId>
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture xOffset="0" yOffset="0">
+      <File>d2LofiObjEmbed</File>
+      <Index>1666</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>Select tiered equipment of choice with minimum Uncommon Rarity.</Description>
+    <ChestType>2</ChestType>
+    <Activate>OpenChest</Activate>
+    <Consumable />
+    <Soulbound />
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE,UT</Labels>
+  </Object>
+  <Object type="0xFF34" id="Advanced Gear Selection Chest">
+    <DisplayId>Advanced Gear Selection Chest</DisplayId>
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture xOffset="0" yOffset="0">
+      <File>d2LofiObjEmbed</File>
+      <Index>1667</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>Select tiered equipment of choice with minimum Uncommon Rarity.</Description>
+    <ChestType>2</ChestType>
+    <Activate>OpenChest</Activate>
+    <Consumable />
+    <Soulbound />
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE,UT</Labels>
+  </Object>
+  <Object type="0xFF35" id="Expert Gear Selection Chest">
+    <DisplayId>Expert Gear Selection Chest</DisplayId>
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture xOffset="0" yOffset="0">
+      <File>d2LofiObjEmbed</File>
+      <Index>1668</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>Select tiered equipment of choice with minimum Uncommon Rarity.</Description>
+    <ChestType>2</ChestType>
+    <Activate>OpenChest</Activate>
+    <Consumable />
+    <Soulbound />
+    <BagType>8</BagType>
+    <Track />
+    <Labels>EQUIPMENT,CONSUMABLE,UT</Labels>
+  </Object>
+  <Object type="0xFF36" id="Gen 3 ST Selection Chest">
+    <DisplayId>Gen 3 ST Selection Chest</DisplayId>
+    <Chest />
+    <Class>Equipment</Class>
+    <Item />
+    <Texture xOffset="0" yOffset="0">
+      <File>d2LofiObjEmbed</File>
+      <Index>1669</Index>
+    </Texture>
+    <SlotType>10</SlotType>
+    <Description>Select gen 3 ST equipment of choice with minimum Uncommon Rarity.</Description>
+    <ChestType>2</ChestType>
     <Activate>OpenChest</Activate>
     <Consumable />
     <Soulbound />

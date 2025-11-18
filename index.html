@@ -1324,6 +1324,58 @@
       color: #93c5fd;
       text-decoration: underline;
     }
+
+    /* Snowfall Effect - Christmas Edition */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: #fff;
+      font-size: 1em;
+      font-family: Arial, sans-serif;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 999999;
+      will-change: transform;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: var(--start-opacity);
+      }
+      25% {
+        transform: translateY(25vh) rotate(90deg);
+        opacity: calc(var(--start-opacity) * 0.85);
+      }
+      50% {
+        transform: translateY(50vh) rotate(180deg);
+        opacity: calc(var(--start-opacity) * 0.6);
+      }
+      75% {
+        transform: translateY(75vh) rotate(270deg);
+        opacity: calc(var(--start-opacity) * 0.35);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    @keyframes wind {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-12vw);
+      }
+      50% {
+        transform: translateX(-20vw);
+      }
+      75% {
+        transform: translateX(-12vw);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1698,6 +1750,24 @@
 
     // Release Notes / Histórico de Versões
     const RELEASE_NOTES = [
+      {
+        version: "1.1.1",
+        date: "2024-12-18",
+        changes: {
+          en: [
+            "Updated game assets to Season 25 - all new Christmas items are now available!",
+            "Added festive snowfall animation for the holiday season",
+            "Press Ctrl + Shift + S to toggle snow effect on/off",
+            "🎅 Merry Christmas and Happy Hunting!"
+          ],
+          "pt-BR": [
+            "Atualização dos assets do jogo para a Season 25 - todos os novos itens de Natal disponíveis!",
+            "Adicionada animação festiva de neve para a temporada natalina",
+            "Pressione Ctrl + Shift + S para ligar/desligar o efeito de neve",
+            "🎅 Feliz Natal e Boa Caçada!"
+          ]
+        }
+      },
       {
         version: "1.1.0",
         date: "2025-01-07",
@@ -5147,6 +5217,90 @@
         });
       }
 
+    });
+
+    // ❄️ Christmas Snowfall Effect with Unified Wind
+    function createSnowflake() {
+      // Wrapper element for wind (horizontal movement)
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('snowflake');
+      wrapper.style.left = Math.random() * 100 + '%';
+      wrapper.style.animation = 'wind 12s ease-in-out infinite';
+
+      // Inner element for snowflake (vertical fall + rotation)
+      const snowflake = document.createElement('div');
+
+      // 20% chance of snowflake (❄), 80% chance of small dot (•)
+      const isFlake = Math.random() < 0.2;
+      snowflake.innerHTML = isFlake ? '❄' : '•';
+
+      // Size based on type
+      let size;
+      if (isFlake) {
+        // Snowflakes: larger (0.7em to 1.8em)
+        size = Math.random() * 1.1 + 0.7;
+      } else {
+        // Dots: smaller (0.3em to 0.8em)
+        size = Math.random() * 0.5 + 0.3;
+      }
+      snowflake.style.fontSize = size + 'em';
+
+      // Random starting opacity (0.5 to 0.95) - each flake has its own fade range
+      const startOpacity = Math.random() * 0.45 + 0.5;
+      snowflake.style.setProperty('--start-opacity', startOpacity);
+
+      // Random animation duration for fall (8s to 15s for varied falling speed)
+      const duration = Math.random() * 7 + 8;
+
+      // Apply fall animation to inner element (no delay)
+      snowflake.style.animation = `fall ${duration}s linear forwards`;
+
+      wrapper.appendChild(snowflake);
+      document.body.appendChild(wrapper);
+
+      // Remove snowflake after animation completes
+      setTimeout(() => {
+        wrapper.remove();
+      }, duration * 1000);
+    }
+
+    // Create snowflakes more frequently (one every 100-300ms for intense effect)
+    let snowfallInterval = null;
+    let snowEnabled = true;
+
+    function startSnowfall() {
+      if (!snowEnabled) return;
+      createSnowflake();
+      const nextSnowflake = Math.random() * 200 + 100;
+      snowfallInterval = setTimeout(startSnowfall, nextSnowflake);
+    }
+
+    function toggleSnow() {
+      snowEnabled = !snowEnabled;
+      if (snowEnabled) {
+        // Re-enable snow
+        startSnowfall();
+      } else {
+        // Disable snow: stop creating new flakes and remove existing ones
+        if (snowfallInterval) {
+          clearTimeout(snowfallInterval);
+          snowfallInterval = null;
+        }
+        document.querySelectorAll('.snowflake').forEach(flake => flake.remove());
+      }
+    }
+
+    // Hidden hotkey: Ctrl + Shift + S to toggle snow
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+        e.preventDefault();
+        toggleSnow();
+      }
+    });
+
+    // Start snowfall effect on page load
+    window.addEventListener('load', () => {
+      startSnowfall();
     });
   </script>
 
