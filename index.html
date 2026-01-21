@@ -1325,57 +1325,6 @@
       text-decoration: underline;
     }
 
-    /* Snowfall Effect - Christmas Edition */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: #fff;
-      font-size: 1em;
-      font-family: Arial, sans-serif;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-      pointer-events: none;
-      z-index: 999999;
-      will-change: transform;
-    }
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: var(--start-opacity);
-      }
-      25% {
-        transform: translateY(25vh) rotate(90deg);
-        opacity: calc(var(--start-opacity) * 0.85);
-      }
-      50% {
-        transform: translateY(50vh) rotate(180deg);
-        opacity: calc(var(--start-opacity) * 0.6);
-      }
-      75% {
-        transform: translateY(75vh) rotate(270deg);
-        opacity: calc(var(--start-opacity) * 0.35);
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-    @keyframes wind {
-      0% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(-12vw);
-      }
-      50% {
-        transform: translateX(-20vw);
-      }
-      75% {
-        transform: translateX(-12vw);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
   </style>
 </head>
 <body>
@@ -1436,7 +1385,7 @@
       </div>
       <nav class="tabs">
         <div class="tabs-left">
-          <span id="versionBadge" style="padding:8px 12px;font-size:11px;color:#94a3b8;font-weight:500;align-self:center;user-select:none;">v1.1.0</span>
+          <span id="versionBadge" style="padding:8px 12px;font-size:11px;color:#94a3b8;font-weight:500;align-self:center;user-select:none;">v1.2.0</span>
           <button id="tabItemsBtn" class="tab active" data-i18n="tab_items">Itens</button>
           <button id="tabConfigBtn" class="tab" data-i18n="tab_config">Configurações</button>
         </div>
@@ -1765,6 +1714,32 @@
             "Adicionada animação festiva de neve para a temporada natalina",
             "Pressione Ctrl + Shift + S para ligar/desligar o efeito de neve",
             "🎅 Feliz Natal e Boa Caçada!"
+          ]
+        }
+      },
+      {
+        version: "1.2.0",
+        date: "2026-01-20",
+        changes: {
+          en: [
+            "🎆 Happy New Year 2026! The holidays are over, but the grind never stops!",
+            "Shiny items now have visual priority over White Bag in filters - if it shines, it's special!",
+            "Fixed shiny gradient background to display properly behind item sprites",
+            "Added 16 new items from latest game update:",
+            "  • 12 Shiny items: Breastplate of New Life, Chain Dagger, Cloak of Bloody Surprises, Fairy Ring, Igneous Starblossom, Mace of the Celestial Forest, Sandstone Seal, Spider Silk Bow, Spirit Staff, Thistleleaf Necklace, Tipsy Topper, Tools of the Tarnished",
+            "  • 4 White Bag items: Frosted Great Bow, Frosted Great Club, Frosted Great Katana, Frosted Great Staff",
+            "Removed Christmas theme - back to our clean, focused tracker design",
+            "Total item count: 82 new objects added to the database"
+          ],
+          "pt-BR": [
+            "🎆 Feliz Ano Novo 2026! As festas acabaram, mas a grind nunca para!",
+            "Itens Shiny agora têm prioridade visual sobre White Bag nos filtros - se brilha, é especial!",
+            "Corrigido gradiente de fundo dos itens shiny para exibir corretamente atrás dos sprites",
+            "Adicionados 16 novos itens da última atualização do jogo:",
+            "  • 12 itens Shiny: Breastplate of New Life, Chain Dagger, Cloak of Bloody Surprises, Fairy Ring, Igneous Starblossom, Mace of the Celestial Forest, Sandstone Seal, Spider Silk Bow, Spirit Staff, Thistleleaf Necklace, Tipsy Topper, Tools of the Tarnished",
+            "  • 4 itens White Bag: Frosted Great Bow, Frosted Great Club, Frosted Great Katana, Frosted Great Staff",
+            "Tema de Natal removido - de volta ao nosso design limpo e focado",
+            "Total de itens: 82 novos objetos adicionados ao banco de dados"
           ]
         }
       },
@@ -3046,16 +3021,13 @@
           const isWhitebag = (bagtype === "6");
 
           // Casos especiais: Shiny + Whitebag (ex: Dirk Shiny, Cdirk Shiny)
-          if (isWhitebag && isShiny) {
-            autoCategory = "White Bag"; // Prioriza Whitebag, mas isShiny=true faz aparecer em ambos
+          // IMPORTANTE: Shiny tem prioridade - itens Shiny NÃO aparecem no filtro WhiteBag
+          if (isShiny) {
+            autoCategory = "Shiny"; // Prioriza Shiny sobre Whitebag
           }
-          // Apenas Whitebag
+          // Apenas Whitebag (e não é Shiny)
           else if (isWhitebag) {
             autoCategory = "White Bag";
-          }
-          // Apenas Shiny
-          else if (isShiny) {
-            autoCategory = "Shiny";
           }
         }
 
@@ -3599,8 +3571,14 @@
 
       const frag = document.createDocumentFragment();
 
-      // Array já está em ordem cronológica reversa (mais recente primeiro)
-      for(const release of RELEASE_NOTES){
+      // Ordena por data (mais recente primeiro)
+      const sortedReleases = [...RELEASE_NOTES].sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA; // Descending order (newest first)
+      });
+
+      for(const release of sortedReleases){
         const releaseCard = document.createElement("div");
         releaseCard.style.cssText = `
           background: rgba(71, 85, 105, 0.3);
@@ -4547,7 +4525,13 @@
     function updateVersionBadge() {
       const badge = document.getElementById("versionBadge");
       if (badge && RELEASE_NOTES.length > 0) {
-        badge.textContent = `v${RELEASE_NOTES[0].version}`;
+        // Encontra o release mais recente por data
+        const latestRelease = [...RELEASE_NOTES].sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA;
+        })[0];
+        badge.textContent = `v${latestRelease.version}`;
       }
     }
 
@@ -5219,89 +5203,6 @@
 
     });
 
-    // ❄️ Christmas Snowfall Effect with Unified Wind
-    function createSnowflake() {
-      // Wrapper element for wind (horizontal movement)
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('snowflake');
-      wrapper.style.left = Math.random() * 100 + '%';
-      wrapper.style.animation = 'wind 12s ease-in-out infinite';
-
-      // Inner element for snowflake (vertical fall + rotation)
-      const snowflake = document.createElement('div');
-
-      // 20% chance of snowflake (❄), 80% chance of small dot (•)
-      const isFlake = Math.random() < 0.2;
-      snowflake.innerHTML = isFlake ? '❄' : '•';
-
-      // Size based on type
-      let size;
-      if (isFlake) {
-        // Snowflakes: larger (0.7em to 1.8em)
-        size = Math.random() * 1.1 + 0.7;
-      } else {
-        // Dots: smaller (0.3em to 0.8em)
-        size = Math.random() * 0.5 + 0.3;
-      }
-      snowflake.style.fontSize = size + 'em';
-
-      // Random starting opacity (0.5 to 0.95) - each flake has its own fade range
-      const startOpacity = Math.random() * 0.45 + 0.5;
-      snowflake.style.setProperty('--start-opacity', startOpacity);
-
-      // Random animation duration for fall (8s to 15s for varied falling speed)
-      const duration = Math.random() * 7 + 8;
-
-      // Apply fall animation to inner element (no delay)
-      snowflake.style.animation = `fall ${duration}s linear forwards`;
-
-      wrapper.appendChild(snowflake);
-      document.body.appendChild(wrapper);
-
-      // Remove snowflake after animation completes
-      setTimeout(() => {
-        wrapper.remove();
-      }, duration * 1000);
-    }
-
-    // Create snowflakes more frequently (one every 100-300ms for intense effect)
-    let snowfallInterval = null;
-    let snowEnabled = true;
-
-    function startSnowfall() {
-      if (!snowEnabled) return;
-      createSnowflake();
-      const nextSnowflake = Math.random() * 200 + 100;
-      snowfallInterval = setTimeout(startSnowfall, nextSnowflake);
-    }
-
-    function toggleSnow() {
-      snowEnabled = !snowEnabled;
-      if (snowEnabled) {
-        // Re-enable snow
-        startSnowfall();
-      } else {
-        // Disable snow: stop creating new flakes and remove existing ones
-        if (snowfallInterval) {
-          clearTimeout(snowfallInterval);
-          snowfallInterval = null;
-        }
-        document.querySelectorAll('.snowflake').forEach(flake => flake.remove());
-      }
-    }
-
-    // Hidden hotkey: Ctrl + Shift + S to toggle snow
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'S') {
-        e.preventDefault();
-        toggleSnow();
-      }
-    });
-
-    // Start snowfall effect on page load
-    window.addEventListener('load', () => {
-      startSnowfall();
-    });
   </script>
 
   <!-- Tooltip para DG chips -->
